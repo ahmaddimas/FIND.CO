@@ -2,17 +2,17 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Find CO</title>
+        <title>FIND.CO</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <nav class="navbar navbar-dark navbar-expand-sm bg-transparent fixed-top py-4">
-            <a href="#mynav" class="navbar-toggler navbar-toggler-right" data-toggle="collapse">
+            <a href="index.html" class="navbar-brand">FIND.CO</a>
+            <a href="#mynav" class="navbar-toggler ml-auto" data-toggle="collapse">
                 <span class="navbar-toggler-icon" aria-hidden="true"></span>
             </a>
-            <a href="index.html" class="navbar-brand">FIND CO</a>
             <div class="collapse navbar-collapse justify-content-end" id="mynav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -37,7 +37,7 @@
             <div class="jumbotron jumbotron-fluid parallax-wrapper d-flex my-auto">
                 <div class="container align-self-center text-center">
                     <div class="text-white">
-                        <h1>Welcome to FIND CO</h1>
+                        <h1>Welcome to FIND.CO</h1>
                         <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>Morbi ullamcorper, nunc sit amet interdum mattis.</p>
                         <a href="#" onclick="slide('#top-element')" class="mt-3 btn btn-outline-light btn-circle-xs bounce"><i class="fa fa-angle-down"></i></a>
                     </div>
@@ -95,23 +95,30 @@
             });
             $(window).on('scroll', function() {
                 parallax();
+            }).resize(function(event) {
+                parallax();
             });
             function parallax() {
                 var wScroll = $(window).scrollTop();
                 $('.parallax-intro').css('background-position', 'center '+(wScroll*0.7)+'px');
                 if (wScroll > 150) {
                     $('.navbar').removeClass('navbar-dark bg-transparent py-4').addClass('navbar-light bg-light navbar-shadow py-2');
-                    $('.navbar-brand').show();
+                    $('.navbar-brand').removeClass('sr-only');
                     $('#LoginBtn .btn').removeClass('btn-outline-light').addClass('btn-outline-dark');
                 } else {
-                    $('#mynav').on('shown.bs.collapse', showLessNavbarCollapse ).on('show.bs.collapse', showLessNavbarCollapse );
+                    $('#mynav').on('show.bs.collapse', showLessNavbarCollapse );
                     $('#mynav').on('hide.bs.collapse', hideLessNavbarCollapse );
                     if ($('#mynav').hasClass('show') == false) {
                         $('.navbar').removeClass('navbar-light bg-light navbar-shadow py-2').addClass('navbar-dark bg-transparent py-4');
                         $('#LoginBtn .btn').removeClass('btn-outline-dark').addClass('btn-outline-light');
-                        $('.navbar-brand').hide();
+                        $('.navbar-brand').addClass('sr-only');
                     } else {
-                        $('.navbar-brand').show();
+                        $('.navbar-brand').removeClass('sr-only');
+                        var wWidth = $(window).width();
+                        if (wWidth > 560)
+                            hideLessNavbarCollapse();
+                        else
+                            showLessNavbarCollapse();
                     }
                     $('.navbar').removeClass('py-2').addClass('py-4');
                 }
@@ -120,14 +127,14 @@
                 if ($(window).scrollTop() < 150) {
                     $('.navbar').removeClass('navbar-dark bg-transparent').addClass('navbar-light bg-light navbar-shadow');
                     $('#LoginBtn .btn').removeClass('btn-outline-light').addClass('btn-outline-dark');
-                    $('.navbar-brand').show();
+                    $('.navbar-brand').removeClass('sr-only');
                 }
             }
             function hideLessNavbarCollapse() {
                 if ($(window).scrollTop() < 150) {
                     $('.navbar').removeClass('navbar-light bg-light navbar-shadow').addClass('navbar-dark bg-transparent');
                     $('#LoginBtn .btn').removeClass('btn-outline-dark').addClass('btn-outline-light');
-                    $('.navbar-brand').hide();
+                    $('.navbar-brand').addClass('sr-only');
                 }
             }
             function slide(_target) {
@@ -136,8 +143,7 @@
                 }, 2000, 'easeOutQuint');
             }
             $('a').click(function(event) {
-                var _href = $(this).attr('href');
-                _href = _href.slice(0, 1);
+                var _href = $(this).attr('href').slice(0, 1);
                 if (_href == '#') event.preventDefault();
             });
         </script>
