@@ -86,6 +86,13 @@
         <script src="js/bootstrap.min.js" charset="utf-8"></script>
         <script type="text/javascript">
             parallax();
+            $(window).bind('DOMMouseScroll', function(e) {
+                //Firefox
+                $('html, body').stop();
+            }).bind('mousewheel', function(e) {
+                //IE, Opera, Safari
+                $('html, body').stop();
+            });
             $(window).on('scroll', function() {
                 parallax();
             });
@@ -126,7 +133,7 @@
             function slide(_target) {
                 $('html, body').stop().animate({
                     scrollTop: $(_target).offset().top - $('nav.navbar').height()
-                }, 2000, 'easeInOutExpo');
+                }, 2000, 'easeOutQuint');
             }
             $('a').click(function(event) {
                 var _href = $(this).attr('href');
