@@ -14,22 +14,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-    <link href="<? base_url(); ?>assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-    <link href="<? base_url(); ?>assets/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>assets/plugins/node-waves/waves.css" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="<? base_url(); ?>assets/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>assets/plugins/animate-css/animate.css" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
-    <link href="<? base_url(); ?>assets/plugins/morrisjs/morris.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>assets/plugins/morrisjs/morris.css" rel="stylesheet" />
 
     <!-- Custom Css -->
-    <link href="<? base_url(); ?>assets/css/style.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="<? base_url(); ?>assets/css/themes/all-themes.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>assets/css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
 <body class="theme-red">
@@ -276,7 +276,7 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="<? base_url(); ?>assets/images/user.png" width="48" height="48" alt="User" />
+                    <img src="<?= base_url(); ?>assets/images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
@@ -795,46 +795,46 @@
     <?php $this->load->view($main_view); ?>
 
     <!-- Jquery Core Js -->
-    <script src="<? base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src="<? base_url(); ?>assets/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Select Plugin Js -->
-    <script src="<? base_url(); ?>assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
     <!-- Slimscroll Plugin Js -->
-    <script src="<? base_url(); ?>assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="<? base_url(); ?>assets/plugins/node-waves/waves.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/node-waves/waves.js"></script>
 
     <!-- Jquery CountTo Plugin Js -->
-    <script src="<? base_url(); ?>assets/plugins/jquery-countto/jquery.countTo.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/jquery-countto/jquery.countTo.js"></script>
 
     <!-- Morris Plugin Js -->
-    <script src="<? base_url(); ?>assets/plugins/raphael/raphael.min.js"></script>
-    <script src="<? base_url(); ?>assets/plugins/morrisjs/morris.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/raphael/raphael.min.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/morrisjs/morris.js"></script>
 
     <!-- ChartJs -->
-    <script src="<? base_url(); ?>assets/plugins/chartjs/Chart.bundle.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/chartjs/Chart.bundle.js"></script>
 
     <!-- Flot Charts Plugin Js -->
-    <script src="<? base_url(); ?>assets/plugins/flot-charts/jquery.flot.js"></script>
-    <script src="<? base_url(); ?>assets/plugins/flot-charts/jquery.flot.resize.js"></script>
-    <script src="<? base_url(); ?>assets/plugins/flot-charts/jquery.flot.pie.js"></script>
-    <script src="<? base_url(); ?>assets/plugins/flot-charts/jquery.flot.categories.js"></script>
-    <script src="<? base_url(); ?>assets/plugins/flot-charts/jquery.flot.time.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/flot-charts/jquery.flot.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/flot-charts/jquery.flot.resize.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/flot-charts/jquery.flot.pie.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/flot-charts/jquery.flot.categories.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/flot-charts/jquery.flot.time.js"></script>
 
     <!-- Sparkline Chart Plugin Js -->
-    <script src="<? base_url(); ?>assets/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
     <!-- Custom Js -->
-    <script src="<? base_url(); ?>assets/js/admin.js"></script>
-    <script src="<? base_url(); ?>assets/js/pages/index.js"></script>
+    <script src="<?= base_url(); ?>assets/js/admin.js"></script>
+    <script src="<?= base_url(); ?>assets/js/pages/index.js"></script>
 
     <!-- Demo Js -->
-    <script src="<? base_url(); ?>assets/js/demo.js"></script>
+    <script src="<?= base_url(); ?>assets/js/demo.js"></script>
 </body>
 
 </html>
