@@ -3,6 +3,18 @@
         <div class="block-header">
             <h2>DASHBOARD</h2>
         </div>
+        <?php
+        if (empty($userData['nis']) || empty($userData['kelas']) || empty($userData['telp_siswa'])) { ?>
+            <div class="alert alert-warning">
+                <b>Warning!</b> Harap melengkapi data diri! <a class="alert-link" href="<?= base_url('Siswa/Profile') ?>">klik untuk melengkapi.</a>
+            </div>
+        <?php }
+        if (empty($data_perusahaan)) { ?>
+            <div class="alert alert-warning">
+                <b>Warning!</b> Anda belum memilih perusahaan! <a class="alert-link" href="<?= base_url('Siswa/Perusahaan/pilih') ?>">klik untuk memilih.</a>
+            </div>
+        <?php }
+        ?>
 
         <!-- Widgets -->
         <div class="row clearfix">

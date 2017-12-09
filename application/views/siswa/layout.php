@@ -25,6 +25,12 @@
     <!-- Morris Chart Css-->
     <link href="<?= base_url(); ?>assets/plugins/morrisjs/morris.css" rel="stylesheet" />
 
+    <!--WaitMe Css-->
+    <link href="<?= base_url(); ?>assets/plugins/waitme/waitMe.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="<?= base_url(); ?>assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
 
@@ -284,8 +290,6 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="seperator" class="divider"></li>
                             <li><a href="<?= base_url('Auth/logout'); ?>"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
                     </div>
@@ -295,28 +299,40 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="active">
-                        <a href="index.html">
-                            <i class="material-icons">home</i>
-                            <span>Home</span>
+                    <?php $uri2 = $this->uri->segment(2); $uri3 = $this->uri->segment(3); ?>
+                    <li class="<?php if(strcasecmp($uri2, 'profile') == 0) {echo 'active';} ?>">
+                        <a href="<?= base_url('Siswa/Profile'); ?>">
+                            <i class="material-icons">person</i>
+                            <span>Profile</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="pages/typography.html">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="<?php if(strcasecmp($uri2, 'dashboard') == 0) {echo 'active';} ?>">
+                        <a href="<?= base_url('Siswa/Dashboard'); ?>">
+                            <i class="material-icons">dashboard</i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="<?php if(strcasecmp($uri2, 'perusahaan') == 0) {echo 'active';} ?>">
+                        <a href="javascript:void(0)" class="menu-toggle waves-effect waves-block">
                             <i class="material-icons">domain</i>
                             <span>Perusahaan</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="pages/helper-classes.html">
-                            <i class="material-icons">layers</i>
-                            <span>Helper Classes</span>
-                        </a>
+                        <ul class="ml-menu">
+                            <li><a href="<?= base_url('Siswa/Perusahaan/pilih'); ?>" class="waves-effect waves-block">Pilih Perusahaan</a></li>
+                            <li class="<?php if(strcasecmp($uri3, 'all') == 0) {echo 'active';} ?>"><a href="<?= base_url('Siswa/Perusahaan/all'); ?>" class="waves-effect waves-block">Daftar Perusahaan</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
             <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2017 <a href="javascript:void(0);">FIND.CO</a>
+                </div>
+            </div>
+            <!-- #Footer -->
         </aside>
         <!-- #END# Left Sidebar -->
         <!-- Right Sidebar -->
@@ -464,10 +480,10 @@
         <!-- #END# Right Sidebar -->
     </section>
 
-    <?php $this->load->view($main_view); ?>
-
     <!-- Jquery Core Js -->
     <script src="<?= base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+
+    <?php $this->load->view($main_view); ?>
 
     <!-- Bootstrap Core Js -->
     <script src="<?= base_url(); ?>assets/plugins/bootstrap/js/bootstrap.js"></script>
@@ -481,19 +497,35 @@
     <!-- Waves Effect Plugin Js -->
     <script src="<?= base_url(); ?>assets/plugins/node-waves/waves.js"></script>
 
-    <!-- Jquery CountTo Plugin Js -->
-    <script src="<?= base_url(); ?>assets/plugins/jquery-countto/jquery.countTo.js"></script>
-
-    <!-- Morris Plugin Js -->
-    <script src="<?= base_url(); ?>assets/plugins/raphael/raphael.min.js"></script>
-    <script src="<?= base_url(); ?>assets/plugins/morrisjs/morris.js"></script>
-
-    <!-- Sparkline Chart Plugin Js -->
-    <script src="<?= base_url(); ?>assets/plugins/jquery-sparkline/jquery.sparkline.js"></script>
-
     <!-- Custom Js -->
     <script src="<?= base_url(); ?>assets/js/admin.js"></script>
-    <script src="<?= base_url(); ?>assets/js/pages/index.js"></script>
+    <?php
+    if(strcasecmp($uri2, 'dashboard') == 0) {
+        // Jquery CountTo Plugin Js
+        echo '<script src="'.base_url().'assets/plugins/jquery-countto/jquery.countTo.js"></script>';
+        // Morris Plugin Js
+        echo '<script src="'.base_url().'assets/plugins/raphael/raphael.min.js"></script>';
+        echo '<script src="'.base_url().'assets/plugins/morrisjs/morris.js"></script>';
+        // Sparkline Chart Plugin Js
+        echo '<script src="'.base_url().'assets/plugins/jquery-sparkline/jquery.sparkline.js"></script>';
+        // Custom Js
+        echo '<script src="'.base_url().'assets/js/pages/index.js"></script>';
+    }
+    if(strcasecmp($uri2, 'perusahaan') == 0) {
+        // Wait Me Plugin Js
+        echo '<script src="'.base_url().'assets/plugins/waitme/waitMe.js"></script>';
+        // Custom Js
+        echo '<script src="'.base_url().'assets/js/pages/cards/colored.js"></script>';
+    }
+    if(strcasecmp($uri2, 'profile') == 0) {
+        // Autosize Plugin Js
+        echo '<script src="'.base_url().'assets/plugins/autosize/autosize.js"></script>';
+        // Moment Plugin Js
+        echo '<script src="'.base_url().'assets/plugins/momentjs/moment.js"></script>';
+        // Custom Js
+        echo '<script src="'.base_url().'assets/js/pages/forms/basic-form-elements.js"></script>';
+    }
+    ?>
 
     <!-- Demo Js -->
     <script src="<?= base_url(); ?>assets/js/demo.js"></script>

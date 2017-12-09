@@ -24,17 +24,9 @@ class Auth extends CI_Controller {
             if (strpos($emailp, 'smktelkom-mlg.sch.id') !== false) {
                 $role = strpos($emailp, 'student') !== false ? 'usiswa':'uguru';
                 //preparing data for database insertion
-                $userData['oauth_uid']      = $gpInfo['id'];
-                $userData['picture_url']    = !empty($gpInfo['picture'])?$gpInfo['picture']:'';
                 if ($role === 'usiswa') {
-                    $userData['nama_siswa']     = $gpInfo['given_name'];
-                    $userData['email_siswa']    = $gpInfo['email'];
-                    $userData['angkatan']       = substr($gpInfo['family_name'], 0, -3);
-                    $userData['jurusan']        = substr($gpInfo['family_name'], -3);
-                    $userData['jk_siswa']       = !empty($gpInfo['gender'])?$gpInfo['gender']:'';
-
                     // insert or update user data to the database
-                    $userID = $this->model_siswa->checkUser($userData);
+                    $userData = $this->model_siswa->checkUser($gpInfo);
                 } else {
                     $userData['nama_guru']     = $gpInfo['given_name'];
                     $userData['email_guru']    = $gpInfo['email'];
@@ -59,7 +51,7 @@ class Auth extends CI_Controller {
         redirect($this->google->loginURL());
     }
 
-    public function logout() {
+    public function Logout() {
         //delete login status & user info from session
         $this->session->unset_userdata(md5('Logged_In'));
         $this->session->unset_userdata(md5('Logged_Role'));
