@@ -3,6 +3,18 @@
         <div class="block-header">
             <h2>DAFTAR PERUSAHAAN</h2>
         </div>
+        <?php
+        if (empty($userData['nis']) || empty($userData['kelas']) || empty($userData['telp_siswa'])) { ?>
+            <div class="alert alert-warning">
+                <b>Warning!</b> Harap melengkapi data diri! <a class="alert-link" href="<?= base_url('Siswa/Profile') ?>">klik untuk melengkapi.</a>
+            </div>
+        <?php }
+        if (empty($data_perusahaan)) { ?>
+            <div class="alert alert-warning">
+                <b>Warning!</b> Anda belum memilih perusahaan! <a class="alert-link" href="<?= base_url('Siswa/Perusahaan/pilih') ?>">klik untuk memilih.</a>
+            </div>
+        <?php }
+        ?>
         <!-- Basic Example -->
         <div class="row clearfix">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">

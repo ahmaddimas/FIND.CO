@@ -26,10 +26,10 @@
     <link href="<?= base_url(); ?>assets/plugins/morrisjs/morris.css" rel="stylesheet" />
 
     <!--WaitMe Css-->
-    <link href="<?= base_url(); ?>assets/plugins/waitme/waitMe.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" />
 
     <!-- Bootstrap Select Css -->
-    <link href="<?= base_url(); ?>assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>assets/plugins/dropzone/dropzone.css" rel="stylesheet" />
 
     <!-- Sweet Alert Css -->
     <link href="<?= base_url(); ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
@@ -282,11 +282,11 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="<?= $userData['picture_url']; ?>" width="48" height="48" alt="User" />
+                    <img src="<?= base_url(); ?>assets/images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $userData['nama_siswa']; ?></div>
-                    <div class="email"><?= $userData['email_siswa']; ?></div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $adminData['username']; ?></div>
+                    <div class="email">Administrator</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
@@ -301,26 +301,32 @@
                 <ul class="list">
                     <?php $uri2 = $this->uri->segment(2); $uri3 = $this->uri->segment(3); ?>
                     <li class="<?php if(strcasecmp($uri2, 'profile') == 0) {echo 'active';} ?>">
-                        <a href="<?= base_url('Siswa/Profile'); ?>">
+                        <a href="<?= base_url('Admin/Profile'); ?>">
                             <i class="material-icons">person</i>
                             <span>Profile</span>
                         </a>
                     </li>
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="<?php if(strcasecmp($uri2, 'dashboard') == 0) {echo 'active';} ?>">
-                        <a href="<?= base_url('Siswa/Dashboard'); ?>">
+                        <a href="<?= base_url('Admin/Dashboard'); ?>">
                             <i class="material-icons">dashboard</i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="<?php if(strcasecmp($uri2, 'perusahaan') == 0) {echo 'active';} ?>">
-                        <a href="javascript:void(0)" class="menu-toggle waves-effect waves-block">
+                        <a href="<?= base_url('Admin/Perusahaan'); ?>">
                             <i class="material-icons">domain</i>
                             <span>Perusahaan</span>
                         </a>
+                    </li>
+                    <li class="<?php if(strcasecmp($uri2, 'users') == 0) {echo 'active';} ?>">
+                        <a href="javascript:void(0)" class="menu-toggle waves-effect waves-block">
+                            <i class="material-icons">people</i>
+                            <span>Users</span>
+                        </a>
                         <ul class="ml-menu">
-                            <li class="<?php if(strcasecmp($uri3, 'pilih') == 0) {echo 'active';} ?>"><a href="<?= base_url('Siswa/Perusahaan/pilih'); ?>" class="waves-effect waves-block">Pilih Perusahaan</a></li>
-                            <li class="<?php if(strcasecmp($uri3, 'all') == 0) {echo 'active';} ?>"><a href="<?= base_url('Siswa/Perusahaan/all'); ?>" class="waves-effect waves-block">Daftar Perusahaan</a></li>
+                            <li class="<?php if(strcasecmp($uri3, 'pilih') == 0) {echo 'active';} ?>"><a href="<?= base_url('Admin/Users/siswa'); ?>" class="waves-effect waves-block">Data Siswa</a></li>
+                            <li class="<?php if(strcasecmp($uri3, 'all') == 0) {echo 'active';} ?>"><a href="<?= base_url('Admin/Users/guru'); ?>" class="waves-effect waves-block">Data Guru Pembimbing</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -462,17 +468,26 @@
         echo '<script src="'.base_url().'assets/js/pages/index.js"></script>';
     }
     if(strcasecmp($uri2, 'perusahaan') == 0) {
-        // Wait Me Plugin Js
-        echo '<script src="'.base_url().'assets/plugins/waitme/waitMe.js"></script>';
-        // Jquery Validation Plugin
-        echo '<script src="'.base_url().'assets/plugins/jquery-validation/jquery.validate.js"></script>';
-        // JQuery Steps Plugin Js
-        echo '<script src="'.base_url().'assets/plugins/jquery-steps/jquery.steps.js"></script>';
-        // Sweet Alert Plugin Js
-        echo '<script src="'.base_url().'assets/plugins/sweetalert/sweetalert.min.js"></script>';
-        // Custom Js
-        echo '<script src="'.base_url().'assets/js/pages/cards/colored.js"></script>';
-        echo '<script src="'.base_url().'assets/js/pages/forms/form-wizard.js"></script>';
+        $uri3 = $this->uri->segment(3);
+        if (strcasecmp($uri3, 'tambah') == 0) {
+            // Dropzone Plugin Js
+            echo '<script src="'.base_url().'assets/plugins/dropzone/dropzone.js"></script>';
+            // Custom Js
+            echo '<script src="'.base_url().'assets/js/pages/forms/advanced-form-elements.js"></script>';
+        } else {
+            // Wait Me Plugin Js
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/jquery.dataTables.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>';
+            // Custom Js
+            echo '<script src="'.base_url().'assets/js/pages/tables/jquery-datatable.js"></script>';
+        }
     }
     if(strcasecmp($uri2, 'profile') == 0) {
         // Autosize Plugin Js

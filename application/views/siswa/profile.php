@@ -7,8 +7,7 @@
             <div class="alert alert-warning">
                 <b>Warning!</b> Anda belum memilih perusahaan! <a class="alert-link" href="<?= base_url('Siswa/Perusahaan/pilih') ?>">klik untuk memilih.</a>
             </div>
-        <?php }
-        ?>
+        <?php } ?>
         <!-- Form Data Diri -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

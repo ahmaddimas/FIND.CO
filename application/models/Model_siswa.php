@@ -52,12 +52,13 @@ class Model_siswa extends CI_Model {
     }
 
     public function getPilihan($id) {
-        $this->db->select('p.id_perusahaan, p.nama_perusahaan, p.kota, p.telp_perusahaan, rp.kuota');
+        $this->db->select('p.id_perusahaan, p.nama_perusahaan, p.kota, p.telp_perusahaan, rp.kuota, MAX(rp.tahun_rekap) AS tahun_rekap');
         $this->db->from('tb_siswa AS s');
         $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_siswa = s.id_siswa', 'inner');
         $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = ps.id_perusahaan', 'inner');
         $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'inner');
         $this->db->where('s.id_siswa', $id);
+        $this->db->group_by('p.id_perusahaan');
         return $this->db->get()->row_array();
     }
 }

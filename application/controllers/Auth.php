@@ -5,6 +5,7 @@ class Auth extends CI_Controller {
         parent::__construct();
         $this->load->library('google');
         $this->load->model('model_siswa');
+        $this->load->model('model_admin');
     }
 
     public function index() {
@@ -49,6 +50,32 @@ class Auth extends CI_Controller {
         }
         // redirect to google login page
         redirect($this->google->loginURL());
+    }
+
+    public function LogInAdmin() {
+        if ($this->session->userdata(md5('Logged_In'))) {
+            if ($this->session->userdata(md5('Logged_Role')) === 'uroot') {
+                redirect('Admin');
+            }else {
+                redirect('Auth');
+            }
+        }
+
+        if (isset($_POST['AdminLogin'])) {
+            $this->form_validation->set_rules('username', 'Username', 'trim|required');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required');
+            if ($this->form_validation->run()) {
+                if ($this->model_admin->checkUser()) {
+                    redirect('Admin');
+                } else {
+                    $this->session->set_flashdata('notif', 'Gagal Login!');
+                }
+            } else {
+                $this->session->set_flashdata('notif', validation_errors());
+            }
+        }
+
+        $this->load->view('admin/v_login');
     }
 
     public function Logout() {

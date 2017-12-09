@@ -40,6 +40,12 @@ class Siswa extends CI_Controller {
 				'userData'	=> $this->session->userdata(md5('UserData'))
 			];
 			$this->load->view('siswa/layout', $data);
+		} elseif (strcasecmp($this->uri->segment(3), 'pilih') == 0) {
+			$data = [
+				'main_view'	=> 'siswa/pilih_perusahaan',
+				'userData'	=> $this->session->userdata(md5('UserData'))
+			];
+			$this->load->view('siswa/layout', $data);
 		}
 	}
 
