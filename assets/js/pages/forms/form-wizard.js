@@ -19,24 +19,25 @@ $(function () {
         onStepChanging: function (event, currentIndex, newIndex) {
             if (currentIndex > newIndex) { return true; }
 
-            // show page loader when changing
-            $('.page-loader-wrapper').fadeIn(0);
-
             if (currentIndex < newIndex) {
                 form.find('.body:eq(' + newIndex + ') label.error').remove();
                 form.find('.body:eq(' + newIndex + ') .error').removeClass('error');
             }
 
-            if (currentIndex == 0) {
-                getPilihan1();
+            if (form.valid()) {
+                // show page loader when changing
+                $('.page-loader-wrapper').fadeIn(0);
+
+                if (currentIndex == 0) {
+                    search('', 'card-p1');
+                    getPilihan1();
+                }
+                if (newIndex == 2) {
+                    search('', 'card-p2');
+                    getPilihan2();
+                    setPilihan();
+                }
             }
-            if (newIndex == 2) {
-                getPilihan2();
-                setPilihan();
-            }
-            // if (newIndex == 2) {
-            //     setPilihan();
-            // }
 
             form.validate().settings.ignore = ':disabled,:hidden';
             return form.valid();
@@ -64,15 +65,7 @@ $(function () {
     });
 
     form.validate({
-        highlight: function (input) {
-            $(input).parents('.form-line').addClass('error');
-        },
-        unhighlight: function (input) {
-            $(input).parents('.form-line').removeClass('error');
-        },
-        errorPlacement: function (error, element) {
-            $(element).parents('.form-group').append(error);
-        },
+        errorPlacement: function errorPlacement(error, element) { element.before(error); },
         rules: {
             'confirm': {
                 equalTo: '#password'

@@ -22,25 +22,25 @@ class Ajax_pagination{
     var $prev_link       = '&#171;';
     var $last_link       = 'Last';
     var $uri_segment     = 3;
-    var $full_tag_open   = '';
-    var $full_tag_close  = '';
-    var $first_tag_open  = '';
-    var $first_tag_close = '';
-    var $last_tag_open   = '';
-    var $last_tag_close  = '';
-    var $cur_tag_open    = '<div class="page active">';
-    var $cur_tag_close   = '</div>';
-    var $next_tag_open   = '';
-    var $next_tag_close  = '';
-    var $prev_tag_open   = '';
-    var $prev_tag_close  = '';
+    var $full_tag_open   = '<ul class="pagination">';
+    var $full_tag_close  = '</ul>';
+    var $first_tag_open  = '<li>';
+    var $first_tag_close = '</li>';
+    var $last_tag_open   = '<li>';
+    var $last_tag_close  = '</li>';
+    var $cur_tag_open    = '<li class="active">';
+    var $cur_tag_close   = '</li>';
+    var $next_tag_open   = '<li>';
+    var $next_tag_close  = '</li>';
+    var $prev_tag_open   = '<li>';
+    var $prev_tag_close  = '</li>';
     var $num_tag_open    = '';
     var $num_tag_close   = '';
     var $target          = '';
     var $anchor_class    = '';
     var $show_count      = true;
     var $link_func       = 'searchFilter';
-    var $loading         = '.load-wrapper';
+    var $loading         = '.page-loader-wrapper';
 
     /**
      * Constructor
@@ -202,6 +202,6 @@ class Ajax_pagination{
 
     function getAJAXlink($count, $text) {
         $pageCount = $count?$count:0;
-        return '<div class="page" href="javascript:void(0);"' . $this->anchor_class . ' onclick="'.$this->link_func.'('.$pageCount.')">'. $text .'</div>';
+        return '<li><a href="javascript:void(0);"' . $this->anchor_class . ' onclick="'.$this->link_func.'('.$pageCount.')">'. $text .'</a></li>';
     }
 }

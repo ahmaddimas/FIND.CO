@@ -44,7 +44,7 @@
                                         <i class="material-icons">domain</i>
                                     </span>
                                     <div class="form-line">
-                                        <input type="text" class="form-control date" placeholder="Cari Perusahaan">
+                                        <input type="text" class="form-control" placeholder="Cari Perusahaan" onkeyup="search(this.value, 'card-p1')" id="inputSearch1">
                                     </div>
                                     <span class="input-group-addon">
                                         <i class="material-icons">search</i>
@@ -53,15 +53,15 @@
                                 <div class="row clearfix">
                                     <?php if ($perusahaan != null):
                                         foreach ($perusahaan as $p): ?>
-                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 card-p1">
                                             <div class="card-wrapper">
                                                 <div class="card">
                                                     <img src="<?= base_url().$p->picture_url; ?>" alt="" width="100%">
                                                     <div class="body pt-1 demo-icon-container">
-                                                        <h4><?= $p->nama_perusahaan; ?></h4>
+                                                        <h4 class="title"><?= $p->nama_perusahaan; ?></h4>
                                                         <div class="demo-google-material-icon">
                                                             <i class="material-icons">place</i>
-                                                            <span class="icon-name"><?= $p->kota; ?></span>
+                                                            <span class="icon-name city"><?= $p->kota; ?></span>
                                                         </div>
                                                         <div class="demo-google-material-icon">
                                                             <i class="material-icons">phone</i>
@@ -97,7 +97,7 @@
                                         <i class="material-icons">domain</i>
                                     </span>
                                     <div class="form-line">
-                                        <input type="text" class="form-control date" placeholder="Cari Perusahaan">
+                                        <input type="text" class="form-control" placeholder="Cari Perusahaan" onkeyup="search(this.value, 'card-p2')">
                                     </div>
                                     <span class="input-group-addon">
                                         <i class="material-icons">search</i>
@@ -106,15 +106,15 @@
                                 <div class="row clearfix">
                                     <?php if ($perusahaan != null):
                                         foreach ($perusahaan as $p): ?>
-                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 card-p2">
                                             <div class="card-wrapper">
                                                 <div class="card">
                                                     <img src="<?= base_url().$p->picture_url; ?>" alt="" width="100%">
                                                     <div class="body pt-1 demo-icon-container">
-                                                        <h4><?= $p->nama_perusahaan; ?></h4>
+                                                        <h4 class="title"><?= $p->nama_perusahaan; ?></h4>
                                                         <div class="demo-google-material-icon">
                                                             <i class="material-icons">place</i>
-                                                            <span class="icon-name"><?= $p->kota; ?></span>
+                                                            <span class="icon-name city"><?= $p->kota; ?></span>
                                                         </div>
                                                         <div class="demo-google-material-icon">
                                                             <i class="material-icons">phone</i>
@@ -203,6 +203,26 @@
 <script>
     var _pilihan1, _pilihan2; var _data1 = []; var _data2 = [];
     var base_url = window.location.origin + '/pw/';
+
+    // search function
+    function search(filter, targetClass) {
+        var card, title, city;
+        filter = filter.toUpperCase();
+        targetClass = '.' + targetClass;
+        card = $(targetClass);
+        card.each(function(i, el) {
+            title = $(this).find('.title');
+            city = $(this).find('.city');
+            if (title.html().toUpperCase().indexOf(filter) > -1) {
+                $(this).show(0);
+            } else if (city.html().toUpperCase().indexOf(filter) > -1) {
+                $(this).show(0);
+            } else {
+                $(this).hide(0);
+            }
+        });
+    }
+
     function pilih1(val) {
         if (_pilihan2 == val) {
             swal({
@@ -233,6 +253,7 @@
     }
     // $('#wizard_with_validation .tablist')
     function getPilihan1() {
+        $('#inputSearch1').val('');
         $.ajax({
             url: base_url+'siswa/perusahaan/get',
             type: 'GET',
