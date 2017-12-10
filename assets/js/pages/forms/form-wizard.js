@@ -1,31 +1,4 @@
 $(function () {
-    //Horizontal form basic
-    $('#wizard_horizontal').steps({
-        headerTag: 'h2',
-        bodyTag: 'section',
-        transitionEffect: 'slideLeft',
-        onInit: function (event, currentIndex) {
-            setButtonWavesEffect(event);
-        },
-        onStepChanged: function (event, currentIndex, priorIndex) {
-            setButtonWavesEffect(event);
-        }
-    });
-
-    //Vertical form basic
-    $('#wizard_vertical').steps({
-        headerTag: 'h2',
-        bodyTag: 'section',
-        transitionEffect: 'slideLeft',
-        stepsOrientation: 'vertical',
-        onInit: function (event, currentIndex) {
-            setButtonWavesEffect(event);
-        },
-        onStepChanged: function (event, currentIndex, priorIndex) {
-            setButtonWavesEffect(event);
-        }
-    });
-
     //Advanced form with validation
     var form = $('#wizard_with_validation').show();
     form.steps({
@@ -46,10 +19,24 @@ $(function () {
         onStepChanging: function (event, currentIndex, newIndex) {
             if (currentIndex > newIndex) { return true; }
 
+            // show page loader when changing
+            $('.page-loader-wrapper').fadeIn(0);
+
             if (currentIndex < newIndex) {
                 form.find('.body:eq(' + newIndex + ') label.error').remove();
                 form.find('.body:eq(' + newIndex + ') .error').removeClass('error');
             }
+
+            if (currentIndex == 0) {
+                getPilihan1();
+            }
+            if (newIndex == 2) {
+                getPilihan2();
+                setPilihan();
+            }
+            // if (newIndex == 2) {
+            //     setPilihan();
+            // }
 
             form.validate().settings.ignore = ':disabled,:hidden';
             return form.valid();
@@ -62,7 +49,17 @@ $(function () {
             return form.valid();
         },
         onFinished: function (event, currentIndex) {
-            swal("Good job!", "Submitted!", "success");
+            swal({
+                title: "Submit Data?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: "Tidak, batalkan!",
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    window.location = base_url + 'Siswa/Perusahaan/Pilih?p1='+ _pilihan1 +'&p2=' + _pilihan2;
+                }
+            });
         }
     });
 

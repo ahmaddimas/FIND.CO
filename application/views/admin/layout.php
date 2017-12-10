@@ -469,9 +469,7 @@
     }
     if(strcasecmp($uri2, 'perusahaan') == 0) {
         $uri3 = $this->uri->segment(3);
-        if (strcasecmp($uri3, 'tambah') == 0) {
-            // Dropzone Plugin Js
-            echo '<script src="'.base_url().'assets/plugins/dropzone/dropzone.js"></script>';
+        if (strcasecmp($uri3, 'tambah') == 0 || strcasecmp($uri3, 'edit') == 0) {
             // Custom Js
             echo '<script src="'.base_url().'assets/js/pages/forms/advanced-form-elements.js"></script>';
         } else {

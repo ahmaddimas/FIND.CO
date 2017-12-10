@@ -52,14 +52,63 @@ class Model_siswa extends CI_Model {
     }
 
     public function getPilihan($id) {
-        $this->db->select('p.id_perusahaan, p.nama_perusahaan, p.kota, p.telp_perusahaan, rp.kuota, MAX(rp.tahun_rekap) AS tahun_rekap');
+        $this->db->select('*');
         $this->db->from('tb_siswa AS s');
-        $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_siswa = s.id_siswa', 'inner');
-        $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = ps.id_perusahaan', 'inner');
-        $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'inner');
+        $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_siswa = s.id_siswa', 'right');
+        $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = ps.id_perusahaan', 'right');
+        $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
+        $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
         $this->db->where('s.id_siswa', $id);
         $this->db->group_by('p.id_perusahaan');
-        return $this->db->get()->row_array();
+        $this->db->order_by('ps.indeks', 'asc');
+        return $this->db->get()->result();
+    }
+
+    public function getPerusahaanById($id) {
+        $this->db->select('*');
+        $this->db->from('tb_perusahaan AS p');
+        $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
+        $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        $this->db->where('p.id_perusahaan', $id);
+        $this->db->group_by('p.id_perusahaan');
+        return $this->db->get()->row();
+    }
+
+    public function getPerusahaan() {
+        $this->db->select('*');
+        $this->db->from('tb_perusahaan AS p');
+        $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
+        $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        $this->db->group_by('p.id_perusahaan');
+        return $this->db->get()->result();
+    }
+
+    public function setPilihanPerusahaan($data) {
+        $userData = $this->session->userdata(md5('UserData'));
+        $current = $this->db->where('id_siswa', $userData['id_siswa'])->get('tb_perusahaan_siswa');
+        $action = $current->num_rows() == 0 ? 'new':'update';
+        foreach ($data as $key => $value) {
+            $index = $key == 'p1' ? 1:2;
+            if ($action == 'new') {
+                $this->db->insert('tb_perusahaan_siswa', array(
+                    'id_siswa'      => $userData['id_siswa'],
+                    'id_perusahaan' => $value,
+                    'indeks'        => $index,
+                    'status'        => 'menunggu'
+                ));
+            } else {
+                $this->db->where('id_siswa', $userData['id_siswa'])
+                        ->where('indeks', $index)->update('tb_perusahaan_siswa', array(
+                            'id_perusahaan' => $value,
+                            'status'        => 'menunggu'
+                        ));
+            }
+        }
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lModel_siswa.php/}} */

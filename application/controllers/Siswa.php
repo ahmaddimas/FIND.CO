@@ -37,15 +37,33 @@ class Siswa extends CI_Controller {
 		if (strcasecmp($this->uri->segment(3), 'all') == 0) {
 			$data = [
 				'main_view'	=> 'siswa/perusahaan',
-				'userData'	=> $this->session->userdata(md5('UserData'))
+				'userData'	=> $this->session->userdata(md5('UserData')),
+	            'perusahaan'=> $this->model_siswa->getPerusahaan()
 			];
 			$this->load->view('siswa/layout', $data);
 		} elseif (strcasecmp($this->uri->segment(3), 'pilih') == 0) {
+			if (isset($_GET['p1']) && !empty(isset($_GET['p1'])) && isset($_GET['p2']) && !empty(isset($_GET['p2']))) {
+				$data['p1'] = $_GET['p1'];
+				$data['p2'] = $_GET['p2'];
+				if ($this->model_siswa->setPilihanPerusahaan($data)) {
+					redirect('Siswa/Profile');
+				} else {
+					$this->session->set_flashdata('notif', 'Gagal mengirim pilihan!');
+					$this->session->set_flashdata('classNotif', 'warning');
+				}
+			}
+
 			$data = [
-				'main_view'	=> 'siswa/pilih_perusahaan',
-				'userData'	=> $this->session->userdata(md5('UserData'))
+				'main_view'			=> 'siswa/pilih_perusahaan',
+				'userData'			=> $this->session->userdata(md5('UserData')),
+				'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_user']),
+	            'perusahaan'		=> $this->model_siswa->getPerusahaan()
 			];
 			$this->load->view('siswa/layout', $data);
+		} elseif (strcasecmp($this->uri->segment(3), 'get') == 0 && isset($_GET['pid'])) {
+			echo json_encode($this->model_siswa->getPerusahaanById($_GET['pid']));
+		} else {
+			redirect('Siswa/Perusahaan/All');
 		}
 	}
 
@@ -67,9 +85,9 @@ class Siswa extends CI_Controller {
 		}
 
 		$data = [
-			'main_view'	=> 'siswa/profile',
-			'userData'	=> $this->session->userdata(md5('UserData')),
-			'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_user'])
+			'main_view'			=> 'siswa/profile',
+			'userData'			=> $this->session->userdata(md5('UserData')),
+			'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_siswa'])
 		];
 		$this->load->view('siswa/layout', $data);
 	}

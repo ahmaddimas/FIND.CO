@@ -1,5 +1,10 @@
 <section class="content">
     <div class="container-fluid">
+        <?php if (!empty($this->session->flashdata('notif'))){ ?>
+            <div class="alert alert-<?= $this->session->flashdata('classNotif'); ?>">
+                <?= $this->session->flashdata('notif'); ?>
+            </div>
+        <?php } ?>
         <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -9,14 +14,9 @@
                             DATA PERUSAHAAN
                         </h2>
                         <ul class="header-dropdown m-r--5">
-                            <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="<?= base_url('Admin/Perusahaan/Tambah'); ?>">Tambah Perusahaan</a></li>
-                                </ul>
-                            </li>
+                            <a href="<?= base_url('Admin/Perusahaan/Tambah'); ?>">
+                                <i class="material-icons">add</i>
+                            </a>
                         </ul>
                     </div>
                     <div class="body">
@@ -48,20 +48,23 @@
                                 </tfoot>
                                 <tbody>
                                     <?php if ($perusahaan != null):
-                                        foreach ($perusahaan as $p): ?>
+                                        foreach ($perusahaan as $p):
+                                            $out = strlen($p->alamat) > 90 ? substr($p->alamat, 0, 91).'...':$p->alamat; ?>
                                             <tr>
                                                 <td><?= $p->nama_perusahaan; ?></td>
-                                                <td><?= $p->alamat; ?></td>
+                                                <td><?= $out; ?></td>
                                                 <td><?= $p->telp_perusahaan; ?></td>
+                                                <td><?= $p->kota; ?></td>
+                                                <td><?= $p->provinsi; ?></td>
                                                 <td><?= $p->cp; ?></td>
                                                 <td><?= $p->kuota; ?></td>
                                                 <td style="width: 100px">
-                                                    <button type="button" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float">
+                                                    <a href="<?= base_url('Admin/Perusahaan/Edit/').$p->id_perusahaan; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float">
                                                         <i class="material-icons">mode_edit</i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                    </a>
+                                                    <a href="<?= base_url('Admin/Perusahaan/Hapus/').$p->id_perusahaan; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
                                                         <i class="material-icons">delete</i>
-                                                    </button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php endforeach;

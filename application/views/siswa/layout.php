@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
+    <title>FIND.CO</title>
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -431,12 +431,12 @@
     </section>
 
     <!-- Jquery Core Js -->
-    <script src="<?= base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/jquery.js"></script>
 
     <?php $this->load->view($main_view); ?>
 
     <!-- Bootstrap Core Js -->
-    <script src="<?= base_url(); ?>assets/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="<?= base_url(); ?>assets/js/bootstrap.min.js"></script>
 
     <!-- Select Plugin Js -->
     <script src="<?= base_url(); ?>assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
@@ -480,7 +480,7 @@
         // Moment Plugin Js
         echo '<script src="'.base_url().'assets/plugins/momentjs/moment.js"></script>';
         // Custom Js
-        echo '<script src="'.base_url().'assets/js/pages/forms/basic-form-elements.js"></script>';
+        // echo '<script src="'.base_url().'assets/js/pages/forms/basic-form-elements.js"></script>';
     }
     ?>
 

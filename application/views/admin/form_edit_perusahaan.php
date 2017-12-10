@@ -13,7 +13,7 @@
                         </h2>
                     </div>
                     <div class="body">
-                        <form action="<?= base_url('Admin/Perusahaan/Tambah'); ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('Admin/Perusahaan/Edit/').$data_perusahaan->id_perusahaan; ?>" method="post" enctype="multipart/form-data">
                             <div class="row clearfix">
                                 <?php if (!empty($this->session->flashdata('notif'))){ ?>
                                     <div class="alert alert-<?= $this->session->flashdata('classNotif'); ?>">
@@ -23,67 +23,67 @@
                                 <div class="col-sm-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="perusahaan" required>
+                                            <input type="text" class="form-control" name="perusahaan" value="<?= $data_perusahaan->nama_perusahaan; ?>" required>
                                             <label class="form-label">Perusahaan</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <textarea rows="1" class="form-control no-resize auto-growth" name="alamat" required style="overflow: hidden; word-wrap: break-word; height: 46px;"></textarea>
+                                            <textarea rows="1" class="form-control no-resize auto-growth" name="alamat" required style="overflow: hidden; word-wrap: break-word; height: 46px;"><?= $data_perusahaan->alamat; ?></textarea>
                                             <label class="form-label">Alamat</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="number" class="form-control" name="telp" required>
+                                            <input type="number" class="form-control" name="telp" value="<?= $data_perusahaan->telp_perusahaan; ?>" required>
                                             <label class="form-label">No. Telpon</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="kota" required>
+                                            <input type="text" class="form-control" name="kota" value="<?= $data_perusahaan->kota; ?>" required>
                                             <label class="form-label">Kota</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="provinsi" required>
+                                            <input type="text" class="form-control" name="provinsi" value="<?= $data_perusahaan->provinsi; ?>" required>
                                             <label class="form-label">Provinsi</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="fax" required>
+                                            <input type="text" class="form-control" name="fax" value="<?= $data_perusahaan->fax; ?>" required>
                                             <label class="form-label">Fax</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="cp" required>
+                                            <input type="text" class="form-control" name="cp" value="<?= $data_perusahaan->cp; ?>" required>
                                             <label class="form-label">CP</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="number" class="form-control" name="kuota" required>
+                                            <input type="number" class="form-control" name="kuota" value="<?= $data_perusahaan->kuota; ?>" required>
                                             <label class="form-label">Kuota</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="img-upload-wrapper demo-icon-container">
-                                        <img class="img-upload" src="<?= base_url(); ?>assets/images/image-blank.png" style="height:auto;width:100%">
+                                        <img class="img-upload" src="<?= base_url().$data_perusahaan->picture_url; ?>" style="height:auto;width:100%">
                                         <label for="gbrE" class="label-file">
                                             <div class="demo-google-material-icon">
                                                 <i class="material-icons">file_upload</i> <span class="icon-name">Pilih Gambar</span>
                                             </div>
                                         </label>
                                     </div>
-                                    <input id="gbrE" type="file" name="image" onchange="readInputURL(this)" class="sr-only" required>
+                                    <input id="gbrE" type="file" name="image" onchange="readInputURL(this)" class="sr-only">
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="icon-and-text-button-demo">
-                                        <button type="submit" name="addIndustry" class="btn btn-lg bg-teal waves-effect">
+                                        <button type="submit" name="updateIndustry" class="btn btn-lg bg-teal waves-effect">
                                             <i class="material-icons">check</i><span>SUBMIT</span>
                                         </button>
                                     </div>
