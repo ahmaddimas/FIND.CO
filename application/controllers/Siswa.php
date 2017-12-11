@@ -20,8 +20,8 @@ class Siswa extends CI_Controller {
 
 		$data = [
 			'main_view'			=> 'siswa/dashboard',
-			'userData'			=> $this->session->userdata(md5('UserData')),
-			'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_user'])
+			'userData'			=> $this->model_siswa->getSiswaById($this->session->userdata(md5('UserData'))['id_siswa']),
+			'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_siswa'])
 		];
 		$this->load->view('siswa/layout', $data);
 		// echo json_encode($this->model_siswa->getPilihan($data['userData']['id_user']));
@@ -37,7 +37,7 @@ class Siswa extends CI_Controller {
 		if (strcasecmp($this->uri->segment(3), 'all') == 0) {
 			$data = [
 				'main_view'	=> 'siswa/perusahaan',
-				'userData'	=> $this->session->userdata(md5('UserData')),
+				'userData'	=> $this->model_siswa->getSiswaById($this->session->userdata(md5('UserData'))['id_siswa']),
 	            'perusahaan'=> $this->model_siswa->getPerusahaan()
 			];
 			$this->load->view('siswa/layout', $data);
@@ -55,8 +55,8 @@ class Siswa extends CI_Controller {
 
 			$data = [
 				'main_view'			=> 'siswa/pilih_perusahaan',
-				'userData'			=> $this->session->userdata(md5('UserData')),
-				'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_user']),
+				'userData'			=> $this->model_siswa->getSiswaById($this->session->userdata(md5('UserData'))['id_siswa']),
+				'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_siswa']),
 	            'perusahaan'		=> $this->model_siswa->getPerusahaan()
 			];
 			$this->load->view('siswa/layout', $data);
@@ -86,7 +86,7 @@ class Siswa extends CI_Controller {
 
 		$data = [
 			'main_view'			=> 'siswa/profile',
-			'userData'			=> $this->session->userdata(md5('UserData')),
+			'userData'			=> $this->model_siswa->getSiswaById($this->session->userdata(md5('UserData'))['id_siswa']),
 			'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_siswa'])
 		];
 		$this->load->view('siswa/layout', $data);

@@ -34,6 +34,10 @@ class Model_siswa extends CI_Model {
         return $userData;
     }
 
+    public function getSiswaById($id) {
+        return $this->db->where('id_siswa', $id)->get('tb_siswa')->row_array();
+    }
+
     public function updateProfile() {
         if (!empty($this->input->post('nis'))) $userData['nis'] = $this->input->post('nis');
         if (!empty($this->input->post('kelas'))) $userData['kelas'] = $this->input->post('kelas');
