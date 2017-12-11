@@ -5,13 +5,17 @@ class Auth extends CI_Controller {
         parent::__construct();
         $this->load->library('google');
         $this->load->model('model_siswa');
+        $this->load->model('model_guru');
         $this->load->model('model_admin');
     }
 
     public function index() {
         if ($this->session->userdata(md5('Logged_In'))) {
             if ($this->session->userdata(md5('Logged_Role')) === 'usiswa') {
-                redirect('Siswa');
+                redirect('siswa');
+            }
+            if ($this->session->userdata(md5('Logged_Role')) === 'uguru') {
+                redirect('guru');
             }
         }
 
@@ -24,16 +28,14 @@ class Auth extends CI_Controller {
             $emailp = substr($gpInfo['email'], strpos($gpInfo['email'], '@'));
             if (strpos($emailp, 'smktelkom-mlg.sch.id') !== false) {
                 $role = strpos($emailp, 'student') !== false ? 'usiswa':'uguru';
+                // $role = strpos($emailp, 'student') !== false ? 'uguru':'usiswa';
                 //preparing data for database insertion
                 if ($role === 'usiswa') {
                     // insert or update user data to the database
                     $userData = $this->model_siswa->checkUser($gpInfo);
                 } else {
-                    $userData['nama_guru']     = $gpInfo['given_name'];
-                    $userData['email_guru']    = $gpInfo['email'];
-
                     // insert or update user data to the database
-                    // $userID = $this->model_siswa->checkUser($userData);
+                    $userData = $this->model_guru->checkUser($gpInfo);
                 }
                 // store status & user info in session
                 $this->session->set_userdata(md5('Logged_In'), true);

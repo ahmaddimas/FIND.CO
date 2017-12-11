@@ -22,6 +22,7 @@
                                         <th>Nama</th>
                                         <th>Kelas</th>
                                         <th>Angkatan</th>
+                                        <th>No. Telpon</th>
                                         <th>JK</th>
                                         <th>Pilihan 1</th>
                                         <th>Pilihan 2</th>
@@ -33,6 +34,7 @@
                                         <th>Nama</th>
                                         <th>Kelas</th>
                                         <th>Angkatan</th>
+                                        <th>No. Telpon</th>
                                         <th>JK</th>
                                         <th>Pilihan 1</th>
                                         <th>Pilihan 2</th>
@@ -61,6 +63,7 @@
                                             <td><?= $xs->nama_siswa; ?></td>
                                             <td><?= $kelas; ?></td>
                                             <td><?= $xs->angkatan; ?></td>
+                                            <td><?= $xs->telp_siswa; ?></td>
                                             <td><?= $xs->jk_siswa; ?></td>
                                             <td><?= $p1; ?></td>
                                             <td><?= $p2; ?></td>

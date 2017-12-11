@@ -165,6 +165,16 @@ class Model_admin extends CI_Model {
             return false;
         }
     }
+
+    public function getGuruById($id) {
+        return $this->db->where('id_guru', $id)->get('tb_guru_pembimbing')->row();
+    }
+
+    public function getGuru() {
+        $this->db->select('*');
+        $this->db->from('tb_guru_pembimbing');
+        return $this->db->get()->result();
+    }
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lModel_admin.php/}} */
 /* Location: ./${TM_FILEPATH/.+((?:application).+)/Model_admin/:application/models/${1/(.+)/lModel_admin.php/}} */

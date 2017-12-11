@@ -167,6 +167,35 @@ class Admin extends CI_Controller {
             // echo json_encode($data['xsiswa']);
             // var_dump($data['xsiswa']);
         }
+        if (strcasecmp($this->uri->segment(3), 'guru') == 0) {
+            if (strcasecmp($this->uri->segment(4), 'edit') == 0 && !empty($this->uri->segment(5))) {
+                if (isset($_POST['updateProfile'])) {
+                    if ($this->model_admin->updateSiswaProfile($this->uri->segment(5))) {
+        				$this->session->set_flashdata('notif', 'Data berhasil diperbarui!');
+        				$this->session->set_flashdata('classNotif', 'success');
+        			} else {
+        				$this->session->set_flashdata('notif', 'Data gagal diperbarui!');
+        				$this->session->set_flashdata('classNotif', 'warning');
+        			}
+                    redirect('admin/users/guru');
+                }
+
+                $data = [
+        			'main_view'		    => 'admin/form_edit_guru',
+        			'adminData'		    => $this->session->userdata(md5('UserData')),
+                    'guru'              => $this->model_admin->getGuruById($this->uri->segment(5)),
+                    'data_perusahaan'   => $this->model_admin->getPilihanSiswa($this->uri->segment(5))
+        		];
+        		$this->load->view('admin/layout', $data);
+                return;
+            }
+            $data = [
+    			'main_view' => 'admin/guru',
+    			'adminData' => $this->session->userdata(md5('UserData')),
+                'guru'      => $this->model_admin->getGuru()
+    		];
+    		$this->load->view('admin/layout', $data);
+        }
 	}
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lAdmin.php/}} */
