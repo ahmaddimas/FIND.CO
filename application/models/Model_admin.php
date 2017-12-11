@@ -11,13 +11,19 @@ class Model_admin extends CI_Model {
         $this->db->where('password', sha1($this->input->post('password')));
         $result = $this->db->get('tb_admin');
         if ($result->num_rows() === 1) {
+            $userData = $result->row_array();
+            $userData['id_user'] = $result->row_array()['id_admin'];
             $this->session->set_userdata(md5('Logged_In'), true);
             $this->session->set_userdata(md5('Logged_Role'), $result->row()->role);
-            $this->session->set_userdata(md5('UserData'), $result->row_array());
+            $this->session->set_userdata(md5('UserData'), $userData);
             return true;
         } else {
             return false;
         }
+    }
+
+    public function getUserById($id) {
+        return $this->db->where('id_admin', $id)->get('tb_admin')->row_array();
     }
 
     public function getPerusahaanById($id) {

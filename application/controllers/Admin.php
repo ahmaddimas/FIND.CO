@@ -24,6 +24,30 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/layout', $data);
 	}
 
+    public function Profile() {
+        if (!$this->session->userdata(md5('Logged_In'))) {
+            if ($this->session->userdata(md5('Logged_Role')) !== 1) {
+                redirect('auth');
+            }
+        }
+
+		if (isset($_POST['updateProfile'])) {
+			if ($this->model_siswa->updateProfile()) {
+				$this->session->set_flashdata('notif', 'Data berhasil diperbarui!');
+				$this->session->set_flashdata('classNotif', 'success');
+			} else {
+				$this->session->set_flashdata('notif', 'Data gagal diperbarui!');
+				$this->session->set_flashdata('classNotif', 'warning');
+			}
+		}
+
+		$data = [
+			'main_view'			=> 'admin/profile',
+			'adminData'			=> $this->model_admin->getUserById($this->session->userdata(md5('UserData'))['id_user'])
+		];
+		$this->load->view('admin/layout', $data);
+	}
+
 	public function Perusahaan() {
 		if (!$this->session->userdata(md5('Logged_In'))) {
             if ($this->session->userdata(md5('Logged_Role')) !== 1) {
