@@ -58,7 +58,7 @@ $(function () {
                 cancelButtonText: "Tidak, batalkan!",
             }, function(isConfirm) {
                 if (isConfirm) {
-                    window.location = base_url + 'Siswa/Perusahaan/Pilih?p1='+ _pilihan1 +'&p2=' + _pilihan2;
+                    window.location = base_url + 'siswa/perusahaan/pilih?p1='+ _pilihan1 +'&p2=' + _pilihan2;
                 }
             });
         }

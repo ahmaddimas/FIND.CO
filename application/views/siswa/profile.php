@@ -16,18 +16,6 @@
                         <h2>
                             DATA PRIBADI
                         </h2>
-                        <ul class="header-dropdown m-r--5">
-                            <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);">Action</a></li>
-                                    <li><a href="javascript:void(0);">Another action</a></li>
-                                    <li><a href="javascript:void(0);">Something else here</a></li>
-                                </ul>
-                            </li>
-                        </ul>
                     </div>
                     <div class="body">
                         <form action="" method="post">
@@ -109,40 +97,42 @@
         </div>
         <!-- Data Perusahaan -->
         <div class="row clearfix">
-            <div class="card">
-                <?php if ($data_perusahaan != null): ?>
-                    <div class="body">
-                        <div class="row clearfix">
-                            <?php foreach ($data_perusahaan as $dp): ?>
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                    <b>Pilihan <?= $dp->indeks; ?></b><hr class="my-1">
-                                    <div class="card">
-                                        <img src="<?= base_url().$dp->picture_url; ?>" alt="" width="100%">
-                                        <div class="body pt-1 demo-icon-container">
-                                            <h4><?= $dp->nama_perusahaan; ?></h4>
-                                            <div class="demo-google-material-icon">
-                                                <i class="material-icons">place</i>
-                                                <span class="icon-name"><?= $dp->kota; ?></span>
-                                            </div>
-                                            <div class="demo-google-material-icon">
-                                                <i class="material-icons">phone</i>
-                                                <span class="icon-name"><?= $dp->telp_perusahaan; ?></span>
-                                            </div>
-                                            <div class="demo-google-material-icon">
-                                                <i class="material-icons">check</i>
-                                                <span class="icon-name"><?= $dp->kuota; ?> Kuota Tersedia</span>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <?php if ($data_perusahaan != null): ?>
+                        <div class="body">
+                            <div class="row clearfix">
+                                <?php foreach ($data_perusahaan as $dp): ?>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <b>Pilihan <?= $dp->indeks; ?></b><hr class="my-1">
+                                        <div class="card">
+                                            <img src="<?= base_url().$dp->picture_url; ?>" alt="" width="100%">
+                                            <div class="body pt-1 demo-icon-container">
+                                                <h4><?= $dp->nama_perusahaan; ?></h4>
+                                                <div class="demo-google-material-icon">
+                                                    <i class="material-icons">place</i>
+                                                    <span class="icon-name"><?= $dp->kota; ?></span>
+                                                </div>
+                                                <div class="demo-google-material-icon">
+                                                    <i class="material-icons">phone</i>
+                                                    <span class="icon-name"><?= $dp->telp_perusahaan; ?></span>
+                                                </div>
+                                                <div class="demo-google-material-icon">
+                                                    <i class="material-icons">check</i>
+                                                    <span class="icon-name"><?= $dp->kuota; ?> Kuota Tersedia</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
-                    </div>
-                <?php else: ?>
-                    <div class="header">
-                        Anda belum memilih perusahaan.
-                    </div>
-                <?php endif; ?>
+                    <?php else: ?>
+                        <div class="header">
+                            Anda belum memilih perusahaan.
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
         <!-- #END# Data Perusahaan -->

@@ -117,6 +117,25 @@ class Model_admin extends CI_Model {
         }
         return $bool;
     }
+
+    public function getSiswaWithGroup() {
+        $this->db->select('*');
+        $this->db->from('tb_siswa AS s');
+        $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_siswa = s.id_siswa', 'left');
+        $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = ps.id_perusahaan', 'left');
+        $this->db->group_by('s.id_siswa');
+        $this->db->order_by('s.angkatan', 'desc');
+        return $this->db->get()->result();
+    }
+
+    public function getSiswa() {
+        $this->db->select('*');
+        $this->db->from('tb_siswa AS s');
+        $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_siswa = s.id_siswa', 'left');
+        $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = ps.id_perusahaan', 'left');
+        $this->db->order_by('s.angkatan', 'desc');
+        return $this->db->get()->result();
+    }
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lModel_admin.php/}} */
 /* Location: ./${TM_FILEPATH/.+((?:application).+)/Model_admin/:application/models/${1/(.+)/lModel_admin.php/}} */

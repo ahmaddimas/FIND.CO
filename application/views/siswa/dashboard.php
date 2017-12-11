@@ -6,12 +6,12 @@
         <?php
         if (empty($userData['nis']) || empty($userData['kelas']) || empty($userData['telp_siswa'])) { ?>
             <div class="alert alert-warning">
-                <b>Warning!</b> Harap melengkapi data diri! <a class="alert-link" href="<?= base_url('Siswa/Profile') ?>">klik untuk melengkapi.</a>
+                <b>Warning!</b> Harap melengkapi data diri! <a class="alert-link" href="<?= base_url('siswa/profile') ?>">klik untuk melengkapi.</a>
             </div>
         <?php }
         if (empty($data_perusahaan)) { ?>
             <div class="alert alert-warning">
-                <b>Warning!</b> Anda belum memilih perusahaan! <a class="alert-link" href="<?= base_url('Siswa/Perusahaan/pilih') ?>">klik untuk memilih.</a>
+                <b>Warning!</b> Anda belum memilih perusahaan! <a class="alert-link" href="<?= base_url('siswa/perusahaan/pilih') ?>">klik untuk memilih.</a>
             </div>
         <?php }
         ?>

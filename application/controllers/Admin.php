@@ -7,13 +7,13 @@ class Admin extends CI_Controller {
     }
 
     public function index() {
-        redirect('Admin/Dashboard');
+        redirect('admin/dashboard');
     }
 
 	public function Dashboard() {
 		if (!$this->session->userdata(md5('Logged_In'))) {
             if ($this->session->userdata(md5('Logged_Role')) !== 1) {
-                redirect('Auth');
+                redirect('auth');
             }
         }
 
@@ -27,7 +27,7 @@ class Admin extends CI_Controller {
 	public function Perusahaan() {
 		if (!$this->session->userdata(md5('Logged_In'))) {
             if ($this->session->userdata(md5('Logged_Role')) !== 1) {
-                redirect('Auth');
+                redirect('auth');
             }
         }
         // get action of perusahaan from uri segment 3
@@ -43,7 +43,7 @@ class Admin extends CI_Controller {
                     if ($this->model_admin->addPerusahaan($this->upload->data())) {
                         $this->session->set_flashdata('notif', 'Tambah Perusahaan Berhasil');
                         $this->session->set_flashdata('classNotif', 'success');
-                        redirect('Admin/Perusahaan');
+                        redirect('admin/perusahaan');
                     } else {
                         $this->session->set_flashdata('notif', 'Tambah Perusahaan Gagal');
                         $this->session->set_flashdata('classNotif', 'danger');
@@ -75,7 +75,7 @@ class Admin extends CI_Controller {
                         if ($this->model_admin->updatePerusahaan($this->upload->data()['file_name'])) {
                             $this->session->set_flashdata('notif', 'Perusahaan Berhasil Diperbarui!');
                             $this->session->set_flashdata('classNotif', 'success');
-                            redirect('Admin/Perusahaan');
+                            redirect('admin/perusahaan');
                         } else {
                             $this->session->set_flashdata('notif', 'Perusahaan Gagal Diperbarui!');
                             $this->session->set_flashdata('classNotif', 'success');
@@ -88,7 +88,7 @@ class Admin extends CI_Controller {
                     if ($this->model_admin->updatePerusahaan()) {
                         $this->session->set_flashdata('notif', 'Perusahaan Berhasil Diperbarui!');
                         $this->session->set_flashdata('classNotif', 'success');
-                        redirect('Admin/Perusahaan');
+                        redirect('admin/perusahaan');
                     } else {
                         $this->session->set_flashdata('notif', 'Perusahaan Gagal Diperbarui!');
                         $this->session->set_flashdata('classNotif', 'success');
@@ -110,12 +110,11 @@ class Admin extends CI_Controller {
             if ($this->model_admin->hapusPerusahaan($this->uri->segment(4))) {
                 $this->session->set_flashdata('notif', 'Perusahaan Berhasil Dihapus!');
                 $this->session->set_flashdata('classNotif', 'success');
-                redirect('Admin/Perusahaan');
             } else {
                 $this->session->set_flashdata('notif', 'Perusahaan Gagal Dihapus!');
                 $this->session->set_flashdata('classNotif', 'danger');
-                redirect('Admin/Perusahaan');
             }
+            redirect('admin/perusahaan');
         }
         // end of hapus perusahaan
 
@@ -125,6 +124,25 @@ class Admin extends CI_Controller {
             'perusahaan'    => $this->model_admin->getPerusahaan()
 		];
 		$this->load->view('admin/layout', $data);
+	}
+
+	public function Users() {
+		if (!$this->session->userdata(md5('Logged_In'))) {
+            if ($this->session->userdata(md5('Logged_Role')) !== 1) {
+                redirect('auth');
+            }
+        }
+
+        if (strcasecmp($this->uri->segment(3), 'siswa') == 0) {
+            $data = [
+    			'main_view'		=> 'admin/siswa',
+    			'adminData'		=> $this->session->userdata(md5('UserData')),
+                'xsiswa'         => $this->model_admin->getSiswaWithGroup(),
+                'siswa'         => $this->model_admin->getSiswa()
+    		];
+    		$this->load->view('admin/layout', $data);
+            // echo json_encode($data['siswa']);
+        }
 	}
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lAdmin.php/}} */

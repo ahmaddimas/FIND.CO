@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
+    <title>ADMIN - FIND.CO</title>
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -27,9 +27,6 @@
 
     <!--WaitMe Css-->
     <link href="<?= base_url(); ?>assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" />
-
-    <!-- Bootstrap Select Css -->
-    <link href="<?= base_url(); ?>assets/plugins/dropzone/dropzone.css" rel="stylesheet" />
 
     <!-- Sweet Alert Css -->
     <link href="<?= base_url(); ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
@@ -79,7 +76,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="index.html">ADMINBSB - MATERIAL DESIGN</a>
+                <a class="navbar-brand" href="<?= base_url('admin'); ?>">ADMIN - FIND.CO</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -290,7 +287,7 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="<?= base_url('Auth/logout'); ?>"><i class="material-icons">input</i>Sign Out</a></li>
+                            <li><a href="<?= base_url('auth/logout'); ?>"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -301,20 +298,20 @@
                 <ul class="list">
                     <?php $uri2 = $this->uri->segment(2); $uri3 = $this->uri->segment(3); ?>
                     <li class="<?php if(strcasecmp($uri2, 'profile') == 0) {echo 'active';} ?>">
-                        <a href="<?= base_url('Admin/Profile'); ?>">
+                        <a href="<?= base_url('admin/profile'); ?>">
                             <i class="material-icons">person</i>
                             <span>Profile</span>
                         </a>
                     </li>
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="<?php if(strcasecmp($uri2, 'dashboard') == 0) {echo 'active';} ?>">
-                        <a href="<?= base_url('Admin/Dashboard'); ?>">
+                        <a href="<?= base_url('admin/dashboard'); ?>">
                             <i class="material-icons">dashboard</i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="<?php if(strcasecmp($uri2, 'perusahaan') == 0) {echo 'active';} ?>">
-                        <a href="<?= base_url('Admin/Perusahaan'); ?>">
+                        <a href="<?= base_url('admin/perusahaan'); ?>">
                             <i class="material-icons">domain</i>
                             <span>Perusahaan</span>
                         </a>
@@ -325,8 +322,8 @@
                             <span>Users</span>
                         </a>
                         <ul class="ml-menu">
-                            <li class="<?php if(strcasecmp($uri3, 'pilih') == 0) {echo 'active';} ?>"><a href="<?= base_url('Admin/Users/siswa'); ?>" class="waves-effect waves-block">Data Siswa</a></li>
-                            <li class="<?php if(strcasecmp($uri3, 'all') == 0) {echo 'active';} ?>"><a href="<?= base_url('Admin/Users/guru'); ?>" class="waves-effect waves-block">Data Guru Pembimbing</a></li>
+                            <li class="<?php if(strcasecmp($uri3, 'siswa') == 0) {echo 'active';} ?>"><a href="<?= base_url('admin/users/siswa'); ?>" class="waves-effect waves-block">Data Siswa</a></li>
+                            <li class="<?php if(strcasecmp($uri3, 'guru') == 0) {echo 'active';} ?>"><a href="<?= base_url('admin/users/guru'); ?>" class="waves-effect waves-block">Data Guru Pembimbing</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -494,6 +491,26 @@
         echo '<script src="'.base_url().'assets/plugins/momentjs/moment.js"></script>';
         // Custom Js
         echo '<script src="'.base_url().'assets/js/pages/forms/basic-form-elements.js"></script>';
+    }
+    if(strcasecmp($uri2, 'users') == 0) {
+        $uri3 = $this->uri->segment(3);
+        if (strcasecmp($uri3, 'tambah') == 0 || strcasecmp($uri3, 'edit') == 0) {
+            // Custom Js
+            echo '<script src="'.base_url().'assets/js/pages/forms/advanced-form-elements.js"></script>';
+        } else {
+            // Wait Me Plugin Js
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/jquery.dataTables.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>';
+            // Custom Js
+            echo '<script src="'.base_url().'assets/js/pages/tables/jquery-datatable.js"></script>';
+        }
     }
     ?>
 

@@ -3,12 +3,12 @@
         <?php
         if (empty($userData['nis']) || empty($userData['kelas']) || empty($userData['telp_siswa'])) { ?>
             <div class="alert alert-warning">
-                <b>Warning!</b> Harap melengkapi data diri! <a class="alert-link" href="<?= base_url('Siswa/Profile') ?>">klik untuk melengkapi.</a>
+                <b>Warning!</b> Harap melengkapi data diri! <a class="alert-link" href="<?= base_url('siswa/profile') ?>">klik untuk melengkapi.</a>
             </div>
         <?php }
         if (!empty($data_perusahaan)) { ?>
             <div class="alert alert-danger">
-                <b>Danger!</b> Anda sudah memilih perusahaan!
+                Anda sudah memilih perusahaan!
             </div>
         <?php }
         if (!empty($this->session->flashdata('notif'))){ ?>
@@ -22,21 +22,9 @@
                 <div class="card">
                     <div class="header">
                         <h2>PILIH PERUSAHAAN</h2>
-                        <ul class="header-dropdown m-r--5">
-                            <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);">Action</a></li>
-                                    <li><a href="javascript:void(0);">Another action</a></li>
-                                    <li><a href="javascript:void(0);">Something else here</a></li>
-                                </ul>
-                            </li>
-                        </ul>
                     </div>
                     <div class="body">
-                        <form id="wizard_with_validation" method="POST" action="<?= base_url('Siswa/Perusahaan/Pilih'); ?>">
+                        <form id="wizard_with_validation" method="POST" action="<?= base_url('siswa/perusahaan/pilih'); ?>">
                             <h3>Pilihan Pertama (Utama)</h3>
                             <fieldset>
                                 <div class="input-group">

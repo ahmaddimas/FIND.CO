@@ -59,10 +59,10 @@
                                                 <td><?= $p->cp; ?></td>
                                                 <td><?= $p->kuota; ?></td>
                                                 <td style="width: 100px">
-                                                    <a href="<?= base_url('Admin/Perusahaan/Edit/').$p->id_perusahaan; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float">
+                                                    <a href="<?= base_url('admin/perusahaan/edit/').$p->id_perusahaan; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float">
                                                         <i class="material-icons">mode_edit</i>
                                                     </a>
-                                                    <a href="<?= base_url('Admin/Perusahaan/Hapus/').$p->id_perusahaan; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                    <a href="<?= base_url('admin/perusahaan/hapus/').$p->id_perusahaan; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
                                                         <i class="material-icons">delete</i>
                                                     </a>
                                                 </td>

@@ -8,13 +8,13 @@ class Siswa extends CI_Controller {
 	}
 
 	public function index() {
-		redirect('Siswa/Dashboard');
+		redirect('siswa/dashboard');
 	}
 
 	public function Dashboard() {
 		if (!$this->session->userdata(md5('Logged_In'))) {
             if ($this->session->userdata(md5('Logged_Role')) !== 'usiswa') {
-                redirect('Auth');
+                redirect('auth');
             }
         }
 
@@ -30,7 +30,7 @@ class Siswa extends CI_Controller {
 	public function Perusahaan() {
 		if (!$this->session->userdata(md5('Logged_In'))) {
             if ($this->session->userdata(md5('Logged_Role')) !== 'usiswa') {
-                redirect('Auth');
+                redirect('auth');
             }
         }
 
@@ -46,7 +46,7 @@ class Siswa extends CI_Controller {
 				$data['p1'] = $_GET['p1'];
 				$data['p2'] = $_GET['p2'];
 				if ($this->model_siswa->setPilihanPerusahaan($data)) {
-					redirect('Siswa/Profile');
+					redirect('siswa/profile');
 				} else {
 					$this->session->set_flashdata('notif', 'Gagal mengirim pilihan!');
 					$this->session->set_flashdata('classNotif', 'warning');
@@ -63,14 +63,14 @@ class Siswa extends CI_Controller {
 		} elseif (strcasecmp($this->uri->segment(3), 'get') == 0 && isset($_GET['pid'])) {
 			echo json_encode($this->model_siswa->getPerusahaanById($_GET['pid']));
 		} else {
-			redirect('Siswa/Perusahaan/All');
+			redirect('siswa/perusahaan/all');
 		}
 	}
 
 	public function Profile() {
 		if (!$this->session->userdata(md5('Logged_In'))) {
             if ($this->session->userdata(md5('Logged_Role')) !== 'usiswa') {
-                redirect('Auth');
+                redirect('auth');
             }
         }
 

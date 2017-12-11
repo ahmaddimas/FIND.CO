@@ -290,7 +290,7 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="<?= base_url('Auth/logout'); ?>"><i class="material-icons">input</i>Sign Out</a></li>
+                            <li><a href="<?= base_url('auth/logout'); ?>"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -301,14 +301,14 @@
                 <ul class="list">
                     <?php $uri2 = $this->uri->segment(2); $uri3 = $this->uri->segment(3); ?>
                     <li class="<?php if(strcasecmp($uri2, 'profile') == 0) {echo 'active';} ?>">
-                        <a href="<?= base_url('Siswa/Profile'); ?>">
+                        <a href="<?= base_url('siswa/profile'); ?>">
                             <i class="material-icons">person</i>
                             <span>Profile</span>
                         </a>
                     </li>
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="<?php if(strcasecmp($uri2, 'dashboard') == 0) {echo 'active';} ?>">
-                        <a href="<?= base_url('Siswa/Dashboard'); ?>">
+                        <a href="<?= base_url('siswa/dashboard'); ?>">
                             <i class="material-icons">dashboard</i>
                             <span>Dashboard</span>
                         </a>
@@ -319,8 +319,8 @@
                             <span>Perusahaan</span>
                         </a>
                         <ul class="ml-menu">
-                            <li class="<?php if(strcasecmp($uri3, 'pilih') == 0) {echo 'active';} ?>"><a href="<?= base_url('Siswa/Perusahaan/pilih'); ?>" class="waves-effect waves-block">Pilih Perusahaan</a></li>
-                            <li class="<?php if(strcasecmp($uri3, 'all') == 0) {echo 'active';} ?>"><a href="<?= base_url('Siswa/Perusahaan/all'); ?>" class="waves-effect waves-block">Daftar Perusahaan</a></li>
+                            <li class="<?php if(strcasecmp($uri3, 'pilih') == 0) {echo 'active';} ?>"><a href="<?= base_url('siswa/perusahaan/pilih'); ?>" class="waves-effect waves-block">Pilih Perusahaan</a></li>
+                            <li class="<?php if(strcasecmp($uri3, 'all') == 0) {echo 'active';} ?>"><a href="<?= base_url('siswa/perusahaan/all'); ?>" class="waves-effect waves-block">Daftar Perusahaan</a></li>
                         </ul>
                     </li>
                 </ul>
