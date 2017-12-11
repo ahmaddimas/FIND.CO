@@ -1,7 +1,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>TAMBAH PERUSAHAAN</h2>
+            <h2>EDIT PERUSAHAAN</h2>
         </div>
         <!-- Form Data Perusahaan -->
         <div class="row clearfix">

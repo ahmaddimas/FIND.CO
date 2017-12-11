@@ -1,7 +1,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>PROFILE</h2>
+            <h2>EDIT DATA SISWA</h2>
         </div>
         <?php if (empty($data_perusahaan)) { ?>
             <div class="alert alert-warning">
@@ -18,7 +18,7 @@
                         </h2>
                     </div>
                     <div class="body">
-                        <form action="<?= base_url('siswa/profile'); ?>" method="post">
+                        <form action="<?= base_url('admin/users/siswa/edit/').$siswa->id_siswa; ?>" method="post">
                             <div class="row clearfix">
                                 <?php if (!empty($this->session->flashdata('notif'))){ ?>
                                     <div class="alert alert-<?= $this->session->flashdata('classNotif'); ?>">
@@ -28,55 +28,55 @@
                                 <div class="col-sm-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" value="<?= $userData['nama_siswa']; ?>" disabled>
+                                            <input type="text" class="form-control" value="<?= $siswa->nama_siswa; ?>" disabled>
                                             <label class="form-label">Nama</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" value="<?= $userData['email_siswa']; ?>" disabled>
+                                            <input type="text" class="form-control" value="<?= $siswa->email_siswa; ?>" disabled>
                                             <label class="form-label">Email</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
-                                        <div class="form-line focused <?php if(empty($userData['nis'])) echo "error"; ?>">
-                                            <input type="text" class="form-control" name="nis" <?php if(!empty($userData['nis'])) echo "value='".$userData['nis']."' disabled"; ?>>
+                                        <div class="form-line focused <?php if(empty($siswa->nis)) echo "error"; ?>">
+                                            <input type="text" class="form-control" name="nis" <?php if(!empty($siswa->nis)) echo "value='".$siswa->nis."'"; ?>>
                                             <label class="form-label">NIS</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
-                                        <div class="form-line focused <?php if(empty($userData['kelas'])) echo "error"; ?>">
-                                            <input type="text" class="form-control" placeholder="RPL 1" name="kelas" <?php if(!empty($userData['kelas'])) echo "value='".$userData['kelas']."' disabled"; ?>>
+                                        <div class="form-line focused <?php if(empty($siswa->kelas)) echo "error"; ?>">
+                                            <input type="text" class="form-control" placeholder="RPL 1" name="kelas" <?php if(!empty($siswa->kelas)) echo "value='".$siswa->kelas."'"; ?>>
                                             <label class="form-label">Kelas</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" value="<?= $userData['angkatan']; ?>" disabled>
+                                            <input type="text" class="form-control" value="<?= $siswa->angkatan; ?>" disabled>
                                             <label class="form-label">Angkatan</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" value="<?= $userData['jurusan']; ?>" disabled>
+                                            <input type="text" class="form-control" value="<?= $siswa->jurusan; ?>" disabled>
                                             <label class="form-label">Jurusan</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" value="<?= $userData['jk_siswa']; ?>" disabled>
+                                            <input type="text" class="form-control" value="<?= $siswa->jk_siswa; ?>" disabled>
                                             <label class="form-label">Jenis Kelamin</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
-                                        <div class="form-line focused <?php if(empty($userData['telp_siswa'])) echo "error"; ?>">
-                                            <input type="number" class="form-control" name="telp" <?php if(!empty($userData['telp_siswa'])) echo "value='".$userData['telp_siswa']."' disabled"; ?>>
+                                        <div class="form-line focused <?php if(empty($siswa->telp_siswa)) echo "error"; ?>">
+                                            <input type="number" class="form-control" name="telp" <?php if(!empty($siswa->telp_siswa)) echo "value='".$siswa->telp_siswa."'"; ?>>
                                             <label class="form-label">Telepon</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="<?= $userData['picture_url']; ?>" class="mx-auto" alt="Profile Picture" width="50%">
+                                    <img src="<?= $siswa->picture_url; ?>" class="mx-auto" alt="Profile Picture" width="50%">
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="icon-and-text-button-demo d-block mx-auto">

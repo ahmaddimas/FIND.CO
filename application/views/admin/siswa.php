@@ -65,7 +65,7 @@
                                             <td><?= $p1; ?></td>
                                             <td><?= $p2; ?></td>
                                             <td style="width: 50px">
-                                                <a href="<?= base_url('admin/users/siswa/edit').$xs->id_siswa; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float">
+                                                <a href="<?= base_url('admin/users/siswa/edit/').$xs->id_siswa; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">mode_edit</i>
                                                 </a>
                                             </td>

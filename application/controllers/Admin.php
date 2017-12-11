@@ -65,14 +65,28 @@ class Admin extends CI_Controller {
         // end of tambah perusahaan
         // edit perusahaan
         if (strcasecmp($uri3, 'edit') == 0) {
-            if (isset($_POST['updateIndustry']) && !empty($this->uri->segment(4))) {
-                $config['upload_path'] = './assets/images/';
-                $config['allowed_types'] = 'jpg|png|jpeg';
-                $config['max_size']  = '2048';
-                $this->load->library('upload', $config);
-                if (!empty($_FILES['image']['name'])) {
-                    if ($this->upload->do_upload('image')) {
-                        if ($this->model_admin->updatePerusahaan($this->upload->data()['file_name'])) {
+            if (!empty($this->uri->segment(4))) {
+                if (isset($_POST['updateIndustry'])) {
+                    $config['upload_path'] = './assets/images/';
+                    $config['allowed_types'] = 'jpg|png|jpeg';
+                    $config['max_size']  = '2048';
+                    $this->load->library('upload', $config);
+                    if (!empty($_FILES['image']['name'])) {
+                        if ($this->upload->do_upload('image')) {
+                            if ($this->model_admin->updatePerusahaan($this->upload->data()['file_name'])) {
+                                $this->session->set_flashdata('notif', 'Perusahaan Berhasil Diperbarui!');
+                                $this->session->set_flashdata('classNotif', 'success');
+                                redirect('admin/perusahaan');
+                            } else {
+                                $this->session->set_flashdata('notif', 'Perusahaan Gagal Diperbarui!');
+                                $this->session->set_flashdata('classNotif', 'success');
+                            }
+                        } else {
+                            $this->session->set_flashdata('notif', $this->upload->display_errors());
+                            $this->session->set_flashdata('classNotif', 'success');
+                        }
+                    } else {
+                        if ($this->model_admin->updatePerusahaan()) {
                             $this->session->set_flashdata('notif', 'Perusahaan Berhasil Diperbarui!');
                             $this->session->set_flashdata('classNotif', 'success');
                             redirect('admin/perusahaan');
@@ -80,29 +94,17 @@ class Admin extends CI_Controller {
                             $this->session->set_flashdata('notif', 'Perusahaan Gagal Diperbarui!');
                             $this->session->set_flashdata('classNotif', 'success');
                         }
-                    } else {
-                        $this->session->set_flashdata('notif', $this->upload->display_errors());
-                        $this->session->set_flashdata('classNotif', 'success');
-                    }
-                } else {
-                    if ($this->model_admin->updatePerusahaan()) {
-                        $this->session->set_flashdata('notif', 'Perusahaan Berhasil Diperbarui!');
-                        $this->session->set_flashdata('classNotif', 'success');
-                        redirect('admin/perusahaan');
-                    } else {
-                        $this->session->set_flashdata('notif', 'Perusahaan Gagal Diperbarui!');
-                        $this->session->set_flashdata('classNotif', 'success');
                     }
                 }
-            }
 
-            $data = [
-    			'main_view'		    => 'admin/form_edit_perusahaan',
-    			'adminData'		    => $this->session->userdata(md5('UserData')),
-                'data_perusahaan'   => $this->model_admin->getPerusahaanById($this->uri->segment(4))
-    		];
-    		$this->load->view('admin/layout', $data);
-            return;
+                $data = [
+        			'main_view'		    => 'admin/form_edit_perusahaan',
+        			'adminData'		    => $this->session->userdata(md5('UserData')),
+                    'data_perusahaan'   => $this->model_admin->getPerusahaanById($this->uri->segment(4))
+        		];
+        		$this->load->view('admin/layout', $data);
+                return;
+            }
         }
         // end of edit perusahaan
         // hapus perusahaan
@@ -134,14 +136,36 @@ class Admin extends CI_Controller {
         }
 
         if (strcasecmp($this->uri->segment(3), 'siswa') == 0) {
+            if (strcasecmp($this->uri->segment(4), 'edit') == 0 && !empty($this->uri->segment(5))) {
+                if (isset($_POST['updateProfile'])) {
+                    if ($this->model_admin->updateSiswaProfile($this->uri->segment(5))) {
+        				$this->session->set_flashdata('notif', 'Data berhasil diperbarui!');
+        				$this->session->set_flashdata('classNotif', 'success');
+        			} else {
+        				$this->session->set_flashdata('notif', 'Data gagal diperbarui!');
+        				$this->session->set_flashdata('classNotif', 'warning');
+        			}
+                    redirect('admin/users/siswa');
+                }
+
+                $data = [
+        			'main_view'		    => 'admin/form_edit_siswa',
+        			'adminData'		    => $this->session->userdata(md5('UserData')),
+                    'siswa'             => $this->model_admin->getSiswaById($this->uri->segment(5)),
+                    'data_perusahaan'   => $this->model_admin->getPilihanSiswa($this->uri->segment(5))
+        		];
+        		$this->load->view('admin/layout', $data);
+                return;
+            }
             $data = [
     			'main_view'		=> 'admin/siswa',
     			'adminData'		=> $this->session->userdata(md5('UserData')),
-                'xsiswa'         => $this->model_admin->getSiswaWithGroup(),
+                'xsiswa'        => $this->model_admin->getSiswaWithGroup(),
                 'siswa'         => $this->model_admin->getSiswa()
     		];
     		$this->load->view('admin/layout', $data);
-            // echo json_encode($data['siswa']);
+            // echo json_encode($data['xsiswa']);
+            // var_dump($data['xsiswa']);
         }
 	}
 }

@@ -118,8 +118,25 @@ class Model_admin extends CI_Model {
         return $bool;
     }
 
-    public function getSiswaWithGroup() {
+    public function getSiswaById($id) {
+        return $this->db->where('id_siswa', $id)->get('tb_siswa')->row();
+    }
+
+    public function getPilihanSiswa($id) {
         $this->db->select('*');
+        $this->db->from('tb_siswa AS s');
+        $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_siswa = s.id_siswa', 'right');
+        $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = ps.id_perusahaan', 'right');
+        $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
+        $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        $this->db->where('s.id_siswa', $id);
+        $this->db->group_by('p.id_perusahaan');
+        $this->db->order_by('ps.indeks', 'asc');
+        return $this->db->get()->result();
+    }
+
+    public function getSiswaWithGroup() {
+        $this->db->select('*, s.id_siswa AS id_siswa, s.picture_url AS picture_url');
         $this->db->from('tb_siswa AS s');
         $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_siswa = s.id_siswa', 'left');
         $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = ps.id_perusahaan', 'left');
@@ -129,12 +146,24 @@ class Model_admin extends CI_Model {
     }
 
     public function getSiswa() {
-        $this->db->select('*');
+        $this->db->select('*, s.id_siswa AS id_siswa, s.picture_url AS picture_url');
         $this->db->from('tb_siswa AS s');
         $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_siswa = s.id_siswa', 'left');
         $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = ps.id_perusahaan', 'left');
         $this->db->order_by('s.angkatan', 'desc');
         return $this->db->get()->result();
+    }
+
+    public function updateSiswaProfile($id) {
+        if (!empty($this->input->post('nis'))) $userData['nis'] = $this->input->post('nis');
+        if (!empty($this->input->post('kelas'))) $userData['kelas'] = $this->input->post('kelas');
+        if (!empty($this->input->post('telp'))) $userData['telp_siswa'] = $this->input->post('telp');
+        $this->db->where('id_siswa', $id)->update('tb_siswa', $userData);
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lModel_admin.php/}} */
