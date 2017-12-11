@@ -65,7 +65,9 @@ $(function () {
     });
 
     form.validate({
-        errorPlacement: function errorPlacement(error, element) { element.before(error); },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        },
         rules: {
             'confirm': {
                 equalTo: '#password'
