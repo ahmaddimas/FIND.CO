@@ -63,49 +63,5 @@
             </div>
         </div>
         <!-- #END# Form Data Diri -->
-        <div class="block-header">
-            <h2>PERUSAHAAN YANG DIPILIH</h2>
-        </div>
-        <!-- Data Perusahaan -->
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <?php if ($data_perusahaan != null): ?>
-                        <div class="body">
-                            <div class="row clearfix">
-                                <?php foreach ($data_perusahaan as $dp): ?>
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <b>Pilihan <?= $dp->indeks; ?></b><hr class="my-1">
-                                        <div class="card">
-                                            <img src="<?= base_url().$dp->picture_url; ?>" alt="" width="100%">
-                                            <div class="body pt-1 demo-icon-container">
-                                                <h4><?= $dp->nama_perusahaan; ?></h4>
-                                                <div class="demo-google-material-icon">
-                                                    <i class="material-icons">place</i>
-                                                    <span class="icon-name"><?= $dp->kota; ?></span>
-                                                </div>
-                                                <div class="demo-google-material-icon">
-                                                    <i class="material-icons">phone</i>
-                                                    <span class="icon-name"><?= $dp->telp_perusahaan; ?></span>
-                                                </div>
-                                                <div class="demo-google-material-icon">
-                                                    <i class="material-icons">check</i>
-                                                    <span class="icon-name"><?= $dp->kuota; ?> Kuota Tersedia</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    <?php else: ?>
-                        <div class="header">
-                            Belum memilih perusahaan.
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-        <!-- #END# Data Perusahaan -->
     </div>
 </section>

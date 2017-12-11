@@ -158,9 +158,13 @@ class Model_admin extends CI_Model {
         if (!empty($this->input->post('nis'))) $userData['nis'] = $this->input->post('nis');
         if (!empty($this->input->post('kelas'))) $userData['kelas'] = $this->input->post('kelas');
         if (!empty($this->input->post('telp'))) $userData['telp_siswa'] = $this->input->post('telp');
-        $this->db->where('id_siswa', $id)->update('tb_siswa', $userData);
-        if ($this->db->affected_rows() > 0) {
-            return true;
+        if (!empty($userData)) {
+            $this->db->where('id_siswa', $id)->update('tb_siswa', $userData);
+            if ($this->db->affected_rows() > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
@@ -174,6 +178,20 @@ class Model_admin extends CI_Model {
         $this->db->select('*');
         $this->db->from('tb_guru_pembimbing');
         return $this->db->get()->result();
+    }
+
+    public function updateGuruProfile($id) {
+        if (!empty($this->input->post('telp'))) $userData['telp_guru'] = $this->input->post('telp');
+        if (!empty($userData)) {
+            $this->db->where('id_guru', $id)->update('tb_guru_pembimbing', $userData);
+            if ($this->db->affected_rows() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lModel_admin.php/}} */

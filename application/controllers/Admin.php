@@ -170,7 +170,7 @@ class Admin extends CI_Controller {
         if (strcasecmp($this->uri->segment(3), 'guru') == 0) {
             if (strcasecmp($this->uri->segment(4), 'edit') == 0 && !empty($this->uri->segment(5))) {
                 if (isset($_POST['updateProfile'])) {
-                    if ($this->model_admin->updateSiswaProfile($this->uri->segment(5))) {
+                    if ($this->model_admin->updateGuruProfile($this->uri->segment(5))) {
         				$this->session->set_flashdata('notif', 'Data berhasil diperbarui!');
         				$this->session->set_flashdata('classNotif', 'success');
         			} else {
@@ -183,8 +183,7 @@ class Admin extends CI_Controller {
                 $data = [
         			'main_view'		    => 'admin/form_edit_guru',
         			'adminData'		    => $this->session->userdata(md5('UserData')),
-                    'guru'              => $this->model_admin->getGuruById($this->uri->segment(5)),
-                    'data_perusahaan'   => $this->model_admin->getPilihanSiswa($this->uri->segment(5))
+                    'guru'              => $this->model_admin->getGuruById($this->uri->segment(5))
         		];
         		$this->load->view('admin/layout', $data);
                 return;
