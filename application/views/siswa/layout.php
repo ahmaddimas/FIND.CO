@@ -244,6 +244,11 @@
         <!-- #END# Right Sidebar -->
     </section>
 
+    <script type="text/javascript">
+        // set up base url
+        var base_url = window.location.origin + '/pw/';
+    </script>
+
     <!-- Jquery Core Js -->
     <script src="<?= base_url(); ?>assets/js/jquery.js"></script>
 

@@ -141,6 +141,27 @@ class Model_admin extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function setPilihanSiswa($uid, $pid) {
+        $this->db->where('id_siswa', $uid)->update('tb_perusahaan_siswa', array(
+            'status'    => '-'
+        ));
+        $this->db->where('id_siswa', $uid)->where('id_perusahaan', $pid)->update('tb_perusahaan_siswa', array(
+            'status'    => 'diterima'
+        ));
+        $this->db->select('rp.id_rekap');
+        $this->db->from('tb_perusahaan AS p');
+        $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
+        $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        $this->db->where('p.id_perusahaan', $pid);
+        $rid = $this->db->get()->row()->id_rekap;
+        $this->db->where('id_rekap', $rid)->set('kuota', 'kuota - 1', FALSE)->update('tb_rekap_perusahaan');
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getSiswaWithGroup() {
         $this->db->select('*, s.id_siswa AS id_siswa, s.picture_url AS picture_url');
         $this->db->from('tb_siswa AS s');
@@ -156,6 +177,8 @@ class Model_admin extends CI_Model {
         $this->db->from('tb_siswa AS s');
         $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_siswa = s.id_siswa', 'left');
         $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = ps.id_perusahaan', 'left');
+        $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
+        $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
         $this->db->order_by('s.angkatan', 'desc');
         return $this->db->get()->result();
     }

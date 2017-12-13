@@ -14,7 +14,7 @@
                             DATA PERUSAHAAN
                         </h2>
                         <ul class="header-dropdown m-r--5">
-                            <a href="<?= base_url('Admin/Perusahaan/Tambah'); ?>">
+                            <a href="<?= base_url('Admin/Perusahaan/Tambah'); ?>" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Perusahaan">
                                 <i class="material-icons">add</i>
                             </a>
                         </ul>
@@ -58,11 +58,11 @@
                                                 <td><?= $p->provinsi; ?></td>
                                                 <td><?= $p->cp; ?></td>
                                                 <td><?= $p->kuota; ?></td>
-                                                <td style="width: 100px">
-                                                    <a href="<?= base_url('admin/perusahaan/edit/').$p->id_perusahaan; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float">
+                                                <td class="p-0">
+                                                    <a href="<?= base_url('admin/perusahaan/edit/').$p->id_perusahaan; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-2">
                                                         <i class="material-icons">mode_edit</i>
                                                     </a>
-                                                    <a href="<?= base_url('admin/perusahaan/hapus/').$p->id_perusahaan; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                    <a href="<?= base_url('admin/perusahaan/hapus/').$p->id_perusahaan; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-2">
                                                         <i class="material-icons">delete</i>
                                                     </a>
                                                 </td>

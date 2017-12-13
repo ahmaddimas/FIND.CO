@@ -190,7 +190,6 @@
 </section>
 <script>
     var _pilihan1, _pilihan2; var _data1 = []; var _data2 = [];
-    var base_url = window.location.origin + '/pw/';
 
     // search function
     function search(filter, targetClass) {

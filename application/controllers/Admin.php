@@ -160,6 +160,31 @@ class Admin extends CI_Controller {
         }
 
         if (strcasecmp($this->uri->segment(3), 'siswa') == 0) {
+            // ajax request
+            if (strcasecmp($this->uri->segment(4), 'get') == 0) {
+                $response['statusCode'] = 0;
+                if (isset($_GET['uid'])) {
+                    $result = $this->model_admin->getPilihanSiswa(substr($_GET['uid'], 1));
+                    if (!empty($result)) {
+                        $response = $result;
+                        $response['statusCode'] = 1;
+                    }
+                }
+                echo json_encode($response);
+                return;
+            }
+            // ajax post for set
+            if (strcasecmp($this->uri->segment(4), 'set') == 0) {
+                $response['statusCode'] = 0;
+                if (isset($_POST['uid']) && isset($_POST['pid'])) {
+                    if ($this->model_admin->setPilihanSiswa(substr($_POST['uid'], 1), $_POST['pid'])) {
+                        $response['statusCode'] = 1;
+                    }
+                }
+                echo json_encode($response);
+                return;
+            }
+
             if (strcasecmp($this->uri->segment(4), 'edit') == 0 && !empty($this->uri->segment(5))) {
                 if (isset($_POST['updateProfile'])) {
                     if ($this->model_admin->updateSiswaProfile($this->uri->segment(5))) {
