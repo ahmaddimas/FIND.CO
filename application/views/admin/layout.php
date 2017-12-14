@@ -326,6 +326,8 @@
             echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>';
             echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>';
             echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>';
+            // Sweet Alert Plugin Js
+            echo '<script src="'.base_url().'assets/plugins/sweetalert/sweetalert.min.js"></script>';
             // Custom Js
             echo '<script src="'.base_url().'assets/js/pages/tables/jquery-datatable.js"></script>';
         }

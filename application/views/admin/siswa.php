@@ -71,10 +71,15 @@
                                             <td><?= $p1; ?></td>
                                             <td><?= $p2; ?></td>
                                             <td class="p-1">
-                                                <?php if ($p1 !== "-" && $p2 !== "-" && !($s1 === 'diterima' || $s2 === 'diterima')): ?>
-                                                    <button type="button" class="btn btn-warning waves-effect m-1" onclick="showConfirmDialog(this)">
+                                                <?php if ($p1 !== "-" && $p2 !== "-" && !$status): ?>
+                                                    <button type="button" class="btn btn-success waves-effect m-1" onclick="showConfirmDialog(this)">
                                                         <i class="material-icons">done_all</i>
                                                         <span>Konfirmasi</span>
+                                                    </button>
+                                                <?php elseif ($p1 !== "-" && $p2 !== "-" && $status): ?>
+                                                    <button type="button" class="btn btn-warning waves-effect m-1" onclick="showCancelConfirmDialog(this)">
+                                                        <i class="material-icons">close</i>
+                                                        <span>Batalkan</span>
                                                     </button>
                                                 <?php endif; ?>
                                                 <a href="<?= base_url('admin/users/siswa/edit/').$xs->id_siswa; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-1">
@@ -193,6 +198,33 @@
             }
         });
     }
+    function showCancelConfirmDialog(e) {
+        var _parent = $(e).parents('tr');
+        var _uid = _parent.attr('id');
+        swal({
+            title: 'Hapus Konfirmasi?',
+            type: 'error',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak, batalkan!',
+        }, function(isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: base_url+'admin/users/siswa/reset',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {uid: _uid},
+                    beforeSend: function() {
+                        $('.page-loader-wrapper').show(0);
+                    }
+                }).done(function(e) {
+                    if (e.statusCode !== 0) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    }
 
     function pilih(val) {
         _pid = val;
@@ -200,20 +232,27 @@
 
     function sendConfirmData(e) {
         var _index = $(e).attr('aria-label');
-        console.log(_index+" : "+_pid);
-        $.ajax({
-            url: base_url+'admin/users/siswa/set',
-            type: 'POST',
-            dataType: 'json',
-            data: {uid: _index, pid: _pid},
-            beforeSend: function() {
-                $('.page-loader-wrapper').show(0);
-            }
-        }).done(function(e) {
-            if (e.statusCode !== 0) {
-                window.location.reload();
-            }
-        });
-        _pid = "";
+        if (_pid !== "") {
+            $.ajax({
+                url: base_url+'admin/users/siswa/set',
+                type: 'POST',
+                dataType: 'json',
+                data: {uid: _index, pid: _pid},
+                beforeSend: function() {
+                    $('.page-loader-wrapper').show(0);
+                }
+            }).done(function(e) {
+                if (e.statusCode !== 0) {
+                    _pid = "";
+                    window.location.reload();
+                }
+            });
+        } else {
+            swal({
+                title: 'Error',
+                text: 'Harap memilih perusahaan!',
+                type: 'warning'
+            });
+        }
     }
 </script>
