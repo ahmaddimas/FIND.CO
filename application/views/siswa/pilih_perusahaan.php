@@ -6,11 +6,21 @@
                 <b>Warning!</b> Harap melengkapi data diri! <a class="alert-link" href="<?= base_url('siswa/profile'); ?>">klik untuk melengkapi.</a>
             </div>
         <?php }
-        if (!empty($data_perusahaan)) { ?>
-            <div class="alert alert-danger">
-                Anda sudah memilih perusahaan!
-            </div>
-        <?php }
+        if (!empty($data_perusahaan)) {
+            foreach ($data_perusahaan as $dp) {
+                if ($dp->status == "diterima") { ?>
+                    <div class="alert alert-success">
+                        <b>Congratulation!</b> Anda telah diterima diperusahaan <?= $dp->nama_perusahaan; ?>
+                    </div>
+                <?php } elseif ($dp->status == "menunggu") { ?>
+                    <div class="alert alert-danger">
+                        Anda sudah memilih perusahaan!
+                    </div>
+                <?php
+                    break;
+                }
+            }
+        }
         if (!empty($this->session->flashdata('notif'))){ ?>
             <div class="alert alert-<?= $this->session->flashdata('classNotif'); ?>">
                 <?= $this->session->flashdata('notif'); ?>
