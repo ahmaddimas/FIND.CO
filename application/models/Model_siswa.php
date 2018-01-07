@@ -9,20 +9,23 @@ class Model_siswa extends CI_Model {
     public function checkUser($data = array()){
         $this->db->select('*');
         $this->db->from('tb_siswa');
-        $this->db->where(array('oauth_uid'=>$data['id']));
+        $this->db->where(array('email_siswa'=>$data['email']));
         $query = $this->db->get();
         $check = $query->num_rows();
 
         if($check > 0){
             $result = $query->row_array();
-            // $data['modified'] = date("Y-m-d H:i:s");
-            // $update = $this->db->update($this->tableName,$data,array('id'=>$result['id']));
+            $this->db->where('id_siswa', $result['id_siswa'])->update('tb_siswa', array(
+                'nama_siswa'    => $data['given_name'],
+                'angkatan'      => substr($data['family_name'], 0, -3),
+                'jurusan'       => substr($data['family_name'], -3),
+                'jk_siswa'      => !empty($data['gender'])?$data['gender']:'',
+                'picture_url'   => !empty($data['picture'])?$data['picture']:''
+            ));
             $userData = $result;
             $userData['id_user'] = $result['id_siswa'];
         }else{
-            // $data['created'] = date("Y-m-d H:i:s");
-            // $data['modified']= date("Y-m-d H:i:s");
-            $insert = $this->db->insert('tb_siswa',array(
+            $this->db->insert('tb_siswa', array(
                 'oauth_uid'     => $data['id'],
                 'nama_siswa'    => $data['given_name'],
                 'email_siswa'   => $data['email'],

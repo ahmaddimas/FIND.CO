@@ -9,20 +9,23 @@ class Model_guru extends CI_Model {
     public function checkUser($data = array()){
         $this->db->select('*');
         $this->db->from('tb_guru_pembimbing');
-        $this->db->where(array('oauth_uid'=>$data['id']));
+        $this->db->where(array('email_guru'=>$data['email']));
         $query = $this->db->get();
         $check = $query->num_rows();
 
         if($check > 0){
             $result = $query->row_array();
-            // $data['modified'] = date("Y-m-d H:i:s");
-            // $update = $this->db->update($this->tableName,$data,array('id'=>$result['id']));
+            $this->db->where('id_guru', $result['id_guru'])->update('tb_guru_pembimbing',array(
+                'oauth_uid'     => $data['id'],
+                'nama_guru'     => $data['given_name'],
+                'email_guru'    => $data['email'],
+                'jk_guru'       => !empty($data['gender'])?$data['gender']:'',
+                'picture_url'   => !empty($data['picture'])?$data['picture']:''
+            ));
             $userData = $result;
             $userData['id_user'] = $result['id_guru'];
         }else{
-            // $data['created'] = date("Y-m-d H:i:s");
-            // $data['modified']= date("Y-m-d H:i:s");
-            $insert = $this->db->insert('tb_guru_pembimbing',array(
+            $this->db->insert('tb_guru_pembimbing' ,array(
                 'oauth_uid'     => $data['id'],
                 'nama_guru'     => $data['given_name'],
                 'email_guru'    => $data['email'],
