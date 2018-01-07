@@ -36,9 +36,10 @@ class Siswa extends CI_Controller {
 
 		if (strcasecmp($this->uri->segment(3), 'all') == 0) {
 			$data = [
-				'main_view'	=> 'siswa/perusahaan',
-				'userData'	=> $this->model_siswa->getSiswaById($this->session->userdata(md5('UserData'))['id_siswa']),
-	            'perusahaan'=> $this->model_siswa->getPerusahaan()
+				'main_view'			=> 'siswa/perusahaan',
+				'userData'			=> $this->model_siswa->getSiswaById($this->session->userdata(md5('UserData'))['id_siswa']),
+				'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_siswa']),
+	            'perusahaan'		=> $this->model_siswa->getPerusahaan()
 			];
 			$this->load->view('siswa/layout', $data);
 		} elseif (strcasecmp($this->uri->segment(3), 'pilih') == 0) {
