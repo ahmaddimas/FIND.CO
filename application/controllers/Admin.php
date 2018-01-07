@@ -279,9 +279,10 @@ class Admin extends CI_Controller {
                 return;
             }
             $data = [
-    			'main_view' => 'admin/guru',
-    			'adminData' => $this->session->userdata(md5('UserData')),
-                'guru'      => $this->model_admin->getGuru()
+    			'main_view'     => 'admin/guru',
+    			'adminData'     => $this->session->userdata(md5('UserData')),
+                'guru'          => $this->model_admin->getGuru(),
+                'perusahaan'    => $this->model_admin->getPerusahaan()
     		];
     		$this->load->view('admin/layout', $data);
         }

@@ -253,7 +253,8 @@ class Model_admin extends CI_Model {
 
     public function getGuru() {
         $this->db->select('*');
-        $this->db->from('tb_guru_pembimbing');
+        $this->db->from('tb_guru_pembimbing AS g');
+        $this->db->join('tb_guru_perusahaan AS gp', 'gp.id_guru = g.id_guru', 'left');
         return $this->db->get()->result();
     }
 

@@ -8371,7 +8371,7 @@ html.ie11 .bs-searchbox .form-control {
 .card-wrapper {
     position: relative;
 }
-.card-wrapper .label-radio {
+.card-wrapper .label-radio, .card-wrapper .label-checkbox {
     width: 100% !important;
     height: 100% !important;
     position: absolute !important;
@@ -8386,7 +8386,17 @@ html.ie11 .bs-searchbox .form-control {
     width: 30px;
     height: 30px;
 }
-.card-wrapper .label-radio span {
+.card-wrapper .label-checkbox::before {
+    z-index: 1;
+    top: 5px;
+    left: 5px;
+    border: none;
+}
+.card-wrapper input[type="checkbox"]:checked + .label-checkbox::before {
+    top: 5px;
+    left: 5px;
+}
+.card-wrapper .label-radio span, .card-wrapper .label-checkbox span {
     width: 60px !important;
     height: 60px !important;
     position: absolute !important;
@@ -8395,7 +8405,8 @@ html.ie11 .bs-searchbox .form-control {
     clip-path: polygon(0% 0%, 0% 100%, 100% 0%);
     transition: .3s ease-in-out;
 }
-.card-wrapper input[type="radio"]:checked + .label-radio span {
+.card-wrapper input[type="checkbox"]:checked + .label-radio span,
+.card-wrapper input[type="checkbox"]:checked + .label-checkbox span {
     background-color: rgba(255, 255, 255, 1) !important;
 }
 .link {
