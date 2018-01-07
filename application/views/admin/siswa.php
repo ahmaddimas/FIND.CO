@@ -13,6 +13,17 @@
                         <h2>
                             DATA SISWA
                         </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                    <i class="material-icons">add</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="<?= base_url('admin/users/siswa/tambah'); ?>" class=" waves-effect waves-block">Tambah Siswa</a></li>
+                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Import Excel</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                     <div class="body">
                         <div class="table-responsive">

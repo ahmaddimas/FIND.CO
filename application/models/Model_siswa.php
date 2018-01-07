@@ -16,6 +16,7 @@ class Model_siswa extends CI_Model {
         if($check > 0){
             $result = $query->row_array();
             $this->db->where('id_siswa', $result['id_siswa'])->update('tb_siswa', array(
+                'oauth_uid'     => $data['id'],
                 'nama_siswa'    => $data['given_name'],
                 'angkatan'      => substr($data['family_name'], 0, -3),
                 'jurusan'       => substr($data['family_name'], -3),

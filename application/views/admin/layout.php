@@ -311,8 +311,8 @@
         echo '<script src="'.base_url().'assets/js/pages/forms/basic-form-elements.js"></script>';
     }
     if(strcasecmp($uri2, 'users') == 0) {
-        $uri3 = $this->uri->segment(3);
-        if (strcasecmp($uri3, 'tambah') == 0 || strcasecmp($uri3, 'edit') == 0) {
+        $uri4 = $this->uri->segment(4);
+        if (strcasecmp($uri4, 'tambah') == 0 || strcasecmp($uri4, 'edit') == 0) {
             // Custom Js
             echo '<script src="'.base_url().'assets/js/pages/forms/advanced-form-elements.js"></script>';
         } else {

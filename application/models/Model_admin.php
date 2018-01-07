@@ -213,6 +213,24 @@ class Model_admin extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function addSiswa() {
+        $this->db->insert('tb_siswa', array(
+            'nis'   => $this->input->post('nis'),
+            'nama_siswa'  => $this->input->post('nama'),
+            'email_siswa'   => $this->input->post('email'),
+            'kelas'         => $this->input->post('kelas'),
+            'telp_siswa'    => $this->input->post('telp'),
+            'jk_siswa'      => $this->input->post('jk'),
+            'angkatan'      => $this->input->post('angkatan'),
+            'jurusan'       => $this->input->post('jurusan')
+        ));
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function updateSiswaProfile($id) {
         if (!empty($this->input->post('nis'))) $userData['nis'] = $this->input->post('nis');
         if (!empty($this->input->post('kelas'))) $userData['kelas'] = $this->input->post('kelas');
