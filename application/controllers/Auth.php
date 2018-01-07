@@ -46,6 +46,11 @@ class Auth extends CI_Controller {
                 // echo json_encode($gpInfo);
                 // return;
             } else {
+                //delete login status & user info from session when data not valid
+                $this->session->unset_userdata(md5('Logged_In'));
+                $this->session->unset_userdata(md5('Logged_Role'));
+                $this->session->unset_userdata(md5('UserData'));
+                $this->session->sess_destroy();
                 $this->load->view('error_login');
                 return;
             }
