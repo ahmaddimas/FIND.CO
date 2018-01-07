@@ -60,6 +60,7 @@
                                             }
                                         }
                                         $status = $s1 === 'diterima' || $s2 === 'diterima' ? 1:0;
+                                        $reject = $s1 === 'ditolak' || $s2 === 'ditolak' ? 1:0;
                                         $kelas = !empty($xs->kelas) ? $xs->jurusan.' '.str_replace(' ','', substr($xs->kelas, strrpos($xs->kelas, $xs->jurusan) + $xs->jurusan - 1)) : '';
                                         ?>
                                         <tr id="i<?= $xs->id_siswa; ?>">
@@ -71,10 +72,14 @@
                                             <td><?= $p1; ?></td>
                                             <td><?= $p2; ?></td>
                                             <td class="p-1">
-                                                <?php if ($p1 !== "-" && $p2 !== "-" && !$status): ?>
+                                                <?php if ($p1 !== "-" && $p2 !== "-" && !$status && !$reject): ?>
                                                     <button type="button" class="btn btn-success waves-effect m-1" onclick="showConfirmDialog(this)">
                                                         <i class="material-icons">done_all</i>
                                                         <span>Konfirmasi</span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-warning waves-effect m-1" onclick="showRejectConfirmDialog(this)">
+                                                        <i class="material-icons">close</i>
+                                                        <span>Reject</span>
                                                     </button>
                                                 <?php elseif ($p1 !== "-" && $p2 !== "-" && $status): ?>
                                                     <button type="button" class="btn btn-warning waves-effect m-1" onclick="showCancelConfirmDialog(this)">
@@ -221,6 +226,34 @@
                     if (e.statusCode !== 0) {
                         window.location.reload();
                     }
+                });
+            }
+        });
+    }
+    function showRejectConfirmDialog(e) {
+        var _parent = $(e).parents('tr');
+        var _uid = _parent.attr('id');
+        swal({
+            title: 'Tolak Konfirmasi?',
+            type: 'error',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak, batalkan!',
+        }, function(isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: base_url+'admin/users/siswa/reject',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {uid: _uid},
+                    beforeSend: function() {
+                        $('.page-loader-wrapper').show(0);
+                    }
+                }).done(function(e) {
+                    if (e.statusCode !== 0) {
+                        window.location.reload();
+                    }
+                    console.log(e.statusCode);
                 });
             }
         });

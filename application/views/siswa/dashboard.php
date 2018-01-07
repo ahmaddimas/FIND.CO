@@ -19,7 +19,13 @@
                     <div class="alert alert-success">
                         <b>Congratulation!</b> Anda telah diterima diperusahaan <?= $dp->nama_perusahaan; ?>
                     </div>
-                <?php }
+                <?php } elseif ($dp->status == "ditolak") { ?>
+                    <div class="alert alert-danger">
+                        <b>Danger!</b> Anda belum diterima diperusahaan <a class="alert-link" href="<?= base_url('Siswa/Perusahaan/pilih'); ?>">klik untuk memilih.</a>
+                    </div>
+                <?php
+                    break;
+                }
             }
         }
         ?>

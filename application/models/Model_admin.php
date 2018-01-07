@@ -181,6 +181,17 @@ class Model_admin extends CI_Model {
         }
     }
 
+    public function rejectPilihanSiswa($uid) {
+        $this->db->where('id_siswa', $uid)->update('tb_perusahaan_siswa', array(
+            'status'    => 'ditolak'
+        ));
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getSiswaWithGroup() {
         $this->db->select('*, s.id_siswa AS id_siswa, s.picture_url AS picture_url');
         $this->db->from('tb_siswa AS s');

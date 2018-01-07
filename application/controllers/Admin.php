@@ -195,6 +195,17 @@ class Admin extends CI_Controller {
                 echo json_encode($response);
                 return;
             }
+            // ajax post for reject
+            if (strcasecmp($this->uri->segment(4), 'reject') == 0) {
+                $response['statusCode'] = 0;
+                if (isset($_POST['uid'])) {
+                    if ($this->model_admin->rejectPilihanSiswa(substr($_POST['uid'], 1))) {
+                        $response['statusCode'] = 1;
+                    }
+                }
+                echo json_encode($response);
+                return;
+            }
 
             if (strcasecmp($this->uri->segment(4), 'edit') == 0 && !empty($this->uri->segment(5))) {
                 if (isset($_POST['updateProfile'])) {
