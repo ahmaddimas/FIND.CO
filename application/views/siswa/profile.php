@@ -5,9 +5,18 @@
         </div>
         <?php if (empty($data_perusahaan)) { ?>
             <div class="alert alert-warning">
-                <b>Warning!</b> Anda belum memilih perusahaan! <a class="alert-link" href="<?= base_url('Siswa/Perusahaan/pilih') ?>">klik untuk memilih.</a>
+                <b>Warning!</b> Anda belum memilih perusahaan! <a class="alert-link" href="<?= base_url('Siswa/Perusahaan/pilih'); ?>">klik untuk memilih.</a>
             </div>
-        <?php } ?>
+        <?php } else {
+            foreach ($data_perusahaan as $dp) {
+                if ($dp->status == "diterima") { ?>
+                    <div class="alert alert-success">
+                        <b>Congratulation!</b> Anda telah diterima diperusahaan <?= $dp->nama_perusahaan; ?>
+                    </div>
+                <?php }
+            }
+        }
+        ?>
         <!-- Form Data Diri -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
