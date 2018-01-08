@@ -255,6 +255,7 @@ class Model_admin extends CI_Model {
         $this->db->select('*, g.id_guru AS id_guru');
         $this->db->from('tb_guru_pembimbing AS g');
         $this->db->join('tb_guru_perusahaan AS gp', 'gp.id_guru = g.id_guru', 'left');
+        $this->db->group_by('g.id_guru');
         return $this->db->get()->result();
     }
 
@@ -267,6 +268,30 @@ class Model_admin extends CI_Model {
             } else {
                 return false;
             }
+        } else {
+            return false;
+        }
+    }
+
+    public function setGuruPembimbing($uid, $pid) {
+        for ($i=0; $i < count($pid); $i++) {
+            $this->db->insert('tb_guru_perusahaan', array(
+                'id_guru'       => $uid,
+                'id_perusahaan' => $pid[$i],
+                'tahun'         => date('Y')
+            ));
+        }
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function resetGuruPembimbing($uid) {
+        $this->db->where('id_guru', $uid)->update('tb_guru_perusahaan');
+        if ($this->db->affected_rows() > 0) {
+            return true;
         } else {
             return false;
         }

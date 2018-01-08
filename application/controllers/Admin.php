@@ -160,7 +160,7 @@ class Admin extends CI_Controller {
         }
 
         if (strcasecmp($this->uri->segment(3), 'siswa') == 0) {
-            // ajax request
+            // ajax request siswa
             if (strcasecmp($this->uri->segment(4), 'get') == 0) {
                 $response['statusCode'] = 0;
                 if (isset($_GET['uid'])) {
@@ -173,7 +173,7 @@ class Admin extends CI_Controller {
                 echo json_encode($response);
                 return;
             }
-            // ajax post for set
+            // ajax post for set siswa
             if (strcasecmp($this->uri->segment(4), 'set') == 0) {
                 $response['statusCode'] = 0;
                 if (isset($_POST['uid']) && isset($_POST['pid'])) {
@@ -184,7 +184,7 @@ class Admin extends CI_Controller {
                 echo json_encode($response);
                 return;
             }
-            // ajax post for reset
+            // ajax post for reset siswa
             if (strcasecmp($this->uri->segment(4), 'reset') == 0) {
                 $response['statusCode'] = 0;
                 if (isset($_POST['uid'])) {
@@ -195,7 +195,7 @@ class Admin extends CI_Controller {
                 echo json_encode($response);
                 return;
             }
-            // ajax post for reject
+            // ajax post for reject siswa
             if (strcasecmp($this->uri->segment(4), 'reject') == 0) {
                 $response['statusCode'] = 0;
                 if (isset($_POST['uid'])) {
@@ -258,6 +258,29 @@ class Admin extends CI_Controller {
             // var_dump($data['xsiswa']);
         }
         if (strcasecmp($this->uri->segment(3), 'guru') == 0) {
+            // ajax post for set guru
+            if (strcasecmp($this->uri->segment(4), 'set') == 0) {
+                $response['statusCode'] = 0;
+                if (isset($_POST['uid']) && isset($_POST['pid'])) {
+                    if ($this->model_admin->setGuruPembimbing(substr($_POST['uid'], 1), $_POST['pid'])) {
+                        $response['statusCode'] = 1;
+                    }
+                }
+                echo json_encode($response);
+                return;
+            }
+            // ajax post for reset guru
+            if (strcasecmp($this->uri->segment(4), 'reset') == 0) {
+                $response['statusCode'] = 0;
+                if (isset($_POST['uid'])) {
+                    if ($this->model_admin->resetGuruPembimbing(substr($_POST['uid'], 1))) {
+                        $response['statusCode'] = 1;
+                    }
+                }
+                echo json_encode($response);
+                return;
+            }
+
             if (strcasecmp($this->uri->segment(4), 'edit') == 0 && $this->uri->segment(5) != "") {
                 if (isset($_POST['updateProfile'])) {
                     if ($this->model_admin->updateGuruProfile($this->uri->segment(5))) {
