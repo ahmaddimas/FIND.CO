@@ -1,6 +1,6 @@
 <section class="content">
     <div class="container-fluid">
-        <?php if (!empty($this->session->flashdata('notif'))){ ?>
+        <?php if ($this->session->flashdata('notif') != ""){ ?>
             <div class="alert alert-<?= $this->session->flashdata('classNotif'); ?>">
                 <?= $this->session->flashdata('notif'); ?>
             </div>

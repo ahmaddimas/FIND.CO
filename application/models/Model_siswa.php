@@ -48,16 +48,16 @@ class Model_siswa extends CI_Model {
     }
 
     public function updateProfile() {
-        if (!empty($this->input->post('nis'))) $userData['nis'] = $this->input->post('nis');
-        if (!empty($this->input->post('kelas'))) $userData['kelas'] = $this->input->post('kelas');
-        if (!empty($this->input->post('telp'))) $userData['telp_siswa'] = $this->input->post('telp');
+        if (!$this->input->post('nis')) $userData['nis'] = $this->input->post('nis');
+        if (!$this->input->post('kelas')) $userData['kelas'] = $this->input->post('kelas');
+        if (!$this->input->post('telp')) $userData['telp_siswa'] = $this->input->post('telp');
         if (!empty($userData)) {
             $this->db->where('id_siswa', $this->session->userdata(md5('UserData'))['id_user'])->update('tb_siswa', $userData);
             if ($this->db->affected_rows() > 0) {
                 $userData = $this->session->userdata(md5('UserData'));
-                if (!empty($this->input->post('nis'))) $userData['nis'] = $this->input->post('nis');
-                if (!empty($this->input->post('kelas'))) $userData['kelas'] = $this->input->post('kelas');
-                if (!empty($this->input->post('telp'))) $userData['telp_siswa'] = $this->input->post('telp');
+                if (!$this->input->post('nis')) $userData['nis'] = $this->input->post('nis');
+                if (!$this->input->post('kelas')) $userData['kelas'] = $this->input->post('kelas');
+                if (!$this->input->post('telp')) $userData['telp_siswa'] = $this->input->post('telp');
                 $this->session->set_userdata(md5('UserData'), $userData);
                 return true;
             } else {

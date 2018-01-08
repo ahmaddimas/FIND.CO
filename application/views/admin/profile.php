@@ -15,7 +15,7 @@
                     <div class="body">
                         <form action="<?= base_url('admin/profile/edit/').$adminData['id_admin']; ?>" method="post">
                             <div class="row clearfix">
-                                <?php if (!empty($this->session->flashdata('notif'))){ ?>
+                                <?php if ($this->session->flashdata('notif') != ""){ ?>
                                     <div class="alert alert-<?= $this->session->flashdata('classNotif'); ?>">
                                         <?= $this->session->flashdata('notif'); ?>
                                     </div>

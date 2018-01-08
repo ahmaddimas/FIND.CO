@@ -15,7 +15,7 @@
                     <div class="body">
                         <form action="<?= base_url('admin/users/siswa/edit/').$siswa->id_siswa; ?>" method="post">
                             <div class="row clearfix">
-                                <?php if (!empty($this->session->flashdata('notif'))){ ?>
+                                <?php if ($this->session->flashdata('notif') != ""){ ?>
                                     <div class="alert alert-<?= $this->session->flashdata('classNotif'); ?>">
                                         <?= $this->session->flashdata('notif'); ?>
                                     </div>

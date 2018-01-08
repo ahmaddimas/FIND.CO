@@ -89,13 +89,13 @@ class Admin extends CI_Controller {
         // end of tambah perusahaan
         // edit perusahaan
         if (strcasecmp($uri3, 'edit') == 0) {
-            if (!empty($this->uri->segment(4))) {
+            if ($this->uri->segment(4) != "") {
                 if (isset($_POST['updateIndustry'])) {
                     $config['upload_path'] = './assets/images/';
                     $config['allowed_types'] = 'jpg|png|jpeg';
                     $config['max_size']  = '2048';
                     $this->load->library('upload', $config);
-                    if (!empty($_FILES['image']['name'])) {
+                    if ($_FILES['image']['name'] != "") {
                         if ($this->upload->do_upload('image')) {
                             if ($this->model_admin->updatePerusahaan($this->upload->data()['file_name'])) {
                                 $this->session->set_flashdata('notif', 'Perusahaan Berhasil Diperbarui!');
@@ -132,7 +132,7 @@ class Admin extends CI_Controller {
         }
         // end of edit perusahaan
         // hapus perusahaan
-        if (strcasecmp($uri3, 'hapus') == 0 && !empty($this->uri->segment(4))) {
+        if (strcasecmp($uri3, 'hapus') == 0 && $this->uri->segment(4) != "") {
             if ($this->model_admin->hapusPerusahaan($this->uri->segment(4))) {
                 $this->session->set_flashdata('notif', 'Perusahaan Berhasil Dihapus!');
                 $this->session->set_flashdata('classNotif', 'success');
@@ -226,7 +226,7 @@ class Admin extends CI_Controller {
         		$this->load->view('admin/layout', $data);
                 return;
             }
-            if (strcasecmp($this->uri->segment(4), 'edit') == 0 && !empty($this->uri->segment(5))) {
+            if (strcasecmp($this->uri->segment(4), 'edit') == 0 && $this->uri->segment(5) != "") {
                 if (isset($_POST['updateProfile'])) {
                     if ($this->model_admin->updateSiswaProfile($this->uri->segment(5))) {
         				$this->session->set_flashdata('notif', 'Data berhasil diperbarui!');
@@ -258,7 +258,7 @@ class Admin extends CI_Controller {
             // var_dump($data['xsiswa']);
         }
         if (strcasecmp($this->uri->segment(3), 'guru') == 0) {
-            if (strcasecmp($this->uri->segment(4), 'edit') == 0 && !empty($this->uri->segment(5))) {
+            if (strcasecmp($this->uri->segment(4), 'edit') == 0 && $this->uri->segment(5) != "") {
                 if (isset($_POST['updateProfile'])) {
                     if ($this->model_admin->updateGuruProfile($this->uri->segment(5))) {
         				$this->session->set_flashdata('notif', 'Data berhasil diperbarui!');
@@ -271,9 +271,9 @@ class Admin extends CI_Controller {
                 }
 
                 $data = [
-        			'main_view'		    => 'admin/form_edit_guru',
-        			'adminData'		    => $this->session->userdata(md5('UserData')),
-                    'guru'              => $this->model_admin->getGuruById($this->uri->segment(5))
+        			'main_view'		  => 'admin/form_edit_guru',
+        			'adminData'		  => $this->session->userdata(md5('UserData')),
+                    'guru'            => $this->model_admin->getGuruById($this->uri->segment(5))
         		];
         		$this->load->view('admin/layout', $data);
                 return;

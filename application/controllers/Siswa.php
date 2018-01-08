@@ -43,7 +43,7 @@ class Siswa extends CI_Controller {
 			];
 			$this->load->view('siswa/layout', $data);
 		} elseif (strcasecmp($this->uri->segment(3), 'pilih') == 0) {
-			if (isset($_GET['p1']) && !empty(isset($_GET['p1'])) && isset($_GET['p2']) && !empty(isset($_GET['p2']))) {
+			if (isset($_GET['p1']) && !empty($_GET['p1']) && isset($_GET['p2']) && !empty($_GET['p2'])) {
 				$data['p1'] = $_GET['p1'];
 				$data['p2'] = $_GET['p2'];
 				if ($this->model_siswa->setPilihanPerusahaan($data)) {

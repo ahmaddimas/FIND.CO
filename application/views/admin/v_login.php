@@ -35,7 +35,7 @@
             <div class="body">
                 <form id="sign_in" method="POST" action="<?= base_url('Auth/LogInAdmin'); ?>">
                     <div class="msg">Sign in to start your session</div>
-                    <?php if (!empty($this->session->flashdata('notif'))){ ?>
+                    <?php if ($this->session->flashdata('notif') != ""){ ?>
                         <div class="alert alert-danger">
                             <?= $this->session->flashdata('notif'); ?>
                         </div>

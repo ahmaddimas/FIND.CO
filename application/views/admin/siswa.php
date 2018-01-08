@@ -1,6 +1,6 @@
 <section class="content">
     <div class="container-fluid">
-        <?php if (!empty($this->session->flashdata('notif'))){ ?>
+        <?php if ($this->session->flashdata('notif') != ""){ ?>
             <div class="alert alert-<?= $this->session->flashdata('classNotif'); ?>">
                 <?= $this->session->flashdata('notif'); ?>
             </div>
@@ -175,7 +175,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn waves-effect btn-success" onclick="sendConfirmData(this)" aria-label="">SAVE CHANGES</button>
-                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" onclick="reset()">CLOSE</button>
                     </div>
                 </div>
             </div>
@@ -272,6 +272,10 @@
 
     function pilih(val) {
         _pid = val;
+    }
+
+    function reset() {
+        _pid = "";
     }
 
     function sendConfirmData(e) {

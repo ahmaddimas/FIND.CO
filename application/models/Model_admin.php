@@ -232,9 +232,9 @@ class Model_admin extends CI_Model {
     }
 
     public function updateSiswaProfile($id) {
-        if (!empty($this->input->post('nis'))) $userData['nis'] = $this->input->post('nis');
-        if (!empty($this->input->post('kelas'))) $userData['kelas'] = $this->input->post('kelas');
-        if (!empty($this->input->post('telp'))) $userData['telp_siswa'] = $this->input->post('telp');
+        if ($this->input->post('nis') != "") $userData['nis'] = $this->input->post('nis');
+        if ($this->input->post('kelas') != "") $userData['kelas'] = $this->input->post('kelas');
+        if ($this->input->post('telp') != "") $userData['telp_siswa'] = $this->input->post('telp');
         if (!empty($userData)) {
             $this->db->where('id_siswa', $id)->update('tb_siswa', $userData);
             if ($this->db->affected_rows() > 0) {
@@ -252,14 +252,14 @@ class Model_admin extends CI_Model {
     }
 
     public function getGuru() {
-        $this->db->select('*');
+        $this->db->select('*, g.id_guru AS id_guru');
         $this->db->from('tb_guru_pembimbing AS g');
         $this->db->join('tb_guru_perusahaan AS gp', 'gp.id_guru = g.id_guru', 'left');
         return $this->db->get()->result();
     }
 
     public function updateGuruProfile($id) {
-        if (!empty($this->input->post('telp'))) $userData['telp_guru'] = $this->input->post('telp');
+        if ($this->input->post('telp') != "") $userData['telp_guru'] = $this->input->post('telp');
         if (!empty($userData)) {
             $this->db->where('id_guru', $id)->update('tb_guru_pembimbing', $userData);
             if ($this->db->affected_rows() > 0) {
