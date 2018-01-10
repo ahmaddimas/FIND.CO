@@ -247,8 +247,24 @@ class Model_admin extends CI_Model {
         }
     }
 
+    public function getGuruByIdWithGroup($id) {
+        $this->db->select('*, g.id_guru AS id_guru');
+        $this->db->from('tb_guru_pembimbing AS g');
+        $this->db->join('tb_guru_perusahaan AS gp', 'gp.id_guru = g.id_guru', 'left');
+        $this->db->where('g.id_guru', $id);
+        $this->db->group_by('g.id_guru');
+        return $this->db->get()->row();
+    }
+
     public function getGuruById($id) {
-        return $this->db->where('id_guru', $id)->get('tb_guru_pembimbing')->row();
+        $this->db->select('*, g.id_guru AS id_guru');
+        $this->db->from('tb_guru_pembimbing AS g');
+        $this->db->join('tb_guru_perusahaan AS gp', 'gp.id_guru = g.id_guru', 'left');
+        $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = gp.id_perusahaan', 'left');
+        $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
+        $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        $this->db->where('g.id_guru', $id);
+        return $this->db->get()->result();
     }
 
     public function getGuru() {

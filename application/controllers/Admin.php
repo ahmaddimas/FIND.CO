@@ -294,9 +294,10 @@ class Admin extends CI_Controller {
                 }
 
                 $data = [
-        			'main_view'		  => 'admin/form_edit_guru',
-        			'adminData'		  => $this->session->userdata(md5('UserData')),
-                    'guru'            => $this->model_admin->getGuruById($this->uri->segment(5))
+        			'main_view'		=> 'admin/form_edit_guru',
+        			'adminData'		=> $this->session->userdata(md5('UserData')),
+                    'guru'          => $this->model_admin->getGuruByIdWithGroup($this->uri->segment(5)),
+                    'dataGuru'      => $this->model_admin->getGuruById($this->uri->segment(5))
         		];
         		$this->load->view('admin/layout', $data);
                 return;
