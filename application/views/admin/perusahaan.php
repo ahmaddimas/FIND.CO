@@ -57,7 +57,7 @@
                                                 <td><?= $p->kota; ?></td>
                                                 <td><?= $p->provinsi; ?></td>
                                                 <td><?= $p->cp; ?></td>
-                                                <td><?= $p->kuota; ?></td>
+                                                <td><?= $p->kuota - $p->diterima; ?></td>
                                                 <td class="p-0">
                                                     <a href="<?= base_url('admin/perusahaan/edit/').$p->id_perusahaan; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-2">
                                                         <i class="material-icons">mode_edit</i>

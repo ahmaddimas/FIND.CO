@@ -67,7 +67,7 @@
                                                         </div>
                                                         <div class="demo-google-material-icon">
                                                             <i class="material-icons">check</i>
-                                                            <span class="icon-name"><?= $p->kuota; ?> Kuota Tersedia</span>
+                                                            <span class="icon-name"><?= $p->kuota - $p->diterima; ?> Kuota Tersedia</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -120,7 +120,7 @@
                                                         </div>
                                                         <div class="demo-google-material-icon">
                                                             <i class="material-icons">check</i>
-                                                            <span class="icon-name"><?= $p->kuota; ?> Kuota Tersedia</span>
+                                                            <span class="icon-name"><?= $p->kuota - $p->diterima; ?> Kuota Tersedia</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -282,13 +282,13 @@
         c1.find('.title').html(_data1.nama_perusahaan);
         c1.find('.kota').html(_data1.kota);
         c1.find('.telp_perusahaan').html(_data1.telp_perusahaan);
-        c1.find('.kuota').html(_data1.kuota + " Kuota Tersedia");
+        c1.find('.kuota').html((_data1.kuota - _data1.diterima) + " Kuota Tersedia");
         // set pilihan2
         c2.find('img').attr('src', base_url+_data2.picture_url);
         c2.find('.title').html(_data2.nama_perusahaan);
         c2.find('.kota').html(_data2.kota);
         c2.find('.telp_perusahaan').html(_data2.telp_perusahaan);
-        c2.find('.kuota').html(_data2.kuota + " Kuota Tersedia");
+        c2.find('.kuota').html((_data2.kuota - _data2.diterima) + " Kuota Tersedia");
         $('.page-loader-wrapper').fadeOut();
     }
 </script>

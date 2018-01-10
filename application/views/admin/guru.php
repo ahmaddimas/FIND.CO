@@ -105,7 +105,7 @@
                                                 </div>
                                                 <div class="demo-google-material-icon">
                                                     <i class="material-icons">check</i>
-                                                    <span class="icon-name"><?= $p->kuota; ?> Kuota Tersedia</span>
+                                                    <span class="icon-name"><?= $p->kuota - $p->diterima; ?> Kuota Tersedia</span>
                                                 </div>
                                             </div>
                                         </div>

@@ -52,7 +52,7 @@
                                                 </div>
                                                 <div class="demo-google-material-icon">
                                                     <i class="material-icons">check</i>
-                                                    <span class="icon-name"><?= $p->kuota; ?> Kuota Tersedia</span>
+                                                    <span class="icon-name"><?= $p->kuota - $p->diterima; ?> Kuota Tersedia</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,7 +133,7 @@
             _element.find('.modal-body .phone-number').html(e.telp_perusahaan);
             _element.find('.modal-body .cp').html(e.cp);
             _element.find('.modal-body .fax').html(e.fax);
-            _element.find('.modal-body .kuota').html(e.kuota);
+            _element.find('.modal-body .kuota').html(e.kuota - e.diterima);
             $('.page-loader-wrapper').fadeOut(50);
             _element.modal('show');
         });

@@ -206,7 +206,7 @@
                     _card.find('.title').html(e[i].nama_perusahaan);
                     _card.find('.city').html(e[i].kota);
                     _card.find('.phone-number').html(e[i].telp_perusahaan);
-                    _card.find('.kuota').html(e[i].kuota);
+                    _card.find('.kuota').html(e[i].kuota - e[i].diterima);
                 }
                 $('#modalConfirm .modal-footer').find('button.btn-success').attr('aria-label', _parent.attr('id'));
                 $('.page-loader-wrapper').fadeOut();
