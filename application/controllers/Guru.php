@@ -33,38 +33,16 @@ class Guru extends CI_Controller {
                 redirect('auth');
             }
         }
-
-		if (strcasecmp($this->uri->segment(3), 'all') == 0) {
-			$data = [
-				'main_view'	=> 'guru/perusahaan',
-				'userData'	=> $this->model_guru->getguruById($this->session->userdata(md5('UserData'))['id_guru']),
-	            'perusahaan'=> $this->model_guru->getPerusahaan()
-			];
-			$this->load->view('guru/layout', $data);
-		} elseif (strcasecmp($this->uri->segment(3), 'pilih') == 0) {
-			if (isset($_GET['p1']) && !empty(isset($_GET['p1'])) && isset($_GET['p2']) && !empty(isset($_GET['p2']))) {
-				$data['p1'] = $_GET['p1'];
-				$data['p2'] = $_GET['p2'];
-				if ($this->model_guru->setPilihanPerusahaan($data)) {
-					redirect('guru/profile');
-				} else {
-					$this->session->set_flashdata('notif', 'Gagal mengirim pilihan!');
-					$this->session->set_flashdata('classNotif', 'warning');
-				}
-			}
-
-			$data = [
-				'main_view'			=> 'guru/pilih_perusahaan',
-				'userData'			=> $this->model_guru->getguruById($this->session->userdata(md5('UserData'))['id_guru']),
-				'data_perusahaan'	=> $this->model_guru->getBimbingan($this->session->userdata(md5('UserData'))['id_guru']),
-	            'perusahaan'		=> $this->model_guru->getPerusahaan()
-			];
-			$this->load->view('guru/layout', $data);
-		} elseif (strcasecmp($this->uri->segment(3), 'get') == 0 && isset($_GET['pid'])) {
+		if (strcasecmp($this->uri->segment(3), 'get') == 0 && isset($_GET['pid'])) {
 			echo json_encode($this->model_guru->getPerusahaanById($_GET['pid']));
-		} else {
-			redirect('guru/perusahaan/all');
 		}
+		$data = [
+			'main_view'			=> 'guru/perusahaan',
+			'userData'			=> $this->model_guru->getGuruByIdWithGroup($this->session->userdata(md5('UserData'))['id_guru']),
+			'data_perusahaan'	=> $this->model_guru->getBimbingan($this->session->userdata(md5('UserData'))['id_guru']),
+			'perusahaan'		=> $this->model_guru->getPerusahaan()
+		];
+		$this->load->view('guru/layout', $data);
 	}
 
 	public function Profile() {

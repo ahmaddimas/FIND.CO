@@ -76,6 +76,25 @@ class Model_guru extends CI_Model {
         $this->db->where('g.id_guru', $id);
         return $this->db->get()->result();
     }
+
+    public function getPerusahaanById($id) {
+        $this->db->select('*');
+        $this->db->from('tb_perusahaan AS p');
+        $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
+        $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        $this->db->where('p.id_perusahaan', $id);
+        $this->db->group_by('p.id_perusahaan');
+        return $this->db->get()->row();
+    }
+
+    public function getPerusahaan() {
+        $this->db->select('*');
+        $this->db->from('tb_perusahaan AS p');
+        $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
+        $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        $this->db->group_by('p.id_perusahaan');
+        return $this->db->get()->result();
+    }
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lModel_guru.php/}} */
 /* Location: ./${TM_FILEPATH/.+((?:application).+)/Model_guru/:application/models/${1/(.+)/lModel_guru.php/}} */
