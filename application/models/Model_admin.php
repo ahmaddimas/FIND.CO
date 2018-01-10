@@ -22,6 +22,34 @@ class Model_admin extends CI_Model {
         }
     }
 
+    public function updateProfile() {
+        if ($this->input->post('username')) $userData['username'] = $this->input->post('username');
+        if ($this->input->post('currentPassword')) $password['cur'] = sha1($this->input->post('currentPassword'));
+        if ($this->input->post('newPassword')) $userData['password'] = sha1($this->input->post('newPassword'));
+        if (!empty($userData)) {
+            if ($userData['password'] != "" && $password['cur'] != "") {
+                $cur = $this->db->where('id_admin', $this->session->userdata(md5('UserData'))['id_user'])->get('tb_admin')->row()->password;
+                if ($cur === $password['cur']) {
+                    $this->db->where('id_admin', $this->session->userdata(md5('UserData'))['id_user'])->update('tb_admin', $userData);
+                } else {
+                    return false;
+                }
+            } else {
+                $this->db->where('id_admin', $this->session->userdata(md5('UserData'))['id_user'])->update('tb_admin', $userData);
+            }
+            if ($this->db->affected_rows() > 0) {
+                $userData = $this->session->userdata(md5('UserData'));
+                if (!$this->input->post('username')) $userData['username'] = $this->input->post('username');
+                $this->session->set_userdata(md5('UserData'), $userData);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public function getUserById($id) {
         return $this->db->where('id_admin', $id)->get('tb_admin')->row_array();
     }

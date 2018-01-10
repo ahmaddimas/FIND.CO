@@ -23,7 +23,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" value="<?= $adminData['username']; ?>" disabled>
+                                            <input type="text" class="form-control" name="username" value="<?= $adminData['username']; ?>" required readonly>
                                             <label class="form-label">Username</label>
                                         </div>
                                     </div>

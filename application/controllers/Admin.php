@@ -32,13 +32,22 @@ class Admin extends CI_Controller {
         }
 
 		if (isset($_POST['updateProfile'])) {
-			if ($this->model_siswa->updateProfile()) {
-				$this->session->set_flashdata('notif', 'Data berhasil diperbarui!');
-				$this->session->set_flashdata('classNotif', 'success');
-			} else {
-				$this->session->set_flashdata('notif', 'Data gagal diperbarui!');
-				$this->session->set_flashdata('classNotif', 'warning');
-			}
+            if ($this->input->post('currentPassword') || $this->input->post('newPassword')) {
+                $this->form_validation->set_rules('currentPassword', 'Current Password', 'trim|required');
+                $this->form_validation->set_rules('newPassword', 'New Password', 'trim|required');
+                if ($this->form_validation->run() == FALSE) {
+                    $this->session->set_flashdata('notif', validation_errors());
+                    $this->session->set_flashdata('classNotif', 'warning');
+                }
+            }
+            if ($this->model_admin->updateProfile()) {
+                $this->session->set_flashdata('notif', 'Data berhasil diperbarui!');
+                $this->session->set_flashdata('classNotif', 'success');
+            } else {
+                $this->session->set_flashdata('notif', 'Data gagal diperbarui!');
+                $this->session->set_flashdata('classNotif', 'warning');
+            }
+            redirect('admin/profile');
 		}
 
 		$data = [

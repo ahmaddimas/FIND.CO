@@ -48,9 +48,9 @@ class Model_siswa extends CI_Model {
     }
 
     public function updateProfile() {
-        if (!$this->input->post('nis')) $userData['nis'] = $this->input->post('nis');
-        if (!$this->input->post('kelas')) $userData['kelas'] = $this->input->post('kelas');
-        if (!$this->input->post('telp')) $userData['telp_siswa'] = $this->input->post('telp');
+        if ($this->input->post('nis')) $userData['nis'] = $this->input->post('nis');
+        if ($this->input->post('kelas')) $userData['kelas'] = $this->input->post('kelas');
+        if ($this->input->post('telp')) $userData['telp_siswa'] = $this->input->post('telp');
         if (!empty($userData)) {
             $this->db->where('id_siswa', $this->session->userdata(md5('UserData'))['id_user'])->update('tb_siswa', $userData);
             if ($this->db->affected_rows() > 0) {
