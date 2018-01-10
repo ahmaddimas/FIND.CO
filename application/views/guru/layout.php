@@ -99,8 +99,8 @@
                     <img src="<?= $userData['picture_url']; ?>" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $userData['nama_siswa']; ?></div>
-                    <div class="email"><?= $userData['email_siswa']; ?></div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $userData['nama_guru']; ?></div>
+                    <div class="email"><?= $userData['email_guru']; ?></div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
@@ -115,27 +115,23 @@
                 <ul class="list">
                     <?php $uri2 = $this->uri->segment(2); $uri3 = $this->uri->segment(3); ?>
                     <li class="<?php if(strcasecmp($uri2, 'profile') == 0) {echo 'active';} ?>">
-                        <a href="<?= base_url('siswa/profile'); ?>">
+                        <a href="<?= base_url('guru/profile'); ?>">
                             <i class="material-icons">person</i>
                             <span>Profile</span>
                         </a>
                     </li>
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="<?php if(strcasecmp($uri2, 'dashboard') == 0) {echo 'active';} ?>">
-                        <a href="<?= base_url('siswa/dashboard'); ?>">
+                        <a href="<?= base_url('guru/dashboard'); ?>">
                             <i class="material-icons">dashboard</i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="<?php if(strcasecmp($uri2, 'perusahaan') == 0) {echo 'active';} ?>">
-                        <a href="javascript:void(0)" class="menu-toggle waves-effect waves-block">
+                        <a href="<?= base_url('guru/perusahaan'); ?>">
                             <i class="material-icons">domain</i>
                             <span>Perusahaan</span>
                         </a>
-                        <ul class="ml-menu">
-                            <li class="<?php if(strcasecmp($uri3, 'pilih') == 0) {echo 'active';} ?>"><a href="<?= base_url('siswa/perusahaan/pilih'); ?>" class="waves-effect waves-block">Pilih Perusahaan</a></li>
-                            <li class="<?php if(strcasecmp($uri3, 'all') == 0) {echo 'active';} ?>"><a href="<?= base_url('siswa/perusahaan/all'); ?>" class="waves-effect waves-block">Daftar Perusahaan</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>

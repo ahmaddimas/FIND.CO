@@ -5,17 +5,17 @@
         </div>
         <?php if (empty($data_perusahaan)) { ?>
             <div class="alert alert-warning">
-                <b>Warning!</b> Anda belum memilih perusahaan! <a class="alert-link" href="<?= base_url('Siswa/Perusahaan/pilih'); ?>">klik untuk memilih.</a>
+                <b>Warning!</b> Anda belum memilih perusahaan! <a class="alert-link" href="<?= base_url('guru/Perusahaan/pilih'); ?>">klik untuk memilih.</a>
             </div>
         <?php } else {
             foreach ($data_perusahaan as $dp) {
-                if ($dp->status == "diterima") { ?>
-                    <div class="alert alert-success">
-                        <b>Congratulation!</b> Anda telah diterima diperusahaan <?= $dp->nama_perusahaan; ?>
+                if ($dp->id_perusahaan) { ?>
+                    <div class="alert alert-info">
+                        <b>Info!</b> Anda membimbing diperusahaan <?= $dp->nama_perusahaan; ?>
                     </div>
-                <?php } elseif ($dp->status == "ditolak") { ?>
+                <?php } elseif (!$dp->id_perusahaan) { ?>
                     <div class="alert alert-danger">
-                        <b>Danger!</b> Anda belum diterima diperusahaan <a class="alert-link" href="<?= base_url('Siswa/Perusahaan/pilih'); ?>">klik untuk memilih.</a>
+                        <b>Danger!</b> Anda belum membimbing perusahaan.
                     </div>
                 <?php
                     break;
@@ -33,7 +33,7 @@
                         </h2>
                     </div>
                     <div class="body">
-                        <form action="<?= base_url('siswa/profile'); ?>" method="post">
+                        <form action="<?= base_url('guru/profile'); ?>" method="post">
                             <div class="row clearfix">
                                 <?php if ($this->session->flashdata('notif')){ ?>
                                     <div class="alert alert-<?= $this->session->flashdata('classNotif'); ?>">
@@ -43,49 +43,25 @@
                                 <div class="col-sm-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" value="<?= $userData['nama_siswa']; ?>" disabled>
+                                            <input type="text" class="form-control" value="<?= $userData['nama_guru']; ?>" disabled>
                                             <label class="form-label">Nama</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" value="<?= $userData['email_siswa']; ?>" disabled>
+                                            <input type="text" class="form-control" value="<?= $userData['email_guru']; ?>" disabled>
                                             <label class="form-label">Email</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
-                                        <div class="form-line focused <?php if(empty($userData['nis'])) echo "error"; ?>">
-                                            <input type="text" class="form-control" name="nis" <?php if(!empty($userData['nis'])) echo "value='".$userData['nis']."' disabled"; ?>>
-                                            <label class="form-label">NIS</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="form-line focused <?php if(empty($userData['kelas'])) echo "error"; ?>">
-                                            <input type="text" class="form-control" placeholder="RPL 1" name="kelas" <?php if(!empty($userData['kelas'])) echo "value='".$userData['kelas']."' disabled"; ?>>
-                                            <label class="form-label">Kelas</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" value="<?= $userData['angkatan']; ?>" disabled>
-                                            <label class="form-label">Angkatan</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" value="<?= $userData['jurusan']; ?>" disabled>
-                                            <label class="form-label">Jurusan</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" value="<?= $userData['jk_siswa']; ?>" disabled>
+                                            <input type="text" class="form-control" value="<?= $userData['jk_guru']; ?>" disabled>
                                             <label class="form-label">Jenis Kelamin</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
-                                        <div class="form-line focused <?php if(empty($userData['telp_siswa'])) echo "error"; ?>">
-                                            <input type="number" class="form-control" name="telp" <?php if(!empty($userData['telp_siswa'])) echo "value='".$userData['telp_siswa']."' disabled"; ?>>
+                                        <div class="form-line focused <?php if(empty($userData['telp_guru'])) echo "error"; ?>">
+                                            <input type="number" class="form-control" name="telp" <?php if(!empty($userData['telp_guru'])) echo "value='".$userData['telp_guru']."' disabled"; ?>>
                                             <label class="form-label">Telepon</label>
                                         </div>
                                     </div>
@@ -108,7 +84,7 @@
         </div>
         <!-- #END# Form Data Diri -->
         <div class="block-header">
-            <h2>PERUSAHAAN YANG DIPILIH</h2>
+            <h2>PERUSAHAAN YANG DIBIMBING</h2>
         </div>
         <!-- Data Perusahaan -->
         <div class="row clearfix">
@@ -119,7 +95,6 @@
                             <div class="row clearfix">
                                 <?php foreach ($data_perusahaan as $dp): ?>
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <b>Pilihan <?= $dp->indeks; ?> (<?= $dp->status; ?> konfirmasi)</b><hr class="my-1">
                                         <div class="card">
                                             <img src="<?= base_url().$dp->picture_url; ?>" alt="" width="100%">
                                             <div class="body pt-1 demo-icon-container">

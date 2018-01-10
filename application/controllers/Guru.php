@@ -20,11 +20,11 @@ class Guru extends CI_Controller {
 
 		$data = [
 			'main_view'			=> 'guru/dashboard',
-			'userData'			=> $this->model_guru->getguruById($this->session->userdata(md5('UserData'))['id_guru']),
-			'data_perusahaan'	=> $this->model_guru->getPilihan($this->session->userdata(md5('UserData'))['id_guru'])
+			'userData'			=> $this->model_guru->getGuruByIdWithGroup($this->session->userdata(md5('UserData'))['id_guru']),
+			'data_perusahaan'	=> $this->model_guru->getBimbingan($this->session->userdata(md5('UserData'))['id_guru'])
 		];
 		$this->load->view('guru/layout', $data);
-		// echo json_encode($this->model_guru->getPilihan($data['userData']['id_user']));
+		// echo json_encode($this->model_guru->getBimbingan($data['userData']['id_user']));
 	}
 
 	public function Perusahaan() {
@@ -56,7 +56,7 @@ class Guru extends CI_Controller {
 			$data = [
 				'main_view'			=> 'guru/pilih_perusahaan',
 				'userData'			=> $this->model_guru->getguruById($this->session->userdata(md5('UserData'))['id_guru']),
-				'data_perusahaan'	=> $this->model_guru->getPilihan($this->session->userdata(md5('UserData'))['id_guru']),
+				'data_perusahaan'	=> $this->model_guru->getBimbingan($this->session->userdata(md5('UserData'))['id_guru']),
 	            'perusahaan'		=> $this->model_guru->getPerusahaan()
 			];
 			$this->load->view('guru/layout', $data);
@@ -86,8 +86,8 @@ class Guru extends CI_Controller {
 
 		$data = [
 			'main_view'			=> 'guru/profile',
-			'userData'			=> $this->model_guru->getguruById($this->session->userdata(md5('UserData'))['id_guru']),
-			'data_perusahaan'	=> $this->model_guru->getPilihan($this->session->userdata(md5('UserData'))['id_guru'])
+			'userData'			=> $this->model_guru->getGuruByIdWithGroup($this->session->userdata(md5('UserData'))['id_guru']),
+			'data_perusahaan'	=> $this->model_guru->getBimbingan($this->session->userdata(md5('UserData'))['id_guru'])
 		];
 		$this->load->view('guru/layout', $data);
 	}

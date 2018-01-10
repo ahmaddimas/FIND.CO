@@ -27,8 +27,8 @@ class Auth extends CI_Controller {
             // set user role from email
             $emailp = substr($gpInfo['email'], strpos($gpInfo['email'], '@'));
             if (strpos($emailp, 'smktelkom-mlg.sch.id') !== false) {
-                $role = strpos($emailp, 'student') !== false ? 'usiswa':'uguru';
-                // $role = strpos($emailp, 'student') !== false ? 'uguru':'usiswa';
+                // $role = strpos($emailp, 'student') !== false ? 'usiswa':'uguru';
+                $role = strpos($emailp, 'student') !== false ? 'uguru':'usiswa';
                 //preparing data for database insertion
                 if ($role === 'usiswa') {
                     // insert or update user data to the database

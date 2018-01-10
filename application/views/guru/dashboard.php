@@ -4,31 +4,11 @@
             <h2>DASHBOARD</h2>
         </div>
         <?php
-        if (empty($userData['nis']) || empty($userData['kelas']) || empty($userData['telp_siswa'])) { ?>
+        if (empty($userData['telp_guru'])) { ?>
             <div class="alert alert-warning">
-                <b>Warning!</b> Harap melengkapi data diri! <a class="alert-link" href="<?= base_url('siswa/profile'); ?>">klik untuk melengkapi.</a>
+                <b>Warning!</b> Harap melengkapi data diri! <a class="alert-link" href="<?= base_url('guru/profile'); ?>">klik untuk melengkapi.</a>
             </div>
-        <?php }
-        if (empty($data_perusahaan)) { ?>
-            <div class="alert alert-warning">
-                <b>Warning!</b> Anda belum memilih perusahaan! <a class="alert-link" href="<?= base_url('siswa/perusahaan/pilih'); ?>">klik untuk memilih.</a>
-            </div>
-        <?php } else {
-            foreach ($data_perusahaan as $dp) {
-                if ($dp->status == "diterima") { ?>
-                    <div class="alert alert-success">
-                        <b>Congratulation!</b> Anda telah diterima diperusahaan <?= $dp->nama_perusahaan; ?>
-                    </div>
-                <?php } elseif ($dp->status == "ditolak") { ?>
-                    <div class="alert alert-danger">
-                        <b>Danger!</b> Anda belum diterima diperusahaan <a class="alert-link" href="<?= base_url('Siswa/Perusahaan/pilih'); ?>">klik untuk memilih.</a>
-                    </div>
-                <?php
-                    break;
-                }
-            }
-        }
-        ?>
+        <?php } ?>
 
         <!-- Widgets -->
         <div class="row clearfix">
