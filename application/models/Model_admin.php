@@ -289,7 +289,7 @@ class Model_admin extends CI_Model {
     }
 
     public function resetGuruPembimbing($uid) {
-        $this->db->where('id_guru', $uid)->update('tb_guru_perusahaan');
+        $this->db->where('id_guru', $uid)->delete('tb_guru_perusahaan');
         if ($this->db->affected_rows() > 0) {
             return true;
         } else {
