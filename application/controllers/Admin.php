@@ -18,8 +18,12 @@ class Admin extends CI_Controller {
         }
 
 		$data = [
-			'main_view'			=> 'admin/dashboard',
-			'adminData'			=> $this->session->userdata(md5('UserData'))
+			'main_view'		=> 'admin/dashboard',
+			'adminData'		=> $this->session->userdata(md5('UserData')),
+            'xsiswa'        => $this->model_admin->getSiswaWithGroup(),
+            'siswa'         => $this->model_admin->getSiswa(),
+            'perusahaan'    => $this->model_admin->getPerusahaan(),
+            'guru'          => $this->model_admin->getGuru()
 		];
 		$this->load->view('admin/layout', $data);
 	}

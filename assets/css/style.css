@@ -8416,3 +8416,6 @@ html.ie11 .bs-searchbox .form-control {
 .c-p {
     cursor: pointer;
 }
+.text-warning {
+    color: orange;
+}
