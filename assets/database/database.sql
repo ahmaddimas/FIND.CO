@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2018 at 11:11 PM
+-- Generation Time: Jan 11, 2018 at 08:07 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -79,6 +79,13 @@ CREATE TABLE `tb_guru_perusahaan` (
   `tahun` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tb_guru_perusahaan`
+--
+
+INSERT INTO `tb_guru_perusahaan` (`id_guru_perusahaan`, `id_guru`, `id_perusahaan`, `tahun`) VALUES
+(5, 1, 1, 2018);
+
 -- --------------------------------------------------------
 
 --
@@ -146,6 +153,7 @@ CREATE TABLE `tb_rekap_perusahaan` (
   `id_rekap` int(11) NOT NULL,
   `id_perusahaan` int(11) NOT NULL,
   `kuota` int(11) NOT NULL,
+  `diterima` int(11) NOT NULL,
   `tahun_rekap` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -153,17 +161,17 @@ CREATE TABLE `tb_rekap_perusahaan` (
 -- Dumping data for table `tb_rekap_perusahaan`
 --
 
-INSERT INTO `tb_rekap_perusahaan` (`id_rekap`, `id_perusahaan`, `kuota`, `tahun_rekap`) VALUES
-(1, 1, 2, 2017),
-(3, 3, 5, 2016),
-(9, 3, 4, 2017),
-(10, 4, 6, 2017),
-(11, 5, 4, 2017),
-(12, 6, 3, 2017),
-(13, 7, 2, 2017),
-(14, 8, 3, 2017),
-(15, 9, 8, 2017),
-(16, 10, 9, 2017);
+INSERT INTO `tb_rekap_perusahaan` (`id_rekap`, `id_perusahaan`, `kuota`, `diterima`, `tahun_rekap`) VALUES
+(1, 1, 2, 0, 2017),
+(3, 3, 5, 0, 2016),
+(9, 3, 4, 0, 2017),
+(10, 4, 6, 0, 2017),
+(11, 5, 4, 0, 2017),
+(12, 6, 3, 0, 2017),
+(13, 7, 2, 0, 2017),
+(14, 8, 3, 0, 2017),
+(15, 9, 8, 0, 2017),
+(16, 10, 9, 0, 2017);
 
 -- --------------------------------------------------------
 
@@ -260,7 +268,7 @@ ALTER TABLE `tb_guru_pembimbing`
 -- AUTO_INCREMENT for table `tb_guru_perusahaan`
 --
 ALTER TABLE `tb_guru_perusahaan`
-  MODIFY `id_guru_perusahaan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_guru_perusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_perusahaan`
 --
