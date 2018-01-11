@@ -114,7 +114,7 @@
             <div class="menu">
                 <ul class="list">
                     <?php $uri2 = $this->uri->segment(2); $uri3 = $this->uri->segment(3); ?>
-                    <li class="<?php if(strcasecmp($uri2, 'profile') == 0) {echo 'active';} ?>">
+                    <li class="<?php if(strcasecmp($uri2, 'profile') == 0 || strcasecmp($uri2, 'about') == 0) {echo 'active';} ?>">
                         <a href="<?= base_url('guru/profile'); ?>">
                             <i class="material-icons">person</i>
                             <span>Profile</span>
@@ -139,7 +139,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2017 <a href="javascript:void(0);">FIND.CO</a>
+                    &copy; 2017 <a href="<?= base_url('guru/about'); ?>">FIND.CO</a>
                 </div>
             </div>
             <!-- #Footer -->

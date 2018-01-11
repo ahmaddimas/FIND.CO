@@ -28,6 +28,20 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/layout', $data);
 	}
 
+	public function About() {
+        if (!$this->session->userdata(md5('Logged_In'))) {
+            if ($this->session->userdata(md5('Logged_Role')) !== 1) {
+                redirect('auth');
+            }
+        }
+
+		$data = [
+			'main_view'			=> 'about',
+			'adminData'		=> $this->session->userdata(md5('UserData')),
+		];
+		$this->load->view('admin/layout', $data);
+	}
+
     public function Profile() {
         if (!$this->session->userdata(md5('Logged_In'))) {
             if ($this->session->userdata(md5('Logged_Role')) !== 1) {

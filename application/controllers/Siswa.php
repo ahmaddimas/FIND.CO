@@ -21,10 +21,26 @@ class Siswa extends CI_Controller {
 		$data = [
 			'main_view'			=> 'siswa/dashboard',
 			'userData'			=> $this->model_siswa->getSiswaById($this->session->userdata(md5('UserData'))['id_siswa']),
-			'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_siswa'])
+			'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_siswa']),
+            'perusahaan'    	=> $this->model_siswa->getPerusahaan(),
+			'pembimbing'    	=> $this->model_siswa->getPembimbing()
 		];
 		$this->load->view('siswa/layout', $data);
 		// echo json_encode($this->model_siswa->getPilihan($data['userData']['id_user']));
+	}
+
+	public function About() {
+		if (!$this->session->userdata(md5('Logged_In'))) {
+            if ($this->session->userdata(md5('Logged_Role')) !== 'usiswa') {
+                redirect('auth');
+            }
+        }
+
+		$data = [
+			'main_view'			=> 'about',
+			'userData'			=> $this->model_siswa->getSiswaById($this->session->userdata(md5('UserData'))['id_siswa'])
+		];
+		$this->load->view('siswa/layout', $data);
 	}
 
 	public function Perusahaan() {

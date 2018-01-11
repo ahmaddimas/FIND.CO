@@ -21,10 +21,27 @@ class Guru extends CI_Controller {
 		$data = [
 			'main_view'			=> 'guru/dashboard',
 			'userData'			=> $this->model_guru->getGuruByIdWithGroup($this->session->userdata(md5('UserData'))['id_guru']),
-			'data_perusahaan'	=> $this->model_guru->getBimbingan($this->session->userdata(md5('UserData'))['id_guru'])
+			'data_perusahaan'	=> $this->model_guru->getBimbingan($this->session->userdata(md5('UserData'))['id_guru']),
+            'siswa'         	=> $this->model_guru->getSiswaWithGroup(),
+            'dsiswa'         	=> $this->model_guru->getSiswaDibimbing(),
+            'perusahaan'    	=> $this->model_guru->getPerusahaan()
 		];
 		$this->load->view('guru/layout', $data);
 		// echo json_encode($this->model_guru->getBimbingan($data['userData']['id_user']));
+	}
+
+	public function About() {
+		if (!$this->session->userdata(md5('Logged_In'))) {
+            if ($this->session->userdata(md5('Logged_Role')) !== 'uguru') {
+                redirect('auth');
+            }
+        }
+
+		$data = [
+			'main_view'			=> 'about',
+			'userData'			=> $this->model_guru->getGuruByIdWithGroup($this->session->userdata(md5('UserData'))['id_guru']),
+		];
+		$this->load->view('guru/layout', $data);
 	}
 
 	public function Perusahaan() {

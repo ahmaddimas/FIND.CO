@@ -127,6 +127,16 @@ class Model_siswa extends CI_Model {
             return false;
         }
     }
+
+    public function getPembimbing() {
+        $this->db->select('*, g.id_guru AS id_guru');
+        $this->db->from('tb_siswa AS s');
+        $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_siswa = s.id_siswa', 'right');
+        $this->db->join('tb_guru_perusahaan AS gp', 'gp.id_perusahaan = ps.id_perusahaan', 'right');
+        $this->db->join('tb_guru_pembimbing AS g', 'g.id_guru = gp.id_guru', 'left');
+        $this->db->where('s.id_siswa', $this->session->userdata(md5('UserData'))['id_user']);
+        return $this->db->get()->result();
+    }
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lModel_siswa.php/}} */
 /* Location: ./${TM_FILEPATH/.+((?:application).+)/Model_siswa/:application/models/${1/(.+)/lModel_siswa.php/}} */
