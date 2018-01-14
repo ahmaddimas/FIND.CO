@@ -299,6 +299,14 @@
     }
     ?>
 
+    <script type="text/javascript">
+        $(function() {
+            //Tooltip
+            $('[data-toggle="tooltip"]').tooltip({
+                container: 'body'
+            });
+        });
+    </script>
     <!-- Demo Js -->
     <script src="<?= base_url(); ?>assets/js/demo.js"></script>
 </body>

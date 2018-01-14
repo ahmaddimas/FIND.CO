@@ -119,7 +119,8 @@
                             <div class="row clearfix">
                                 <?php foreach ($data_perusahaan as $dp): ?>
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <b>Pilihan <?= $dp->indeks; ?> (<?= $dp->status; ?> konfirmasi)</b><hr class="my-1">
+                                        <?php $status = $dp->status != "diterima" && $dp->status != "-" ? $dp->status." konfirmasi":$dp->status; ?>
+                                        <b>Pilihan <?= $dp->indeks; ?> (<?= $status; ?>)</b><hr class="my-1">
                                         <div class="card">
                                             <img src="<?= base_url().$dp->picture_url; ?>" alt="" width="100%">
                                             <div class="body pt-1 demo-icon-container">

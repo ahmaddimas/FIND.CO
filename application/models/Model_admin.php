@@ -100,6 +100,11 @@ class Model_admin extends CI_Model {
     public function hapusPerusahaan($id) {
         $this->db->where('id_perusahaan', $id)->delete('tb_perusahaan');
         $this->db->where('id_perusahaan', $id)->delete('tb_rekap_perusahaan');
+        $siswa = $this->db->where('id_perusahaan', $id)->get('tb_perusahaan_siswa')->result();
+        foreach ($siswa as $s) {
+            $this->db->where('id_siswa', $s->id_siswa)->delete('tb_perusahaan_siswa');
+        }
+        $this->db->where('id_perusahaan', $id)->delete('tb_guru_perusahaan');
         if ($this->db->affected_rows() > 0) {
             return true;
         } else {
@@ -301,6 +306,20 @@ class Model_admin extends CI_Model {
         $this->db->join('tb_guru_perusahaan AS gp', 'gp.id_guru = g.id_guru', 'left');
         $this->db->group_by('g.id_guru');
         return $this->db->get()->result();
+    }
+
+    public function addGuru() {
+        $this->db->insert('tb_guru_pembimbing', array(
+            'nama_guru'  => $this->input->post('nama'),
+            'email_guru'   => $this->input->post('email'),
+            'telp_guru'    => $this->input->post('telp'),
+            'jk_guru'      => $this->input->post('jk')
+        ));
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function updateGuruProfile($id) {

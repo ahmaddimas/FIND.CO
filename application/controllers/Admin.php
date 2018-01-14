@@ -308,6 +308,25 @@ class Admin extends CI_Controller {
                 return;
             }
 
+            if (strcasecmp($this->uri->segment(4), 'tambah') == 0) {
+                if (isset($_POST['addProfile'])) {
+                    if ($this->model_admin->addGuru()) {
+                        $this->session->set_flashdata('notif', 'Data berhasil ditambahkan!');
+                        $this->session->set_flashdata('classNotif', 'success');
+                    } else {
+                        $this->session->set_flashdata('notif', 'Data gagal ditambahkan!');
+                        $this->session->set_flashdata('classNotif', 'warning');
+                    }
+                    redirect('admin/users/guru');
+                }
+
+                $data = [
+                    'main_view'         => 'admin/form_guru',
+                    'adminData'         => $this->session->userdata(md5('UserData'))
+                ];
+                $this->load->view('admin/layout', $data);
+                return;
+            }
             if (strcasecmp($this->uri->segment(4), 'edit') == 0 && $this->uri->segment(5) != "") {
                 if (isset($_POST['updateProfile'])) {
                     if ($this->model_admin->updateGuruProfile($this->uri->segment(5))) {

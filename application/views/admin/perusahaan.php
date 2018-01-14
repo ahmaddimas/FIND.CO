@@ -62,7 +62,7 @@
                                                     <a href="<?= base_url('admin/perusahaan/edit/').$p->id_perusahaan; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-2">
                                                         <i class="material-icons">mode_edit</i>
                                                     </a>
-                                                    <a href="<?= base_url('admin/perusahaan/hapus/').$p->id_perusahaan; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-2">
+                                                    <a href="<?= base_url('admin/perusahaan/hapus/').$p->id_perusahaan; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-2" onclick="return confirm('Anda yakin ingin menghapus?')">
                                                         <i class="material-icons">delete</i>
                                                     </a>
                                                 </td>

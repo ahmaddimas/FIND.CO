@@ -63,7 +63,7 @@ class Siswa extends CI_Controller {
 				$data['p1'] = $_GET['p1'];
 				$data['p2'] = $_GET['p2'];
 				if ($this->model_siswa->setPilihanPerusahaan($data)) {
-					redirect('siswa/profile');
+					redirect('siswa');
 				} else {
 					$this->session->set_flashdata('notif', 'Gagal mengirim pilihan!');
 					$this->session->set_flashdata('classNotif', 'warning');
