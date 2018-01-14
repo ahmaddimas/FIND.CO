@@ -73,7 +73,7 @@
                                                 </div>
                                                 <div class="demo-google-material-icon">
                                                     <i class="material-icons">check</i>
-                                                    <span class="icon-name"><?= $dp->kuota; ?> Kuota Tersedia</span>
+                                                    <span class="icon-name"><?= $dp->kuota - $dp->diterima; ?> Kuota Tersedia</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,6 +130,48 @@
                 </div>
             </div>
             <!-- end of modal dialog -->
+        </div>
+        <div class="block-header">
+            <h2>SISWA YANG DIBIMBING</h2>
+        </div>
+        <div class="row clearfix">
+            <!-- Data Perusahaan -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <?php if ($dsiswa != null): ?>
+                        <div class="body">
+                            <div class="row clearfix">
+                                <?php foreach ($dsiswa as $s): ?>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="card">
+                                            <img src="<?= $s->picture_url; ?>" alt="" width="100%">
+                                            <div class="body pt-1 demo-icon-container">
+                                                <div class="demo-google-material-icon">
+                                                    <i class="material-icons">person</i>
+                                                    <span class="icon-name"><?= $s->nama_siswa; ?></span>
+                                                </div>
+                                                <div class="demo-google-material-icon">
+                                                    <i class="material-icons">phone</i>
+                                                    <span class="icon-name"><?= $s->telp_siswa; ?></span>
+                                                </div>
+                                                <div class="demo-google-material-icon">
+                                                    <i class="material-icons">email</i>
+                                                    <span class="icon-name"><?= $s->email_siswa; ?></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <div class="header">
+                            Anda belum membimbing perusahaan.
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <!-- #END# Data Perusahaan -->
         </div>
     </div>
 </section>

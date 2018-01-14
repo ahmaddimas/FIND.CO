@@ -120,6 +120,7 @@ class Model_guru extends CI_Model {
         $this->db->join('tb_guru_perusahaan AS gp', 'gp.id_guru = g.id_guru', 'right');
         $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_perusahaan = gp.id_perusahaan', 'right');
         $this->db->join('tb_siswa AS s', 's.id_siswa = ps.id_siswa', 'left');
+        $this->db->where('ps.status', 'diterima');
         $this->db->where('g.id_guru', $this->session->userdata(md5('UserData'))['id_user']);
         return $this->db->get()->result();
     }
