@@ -50,7 +50,15 @@
                     </div>
                     <div class="content">
                         <div class="text">GURU PEMBIMBING</div>
-                        <div class="number count-to" data-from="0" data-to="<?= count($pembimbing); ?>" data-speed="1000" data-fresh-interval="20"></div>
+                        <?php 
+                        $guru = "";
+                        foreach ($pembimbing as $p) {
+                            $guru .= $p->nama_guru . ", ";
+                        }
+                        $guru = rtrim($guru, ", ");
+                        $guru = $guru == "" ? "-":$guru;
+                        echo $guru;
+                        ?>
                     </div>
                 </div>
             </div>
@@ -68,7 +76,8 @@
                             <div class="row clearfix">
                                 <?php foreach ($data_perusahaan as $dp): ?>
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <b>Pilihan <?= $dp->indeks; ?> (<?= $dp->status; ?> konfirmasi)</b><hr class="my-1">
+                                        <?php $status = $dp->status != "diterima" && $dp->status != "-" ? $dp->status." konfirmasi":$dp->status; ?>
+                                        <b>Pilihan <?= $dp->indeks; ?> (<?= $status; ?>)</b><hr class="my-1">
                                         <div class="card">
                                             <img src="<?= base_url().$dp->picture_url; ?>" alt="" width="100%">
                                             <div class="body pt-1 demo-icon-container">

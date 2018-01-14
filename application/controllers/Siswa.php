@@ -22,7 +22,7 @@ class Siswa extends CI_Controller {
 			'main_view'			=> 'siswa/dashboard',
 			'userData'			=> $this->model_siswa->getSiswaById($this->session->userdata(md5('UserData'))['id_siswa']),
 			'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_siswa']),
-            'perusahaan'    	=> $this->model_siswa->getPerusahaan(),
+      'perusahaan'    	=> $this->model_siswa->getPerusahaan(),
 			'pembimbing'    	=> $this->model_siswa->getPembimbing()
 		];
 		$this->load->view('siswa/layout', $data);

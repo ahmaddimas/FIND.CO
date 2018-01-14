@@ -134,6 +134,7 @@ class Model_siswa extends CI_Model {
         $this->db->join('tb_perusahaan_siswa AS ps', 'ps.id_siswa = s.id_siswa', 'right');
         $this->db->join('tb_guru_perusahaan AS gp', 'gp.id_perusahaan = ps.id_perusahaan', 'right');
         $this->db->join('tb_guru_pembimbing AS g', 'g.id_guru = gp.id_guru', 'left');
+        $this->db->where('ps.status', 'diterima');
         $this->db->where('s.id_siswa', $this->session->userdata(md5('UserData'))['id_user']);
         return $this->db->get()->result();
     }
