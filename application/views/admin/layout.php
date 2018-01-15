@@ -281,6 +281,7 @@
         echo '<script src="'.base_url().'assets/plugins/jquery-sparkline/jquery.sparkline.js"></script>';
         // Custom Js
         echo '<script src="'.base_url().'assets/js/pages/index.js"></script>';
+        echo '<script src="'.base_url().'assets/js/pages/charts/morris.js"></script>';
     }
     if(strcasecmp($uri2, 'perusahaan') == 0) {
         $uri3 = $this->uri->segment(3);

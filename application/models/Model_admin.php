@@ -73,6 +73,14 @@ class Model_admin extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function getRekapPerusahaan() {
+        $this->db->select('tahun_rekap, SUM(kuota) AS kuota');
+        $this->db->from('tb_rekap_perusahaan AS rp');
+        // $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        $this->db->group_by('rp.tahun_rekap');
+        return $this->db->get()->result();
+    }
+
     public function addPerusahaan($file) {
         $this->db->insert('tb_perusahaan', array(
             'nama_perusahaan'   => $this->input->post('perusahaan'),

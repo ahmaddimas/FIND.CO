@@ -77,7 +77,20 @@
             </div>
         </div>
         <!-- #END# Widgets -->
-
+        <div class="row clearfix">
+            <!-- Line Chart -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>GRAFIK KUOTA</h2>
+                    </div>
+                    <div class="body">
+                        <div id="line_chart" class="graph"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Line Chart -->
+        </div>
         <div class="row clearfix">
             <!-- Task Info -->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -148,3 +161,7 @@
         </div>
     </div>
 </section>
+<script type="text/javascript">
+    var kuota_line_chart = <?php echo json_encode($rekap); ?>;
+    console.log(kuota_line_chart[0]);
+</script>

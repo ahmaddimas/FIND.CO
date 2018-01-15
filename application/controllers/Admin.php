@@ -23,6 +23,7 @@ class Admin extends CI_Controller {
             'xsiswa'        => $this->model_admin->getSiswaWithGroup(),
             'siswa'         => $this->model_admin->getSiswa(),
             'perusahaan'    => $this->model_admin->getPerusahaan(),
+            'rekap'         => $this->model_admin->getRekapPerusahaan(),
             'guru'          => $this->model_admin->getGuru()
 		];
 		$this->load->view('admin/layout', $data);
