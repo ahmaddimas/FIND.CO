@@ -280,6 +280,19 @@ class Model_admin extends CI_Model {
         }
     }
 
+    public function deleteSiswa($id) {
+        $affected_rows = 0;
+        $this->db->where('id_siswa', $id)->delete('tb_siswa');
+        $affected_rows += $this->db->affected_rows();
+        $this->db->where('id_siswa', $id)->delete('tb_perusahaan_siswa');
+        $affected_rows += $this->db->affected_rows();
+        if ($affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getGuruByIdWithGroup($id) {
         $this->db->select('*, g.id_guru AS id_guru');
         $this->db->from('tb_guru_pembimbing AS g');
@@ -331,6 +344,19 @@ class Model_admin extends CI_Model {
             } else {
                 return false;
             }
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteGuru($id) {
+        $affected_rows = 0;
+        $this->db->where('id_guru', $id)->delete('tb_guru_pembimbing');
+        $affected_rows += $this->db->affected_rows();
+        $this->db->where('id_guru', $id)->delete('tb_guru_perusahaan');
+        $affected_rows += $this->db->affected_rows();
+        if ($affected_rows > 0) {
+            return true;
         } else {
             return false;
         }

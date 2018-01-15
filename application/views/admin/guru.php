@@ -20,7 +20,7 @@
                                 </a>
                                 <ul class="dropdown-menu pull-right">
                                     <li><a href="<?= base_url('admin/users/guru/tambah'); ?>" class=" waves-effect waves-block">Tambah Pembimbing</a></li>
-                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Import Excel</a></li>
+                                    <!-- <li><a href="javascript:void(0);" class=" waves-effect waves-block">Import Excel</a></li> -->
                                 </ul>
                             </li>
                         </ul>
@@ -67,6 +67,9 @@
                                                 <?php endif; ?>
                                                 <a href="<?= base_url('admin/users/guru/edit/').$g->id_guru; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-1">
                                                     <i class="material-icons">mode_edit</i>
+                                                </a>
+                                                <a href="<?= base_url('admin/users/guru/delete/').$g->id_guru; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-1" onclick="return confirm('Anda yakin ingin menghapus?')">
+                                                    <i class="material-icons">delete</i>
                                                 </a>
                                             </td>
                                         </tr>

@@ -233,7 +233,17 @@ class Admin extends CI_Controller {
                 echo json_encode($response);
                 return;
             }
-
+            // delete siswa
+            if (strcasecmp($this->uri->segment(4), 'delete') == 0 && $this->uri->segment(5) != "") {
+                if ($this->model_admin->deleteSiswa($this->uri->segment(5))) {
+                    $this->session->set_flashdata('notif', 'Siswa berhasil dihapus!');
+                    $this->session->set_flashdata('classNotif', 'success');
+                } else {
+                    $this->session->set_flashdata('notif', 'Siswa gagal dihapus!');
+                    $this->session->set_flashdata('classNotif', 'warning');
+                }
+                redirect('admin/users/siswa');
+            }
             if (strcasecmp($this->uri->segment(4), 'tambah') == 0) {
                 if (isset($_POST['addProfile'])) {
                     if ($this->model_admin->addSiswa()) {
@@ -307,7 +317,17 @@ class Admin extends CI_Controller {
                 echo json_encode($response);
                 return;
             }
-
+            // delete guru
+            if (strcasecmp($this->uri->segment(4), 'delete') == 0 && $this->uri->segment(5) != "") {
+                if ($this->model_admin->deleteGuru($this->uri->segment(5))) {
+                    $this->session->set_flashdata('notif', 'Guru berhasil dihapus!');
+                    $this->session->set_flashdata('classNotif', 'success');
+                } else {
+                    $this->session->set_flashdata('notif', 'Guru gagal dihapus!');
+                    $this->session->set_flashdata('classNotif', 'warning');
+                }
+                redirect('admin/users/guru');
+            }
             if (strcasecmp($this->uri->segment(4), 'tambah') == 0) {
                 if (isset($_POST['addProfile'])) {
                     if ($this->model_admin->addGuru()) {

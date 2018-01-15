@@ -20,7 +20,7 @@
                                 </a>
                                 <ul class="dropdown-menu pull-right">
                                     <li><a href="<?= base_url('admin/users/siswa/tambah'); ?>" class=" waves-effect waves-block">Tambah Siswa</a></li>
-                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Import Excel</a></li>
+                                    <!-- <li><a href="javascript:void(0);" class=" waves-effect waves-block">Import Excel</a></li> -->
                                 </ul>
                             </li>
                         </ul>
@@ -100,6 +100,9 @@
                                                 <?php endif; ?>
                                                 <a href="<?= base_url('admin/users/siswa/edit/').$xs->id_siswa; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-1">
                                                     <i class="material-icons">mode_edit</i>
+                                                </a>
+                                                <a href="<?= base_url('admin/users/siswa/delete/').$xs->id_siswa; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-1" onclick="return confirm('Anda yakin ingin menghapus?')">
+                                                    <i class="material-icons">delete</i>
                                                 </a>
                                             </td>
                                         </tr>
