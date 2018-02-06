@@ -121,7 +121,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn waves-effect btn-success" onclick="sendConfirmData(this)" aria-label="">SAVE CHANGES</button>
-                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" onclick="reset()">CLOSE</button>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
                     </div>
                 </div>
             </div>
@@ -131,6 +131,10 @@
 </section>
 <script type="text/javascript">
     var _pid = [];
+
+    $('#modalData').on('hide.bs.modal', function(event) {
+      reset();
+    });
 
     function reset() {
         _pid.splice(0, _pid.length);
@@ -145,6 +149,15 @@
 
     function pilih(e) {
         if (e.checked) {
+            if (_pid.length >= 3) {
+              swal({
+                  title: 'Error',
+                  text: 'Guru maksimal membimbing 3 perusahaan!',
+                  type: 'warning'
+              });
+              e.checked = false;
+              return false;
+            }
             _pid.push(e.value);
         } else {
             var index = _pid.indexOf(e.value);

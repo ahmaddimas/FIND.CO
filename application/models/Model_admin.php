@@ -197,7 +197,7 @@ class Model_admin extends CI_Model {
         $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
         $this->db->where('p.id_perusahaan', $pid);
         $rid = $this->db->get()->row()->id_rekap;
-        $this->db->where('id_rekap', $rid)->set('kuota', 'kuota - 1', FALSE)->update('tb_rekap_perusahaan');
+        $this->db->where('id_rekap', $rid)->set('diterima', 'diterima + 1', FALSE)->update('tb_rekap_perusahaan');
         if ($this->db->affected_rows() > 0) {
             return true;
         } else {
@@ -216,7 +216,7 @@ class Model_admin extends CI_Model {
         $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
         $this->db->where('p.id_perusahaan', $psid);
         $rid = $this->db->get()->row()->id_rekap;
-        $this->db->where('id_rekap', $rid)->set('kuota', 'kuota + 1', FALSE)->update('tb_rekap_perusahaan');
+        $this->db->where('id_rekap', $rid)->set('diterima', 'diterima - 1', FALSE)->update('tb_rekap_perusahaan');
         if ($this->db->affected_rows() > 0) {
             return true;
         } else {
