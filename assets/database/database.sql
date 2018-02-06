@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2018 at 08:07 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Generation Time: Feb 06, 2018 at 05:23 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -64,7 +64,8 @@ CREATE TABLE `tb_guru_pembimbing` (
 --
 
 INSERT INTO `tb_guru_pembimbing` (`id_guru`, `oauth_uid`, `nama_guru`, `email_guru`, `telp_guru`, `jk_guru`, `picture_url`) VALUES
-(1, '113737970762948243576', 'Ahmad Dimas Abid Muttaqi', 'ahmad_muttaqi_24rpl@student.smktelkom-mlg.sch.id', '', 'male', 'https://lh3.googleusercontent.com/-HFMtJNXTtOE/AAAAAAAAAAI/AAAAAAAAAFc/HAOHOlJNBFU/photo.jpg');
+(1, '113737970762948243576', 'Ahmad Dimas Abid Muttaqi', 'ahmad_muttaqi_24rpl@student.smktelkom-mlg.sch.id', '', 'male', 'https://lh3.googleusercontent.com/-HFMtJNXTtOE/AAAAAAAAAAI/AAAAAAAAAFc/HAOHOlJNBFU/photo.jpg'),
+(2, '', 'Nabila Firstananda Saputri', 'nabila_saputri_24rpl@student.smktelkom-mlg.sch.id', '08993985908', 'female', '');
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,7 @@ CREATE TABLE `tb_guru_perusahaan` (
 --
 
 INSERT INTO `tb_guru_perusahaan` (`id_guru_perusahaan`, `id_guru`, `id_perusahaan`, `tahun`) VALUES
-(5, 1, 1, 2018);
+(7, 2, 3, 2018);
 
 -- --------------------------------------------------------
 
@@ -101,23 +102,23 @@ CREATE TABLE `tb_perusahaan` (
   `provinsi` varchar(50) NOT NULL,
   `fax` varchar(20) NOT NULL,
   `cp` varchar(50) NOT NULL,
-  `picture_url` text NOT NULL
+  `picture_url` text NOT NULL,
+  `priority` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_perusahaan`
 --
 
-INSERT INTO `tb_perusahaan` (`id_perusahaan`, `nama_perusahaan`, `telp_perusahaan`, `alamat`, `kota`, `provinsi`, `fax`, `cp`, `picture_url`) VALUES
-(1, 'Google Indonesia', '086234123555', 'Sentral Senayan II Lantai 28, Jl. Asia Afrika No. 8, Gelora, Tanah Abang, RT.1/RW.3, RT.1/RW.3, Gelora, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10270', 'Jakarta', 'DKI Jakarta', '1213123', 'Mrs. Nabila', 'assets/images/google.jpg'),
-(3, 'SMK Telkom Malang', '081232313123', 'Jl. Danau Ranau Sawojajar Malang', 'Malang', 'Jawa Timur', '312312314', 'Mrs. Joice', 'assets/images/telkom.jpg'),
-(4, 'PT. Telekomunikasi Indonesia, Tbk', '(0331) 35320', 'Jl. Gajah Mada No. 182-184 Lt.3 Jember 68131', 'KAB. Jember', 'Jawa Timur', '-', 'Mr. Zul', 'assets/images/TI.jpg'),
-(5, 'PT. Telkom Telkomsel Jakarta', '(021) 385081', 'Jl. Jenderal Gatot Subroto No. 42 City Plasa Lt. II Wisma Mulia-Jakarta', 'Jakarta', 'DKI Jakarta', '-', 'Mrs. Saputri', 'assets/images/TELKOMSEL.jpg'),
-(6, 'PT. INDOSAT MEGA MEDIA JAKARTA', '0', 'JL. KEBAGUSAN RAYA NO. 36 RAGUNAN-JAKARTA', 'Jakarta', 'DKI Jakarta', '-', '(021) 78546900', 'assets/images/INDOSAT.jpg'),
-(7, 'PT. Newmont Nusa Tenggara', '0', 'Jl Sriwijaya 258 Indonesia 80235', 'Makassar', 'Sulawesi Selatan', '-', '(0372)635318', 'assets/images/NEWMONT.jpg'),
-(8, 'PT. Telkom Witel Solo', '081362080312', 'Jl. Mayor Kusmanto No. 1', 'Solo', 'Jawa Tengah', '-', '-', 'assets/images/WITEL_SOLO.jpg'),
-(9, 'PT. FINNET INDONESIA', '0218299999', 'MENARA BIDAKARA 1 LT. 12 JL. JENDERAL GATOT SUBROTO KAV 71-73 JAKARTA 13350', 'Jakarta', 'DKI Jakarta', '-', '(021) 8299999', 'assets/images/FINNET.jpg'),
-(10, 'Telkom Witel Jatim Barat', '0', 'Jl. Panjaitan 19 Madiun', 'Madiun', 'Jawa Timur', '-', '0351-494001/494203', 'assets/images/WITEL_JATIM_BARAT.jpg');
+INSERT INTO `tb_perusahaan` (`id_perusahaan`, `nama_perusahaan`, `telp_perusahaan`, `alamat`, `kota`, `provinsi`, `fax`, `cp`, `picture_url`, `priority`) VALUES
+(3, 'SMK Telkom Malang', '081232313123', 'Jl. Danau Ranau Sawojajar Malang', 'Malang', 'Jawa Timur', '312312314', 'Mrs. Joice', 'assets/images/telkom.jpg', 4),
+(4, 'PT. Telekomunikasi Indonesia, Tbk', '(0331) 35320', 'Jl. Gajah Mada No. 182-184 Lt.3 Jember 68131', 'KAB. Jember', 'Jawa Timur', '-', 'Mr. Zul', 'assets/images/TI.jpg', 0),
+(5, 'PT. Telkom Telkomsel Jakarta', '(021) 385081', 'Jl. Jenderal Gatot Subroto No. 42 City Plasa Lt. II Wisma Mulia-Jakarta', 'Jakarta', 'DKI Jakarta', '-', 'Mrs. Saputri', 'assets/images/TELKOMSEL.jpg', 0),
+(6, 'PT. INDOSAT MEGA MEDIA JAKARTA', '0', 'JL. KEBAGUSAN RAYA NO. 36 RAGUNAN-JAKARTA', 'Jakarta', 'DKI Jakarta', '-', '(021) 78546900', 'assets/images/INDOSAT.jpg', 1),
+(7, 'PT. Newmont Nusa Tenggara', '0', 'Jl Sriwijaya 258 Indonesia 80235', 'Makassar', 'Sulawesi Selatan', '-', '(0372)635318', 'assets/images/NEWMONT.jpg', 3),
+(8, 'PT. Telkom Witel Solo', '081362080312', 'Jl. Mayor Kusmanto No. 1', 'Solo', 'Jawa Tengah', '-', '-', 'assets/images/WITEL_SOLO.jpg', 0),
+(9, 'PT. FINNET INDONESIA', '0218299999', 'MENARA BIDAKARA 1 LT. 12 JL. JENDERAL GATOT SUBROTO KAV 71-73 JAKARTA 13350', 'Jakarta', 'DKI Jakarta', '-', '(021) 8299999', 'assets/images/FINNET.jpg', 3),
+(10, 'Telkom Witel Jatim Barat', '0', 'Jl. Panjaitan 19 Madiun', 'Madiun', 'Jawa Timur', '-', '0351-494001/494203', 'assets/images/WITEL_JATIM_BARAT.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -138,8 +139,6 @@ CREATE TABLE `tb_perusahaan_siswa` (
 --
 
 INSERT INTO `tb_perusahaan_siswa` (`id_perusahaan_siswa`, `id_siswa`, `id_perusahaan`, `indeks`, `status`) VALUES
-(2, 1, 1, 1, 'menunggu'),
-(3, 1, 3, 2, 'menunggu'),
 (4, 3, 4, 1, 'menunggu'),
 (5, 3, 3, 2, 'menunggu');
 
@@ -162,16 +161,18 @@ CREATE TABLE `tb_rekap_perusahaan` (
 --
 
 INSERT INTO `tb_rekap_perusahaan` (`id_rekap`, `id_perusahaan`, `kuota`, `diterima`, `tahun_rekap`) VALUES
-(1, 1, 2, 0, 2017),
 (3, 3, 5, 0, 2016),
-(9, 3, 4, 0, 2017),
+(9, 3, 3, 3, 2017),
 (10, 4, 6, 0, 2017),
 (11, 5, 4, 0, 2017),
 (12, 6, 3, 0, 2017),
 (13, 7, 2, 0, 2017),
 (14, 8, 3, 0, 2017),
 (15, 9, 8, 0, 2017),
-(16, 10, 9, 0, 2017);
+(16, 10, 9, 0, 2017),
+(17, 7, 5, 0, 2018),
+(18, 6, 7, 0, 2018),
+(19, 9, 8, 0, 2018);
 
 -- --------------------------------------------------------
 
@@ -201,8 +202,7 @@ CREATE TABLE `tb_siswa` (
 INSERT INTO `tb_siswa` (`id_siswa`, `oauth_uid`, `nis`, `nama_siswa`, `email_siswa`, `kelas`, `telp_siswa`, `jk_siswa`, `angkatan`, `jurusan`, `picture_url`, `last_logged`) VALUES
 (1, '113737970762948243576', '', 'Ahmad Dimas Abid Muttaqi', 'ahmad_muttaqi_24rpl@student.smktelkom-mlg.sch.id', 'RPL 3', '082236421452', 'male', 24, 'RPL', 'https://lh3.googleusercontent.com/-HFMtJNXTtOE/AAAAAAAAAAI/AAAAAAAAAFc/HAOHOlJNBFU/photo.jpg', '0000-00-00 00:00:00'),
 (2, '114624470082022841565', '', 'NABILA FIRSTANANDA SAPUTRI', 'nabila_saputri_24rpl@student.smktelkom-mlg.sch.id', '', '', 'female', 24, 'RPL', 'https://lh6.googleusercontent.com/-wQJcZCe_tkI/AAAAAAAAAAI/AAAAAAAAAEA/-Gje0URzoR4/photo.jpg', '0000-00-00 00:00:00'),
-(3, '112274529044745553265', '', 'JOICE JESSICA', 'joice_jessica_24rpl@student.smktelkom-mlg.sch.id', '', '', 'female', 24, 'RPL', 'https://lh6.googleusercontent.com/-OcmbJ3_QhnU/AAAAAAAAAAI/AAAAAAAAADc/PMJ22aPOPH8/photo.jpg', '0000-00-00 00:00:00'),
-(4, '103364408396867969257', '', 'Mohammad Huzaer Rekso Jiwo', 'mohammad_jiwo_24rpl@student.smktelkom-mlg.sch.id', '', '', 'male', 24, 'RPL', 'https://lh6.googleusercontent.com/-FkGQFBem1uM/AAAAAAAAAAI/AAAAAAAAADw/GGaWhGPFBYA/photo.jpg', '0000-00-00 00:00:00');
+(3, '112274529044745553265', '', 'JOICE JESSICA', 'joice_jessica_24rpl@student.smktelkom-mlg.sch.id', '', '', 'female', 24, 'RPL', 'https://lh6.googleusercontent.com/-OcmbJ3_QhnU/AAAAAAAAAAI/AAAAAAAAADc/PMJ22aPOPH8/photo.jpg', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -263,12 +263,12 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT for table `tb_guru_pembimbing`
 --
 ALTER TABLE `tb_guru_pembimbing`
-  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_guru_perusahaan`
 --
 ALTER TABLE `tb_guru_perusahaan`
-  MODIFY `id_guru_perusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_guru_perusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tb_perusahaan`
 --
@@ -283,12 +283,12 @@ ALTER TABLE `tb_perusahaan_siswa`
 -- AUTO_INCREMENT for table `tb_rekap_perusahaan`
 --
 ALTER TABLE `tb_rekap_perusahaan`
-  MODIFY `id_rekap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_rekap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
