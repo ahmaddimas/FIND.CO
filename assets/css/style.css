@@ -8405,7 +8405,7 @@ html.ie11 .bs-searchbox .form-control {
     clip-path: polygon(0% 0%, 0% 100%, 100% 0%);
     transition: .3s ease-in-out;
 }
-.card-wrapper input[type="checkbox"]:checked + .label-radio span,
+.card-wrapper input[type="radio"]:checked + .label-radio span,
 .card-wrapper input[type="checkbox"]:checked + .label-checkbox span {
     background-color: rgba(255, 255, 255, 1) !important;
 }

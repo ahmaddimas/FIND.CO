@@ -90,6 +90,7 @@ class Model_admin extends CI_Model {
             'provinsi'          => $this->input->post('provinsi'),
             'fax'               => $this->input->post('fax'),
             'cp'                => $this->input->post('cp'),
+            'priority'          => $this->input->post('priority'),
             'picture_url'       => 'assets/images/'.$file['file_name']
         ));
         $id = $this->db->insert_id();
@@ -129,7 +130,8 @@ class Model_admin extends CI_Model {
             'kota'              => $this->input->post('kota'),
             'provinsi'          => $this->input->post('provinsi'),
             'fax'               => $this->input->post('fax'),
-            'cp'                => $this->input->post('cp')
+            'cp'                => $this->input->post('cp'),
+            'priority'          => $this->input->post('priority')
         ];
         if ($file != "") {
             $current_photo = $this->db->where('id_perusahaan', $id)->get('tb_perusahaan')->row()->picture_url;

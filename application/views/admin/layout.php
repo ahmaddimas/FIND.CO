@@ -288,6 +288,8 @@
         if (strcasecmp($uri3, 'tambah') == 0 || strcasecmp($uri3, 'edit') == 0) {
             // Custom Js
             echo '<script src="'.base_url().'assets/js/pages/forms/advanced-form-elements.js"></script>';
+            // Sweet Alert Plugin Js
+            echo '<script src="'.base_url().'assets/plugins/sweetalert/sweetalert.min.js"></script>';
         } else {
             // Wait Me Plugin Js
             echo '<script src="'.base_url().'assets/plugins/jquery-datatable/jquery.dataTables.js"></script>';

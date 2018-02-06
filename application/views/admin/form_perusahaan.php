@@ -69,6 +69,12 @@
                                             <label class="form-label">Kuota</label>
                                         </div>
                                     </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="number" class="form-control" name="priority" onkeyup="validNumber(this)" required>
+                                            <label class="form-label">Prioritas</label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="img-upload-wrapper demo-icon-container">
@@ -97,3 +103,16 @@
         <!-- #END# Form Data Perusahaan -->
     </div>
 </section>
+<script type="text/javascript">
+  function validNumber(e) {
+    var value = parseInt(e.value);
+    if (value > 5) {
+      swal({
+          title: 'Error',
+          text: 'Nilai maksimal 5!',
+          type: 'warning'
+      });
+      $(e).val('');
+    }
+  }
+</script>

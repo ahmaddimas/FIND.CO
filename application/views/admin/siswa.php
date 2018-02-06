@@ -210,6 +210,11 @@
                     _card.find('.city').html(e[i].kota);
                     _card.find('.phone-number').html(e[i].telp_perusahaan);
                     _card.find('.kuota').html(e[i].kuota - e[i].diterima);
+                  if (e[i].kuota == e[i].diterima) {
+                      _card.find('input').prop('disabled', true);
+                      console.log('sold');
+                      console.log(e[i].nama_perusahaan+' '+e[i].kuota+' '+e[i].diterima);
+                  }
                 }
                 $('#modalConfirm .modal-footer').find('button.btn-success').attr('aria-label', _parent.attr('id'));
                 $('.page-loader-wrapper').fadeOut();
