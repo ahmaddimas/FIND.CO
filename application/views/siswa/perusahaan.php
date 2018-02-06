@@ -52,7 +52,10 @@
                                                 </div>
                                                 <div class="demo-google-material-icon">
                                                     <i class="material-icons">check</i>
-                                                    <span class="icon-name"><?= $p->kuota - $p->diterima; ?> Kuota Tersedia</span>
+                                                    <?php
+                                                      $kuota = $p->tahun_rekap == date('Y') ? $p->kuota - $p->diterima : $p->kuota;
+                                                    ?>
+                                                    <span class="icon-name"><?= $kuota; ?> Kuota Tersedia (<?= $p->tahun_rekap; ?>)</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,7 +100,7 @@
                                     </div>
                                     <div class="demo-google-material-icon">
                                         <i class="material-icons">check</i>
-                                        <span class="icon-name"><span class="kuota"></span> Kuota Tersedia</span>
+                                        <span class="icon-name"><span class="kuota"></span> Kuota Tersedia (<span class="tahun"></span>)</span>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +136,10 @@
             _element.find('.modal-body .phone-number').html(e.telp_perusahaan);
             _element.find('.modal-body .cp').html(e.cp);
             _element.find('.modal-body .fax').html(e.fax);
-            _element.find('.modal-body .kuota').html(e.kuota - e.diterima);
+            _element.find('.modal-body .tahun').html(e.tahun_rekap);
+            var date = new Date();
+            var kuota = e.tahun_rekap == date.getFullYear() ? e.kuota - e.diterima : e.kuota;
+            _element.find('.modal-body .kuota').html(kuota);
             $('.page-loader-wrapper').fadeOut(50);
             _element.modal('show');
         });

@@ -41,8 +41,21 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <input type="text" class="form-control" placeholder="RPL 1" name="kelas" autofocus required>
-                                            <label class="form-label">Kelas</label>
+                                          <select class="form-control" name="kelas">
+                                            <option value="">-- Please select class --</option>
+                                            <?php
+                                              $jurusan = ['RPL', 'TKJ'];
+                                              $jml_kls = [6, 5];
+                                              for ($i=0; $i < count($jurusan); $i++) {
+                                                for ($j=1; $j <= $jml_kls[$i]; $j++) {
+                                                  $kls = $jurusan[$i].' '.$j; ?>
+                                                  <option value="<?= $kls; ?>"><?= $kls; ?></option>
+                                                <?php }
+                                              }
+                                            ?>
+                                          </select>
+                                            <!-- <input type="text" class="form-control" placeholder="RPL 1" name="kelas" autofocus required>
+                                            <label class="form-label">Kelas</label> -->
                                         </div>
                                     </div>
                                 </div>

@@ -74,7 +74,7 @@ class Siswa extends CI_Controller {
 				'main_view'			=> 'siswa/pilih_perusahaan',
 				'userData'			=> $this->model_siswa->getSiswaById($this->session->userdata(md5('UserData'))['id_siswa']),
 				'data_perusahaan'	=> $this->model_siswa->getPilihan($this->session->userdata(md5('UserData'))['id_siswa']),
-	            'perusahaan'		=> $this->model_siswa->getPerusahaan()
+	            'perusahaan'		=> $this->model_siswa->getChoicePerusahaan()
 			];
 			$this->load->view('siswa/layout', $data);
 		} elseif (strcasecmp($this->uri->segment(3), 'get') == 0 && isset($_GET['pid'])) {

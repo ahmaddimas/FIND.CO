@@ -86,8 +86,10 @@ class Model_siswa extends CI_Model {
         $this->db->from('tb_perusahaan AS p');
         $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
         $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        // $this->db->where('rp.tahun_rekap', date('Y'));
         $this->db->where('p.id_perusahaan', $id);
         $this->db->group_by('p.id_perusahaan');
+        $this->db->order_by('p.priority', 'desc');
         return $this->db->get()->row();
     }
 
@@ -96,7 +98,21 @@ class Model_siswa extends CI_Model {
         $this->db->from('tb_perusahaan AS p');
         $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
         $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        // $this->db->where('rp.tahun_rekap', date('Y'));
         $this->db->group_by('p.id_perusahaan');
+        $this->db->order_by('p.priority', 'desc');
+        return $this->db->get()->result();
+    }
+
+    public function getChoicePerusahaan() {
+        $this->db->select('*');
+        $this->db->from('tb_perusahaan AS p');
+        $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
+        // $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        $this->db->where('rp.kuota - rp.diterima > 0', null, false);
+        $this->db->where('rp.tahun_rekap', date('Y'));
+        $this->db->group_by('p.id_perusahaan');
+        $this->db->order_by('p.priority', 'desc');
         return $this->db->get()->result();
     }
 

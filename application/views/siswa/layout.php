@@ -265,9 +265,6 @@
 
     <!-- Waves Effect Plugin Js -->
     <script src="<?= base_url(); ?>assets/plugins/node-waves/waves.js"></script>
-
-    <!-- Custom Js -->
-    <script src="<?= base_url(); ?>assets/js/admin.js"></script>
     <?php
     if(strcasecmp($uri2, 'dashboard') == 0) {
         // Jquery CountTo Plugin Js
@@ -302,6 +299,9 @@
         // echo '<script src="'.base_url().'assets/js/pages/forms/basic-form-elements.js"></script>';
     }
     ?>
+
+    <!-- Custom Js -->
+    <script src="<?= base_url(); ?>assets/js/admin.js"></script>
 
     <script type="text/javascript">
         $(function() {
