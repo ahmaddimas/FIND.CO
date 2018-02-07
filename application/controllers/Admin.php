@@ -160,7 +160,7 @@ class Admin extends CI_Controller {
         }
         // end of edit perusahaan
         // hapus perusahaan
-        if (strcasecmp($uri3, 'hapus') == 0 && $this->uri->segment(4) != "") {
+        if (strcasecmp($uri3, 'hapus') == 0 && $this->uri->segment(4) != "" && $this->session->userdata(md5('Logged_Role')) == 2) {
             if ($this->model_admin->hapusPerusahaan($this->uri->segment(4))) {
                 $this->session->set_flashdata('notif', 'Perusahaan Berhasil Dihapus!');
                 $this->session->set_flashdata('classNotif', 'success');
@@ -202,7 +202,7 @@ class Admin extends CI_Controller {
                 return;
             }
             // ajax post for set siswa
-            if (strcasecmp($this->uri->segment(4), 'set') == 0) {
+            if (strcasecmp($this->uri->segment(4), 'set') == 0 && $this->session->userdata(md5('Logged_Role')) == 1) {
                 $response['statusCode'] = 0;
                 if (isset($_POST['uid']) && isset($_POST['pid'])) {
                     if ($this->model_admin->setPilihanSiswa(substr($_POST['uid'], 1), $_POST['pid'])) {
@@ -213,7 +213,7 @@ class Admin extends CI_Controller {
                 return;
             }
             // ajax post for reset siswa
-            if (strcasecmp($this->uri->segment(4), 'reset') == 0) {
+            if (strcasecmp($this->uri->segment(4), 'reset') == 0 && $this->session->userdata(md5('Logged_Role')) == 1) {
                 $response['statusCode'] = 0;
                 if (isset($_POST['uid'])) {
                     if ($this->model_admin->resetPilihanSiswa(substr($_POST['uid'], 1))) {
@@ -224,7 +224,7 @@ class Admin extends CI_Controller {
                 return;
             }
             // ajax post for reject siswa
-            if (strcasecmp($this->uri->segment(4), 'reject') == 0) {
+            if (strcasecmp($this->uri->segment(4), 'reject') == 0 && $this->session->userdata(md5('Logged_Role')) == 1) {
                 $response['statusCode'] = 0;
                 if (isset($_POST['uid'])) {
                     if ($this->model_admin->rejectPilihanSiswa(substr($_POST['uid'], 1))) {
@@ -235,7 +235,7 @@ class Admin extends CI_Controller {
                 return;
             }
             // delete siswa
-            if (strcasecmp($this->uri->segment(4), 'delete') == 0 && $this->uri->segment(5) != "") {
+            if (strcasecmp($this->uri->segment(4), 'delete') == 0 && $this->uri->segment(5) != "" && $this->session->userdata(md5('Logged_Role')) == 2) {
                 if ($this->model_admin->deleteSiswa($this->uri->segment(5))) {
                     $this->session->set_flashdata('notif', 'Siswa berhasil dihapus!');
                     $this->session->set_flashdata('classNotif', 'success');
@@ -297,7 +297,7 @@ class Admin extends CI_Controller {
         }
         if (strcasecmp($this->uri->segment(3), 'guru') == 0) {
             // ajax post for set guru
-            if (strcasecmp($this->uri->segment(4), 'set') == 0) {
+            if (strcasecmp($this->uri->segment(4), 'set') == 0 && $this->session->userdata(md5('Logged_Role')) == 1) {
                 $response['statusCode'] = 0;
                 if (isset($_POST['uid']) && isset($_POST['pid'])) {
                     if ($this->model_admin->setGuruPembimbing(substr($_POST['uid'], 1), $_POST['pid'])) {
@@ -308,7 +308,7 @@ class Admin extends CI_Controller {
                 return;
             }
             // ajax post for reset guru
-            if (strcasecmp($this->uri->segment(4), 'reset') == 0) {
+            if (strcasecmp($this->uri->segment(4), 'reset') == 0 && $this->session->userdata(md5('Logged_Role')) == 1) {
                 $response['statusCode'] = 0;
                 if (isset($_POST['uid'])) {
                     if ($this->model_admin->resetGuruPembimbing(substr($_POST['uid'], 1))) {
@@ -319,7 +319,7 @@ class Admin extends CI_Controller {
                 return;
             }
             // delete guru
-            if (strcasecmp($this->uri->segment(4), 'delete') == 0 && $this->uri->segment(5) != "") {
+            if (strcasecmp($this->uri->segment(4), 'delete') == 0 && $this->uri->segment(5) != "" && $this->session->userdata(md5('Logged_Role')) == 2) {
                 if ($this->model_admin->deleteGuru($this->uri->segment(5))) {
                     $this->session->set_flashdata('notif', 'Guru berhasil dihapus!');
                     $this->session->set_flashdata('classNotif', 'success');

@@ -31,7 +31,7 @@
             <?php
             $diterima = 0;
             foreach ($xsiswa as $xs):
-                $p1 = "-"; $p2 = "-"; $s1; $s2;
+                $p1 = "-"; $p2 = "-"; $s1 = ""; $s2 = "";
                 foreach ($siswa as $s) {
                     if ($s->id_siswa !== $xs->id_siswa) {
                         continue;

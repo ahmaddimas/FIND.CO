@@ -54,23 +54,27 @@
                                             <td><?= $g->telp_guru; ?></td>
                                             <td><?= $g->jk_guru; ?></td>
                                             <td class="p-1">
-                                                <?php if (!$g->id_perusahaan): ?>
-                                                    <button type="button" class="btn btn-success waves-effect m-1" onclick="setID(this)" data-toggle="modal" data-target="#modalData">
-                                                        <i class="material-icons">done_all</i>
-                                                        <span>Pilihkan</span>
-                                                    </button>
-                                                <?php elseif ($g->id_perusahaan): ?>
-                                                    <button type="button" class="btn btn-warning waves-effect m-1" onclick="showCancelConfirmDialog(this)">
-                                                        <i class="material-icons">close</i>
-                                                        <span>Batalkan</span>
-                                                    </button>
-                                                <?php endif; ?>
+                                                <?php if ($this->session->userdata(md5('Logged_Role')) == 1):
+                                                  if (!$g->id_perusahaan): ?>
+                                                      <button type="button" class="btn btn-success waves-effect m-1" onclick="setID(this)" data-toggle="modal" data-target="#modalData">
+                                                          <i class="material-icons">done_all</i>
+                                                          <span>Pilihkan</span>
+                                                      </button>
+                                                  <?php elseif ($g->id_perusahaan): ?>
+                                                      <button type="button" class="btn btn-warning waves-effect m-1" onclick="showCancelConfirmDialog(this)">
+                                                          <i class="material-icons">close</i>
+                                                          <span>Batalkan</span>
+                                                      </button>
+                                                  <?php endif;
+                                                endif; ?>
                                                 <a href="<?= base_url('admin/users/guru/edit/').$g->id_guru; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-1">
                                                     <i class="material-icons">mode_edit</i>
                                                 </a>
-                                                <a href="<?= base_url('admin/users/guru/delete/').$g->id_guru; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-1" onclick="return confirm('Anda yakin ingin menghapus?')">
-                                                    <i class="material-icons">delete</i>
-                                                </a>
+                                                <?php if ($this->session->userdata(md5('Logged_Role')) == 2): ?>
+                                                  <a href="<?= base_url('admin/users/guru/delete/').$g->id_guru; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-1" onclick="return confirm('Anda yakin ingin menghapus?')">
+                                                      <i class="material-icons">delete</i>
+                                                  </a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

@@ -117,14 +117,17 @@ class Model_admin extends CI_Model {
     }
 
     public function hapusPerusahaan($id) {
+        $affected_rows = 0;
         $this->db->where('id_perusahaan', $id)->delete('tb_perusahaan');
         $this->db->where('id_perusahaan', $id)->delete('tb_rekap_perusahaan');
         $siswa = $this->db->where('id_perusahaan', $id)->get('tb_perusahaan_siswa')->result();
         foreach ($siswa as $s) {
             $this->db->where('id_siswa', $s->id_siswa)->delete('tb_perusahaan_siswa');
+            $affected_rows += $this->db->affected_rows();
         }
         $this->db->where('id_perusahaan', $id)->delete('tb_guru_perusahaan');
-        if ($this->db->affected_rows() > 0) {
+        $affected_rows += $this->db->affected_rows();
+        if ($affected_rows > 0) {
             return true;
         } else {
             return false;

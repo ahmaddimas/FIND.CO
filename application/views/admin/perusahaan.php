@@ -49,7 +49,7 @@
                                 <tbody>
                                     <?php if ($perusahaan != null):
                                         foreach ($perusahaan as $p):
-                                            $out = strlen($p->alamat) > 90 ? substr($p->alamat, 0, 91).'...':$p->alamat; ?>
+                                            $out = strlen($p->alamat) > 50 ? substr($p->alamat, 0, 91).'...':$p->alamat; ?>
                                             <tr>
                                                 <td><?= $p->nama_perusahaan; ?></td>
                                                 <td><?= $out; ?></td>
@@ -62,9 +62,11 @@
                                                     <a href="<?= base_url('admin/perusahaan/edit/').$p->id_perusahaan; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-2">
                                                         <i class="material-icons">mode_edit</i>
                                                     </a>
-                                                    <a href="<?= base_url('admin/perusahaan/hapus/').$p->id_perusahaan; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-2" onclick="return confirm('Anda yakin ingin menghapus?')">
-                                                        <i class="material-icons">delete</i>
-                                                    </a>
+                                                    <?php if ($this->session->userdata(md5('Logged_Role')) == 2): ?>
+                                                      <a href="<?= base_url('admin/perusahaan/hapus/').$p->id_perusahaan; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-2" onclick="return confirm('Anda yakin ingin menghapus?')">
+                                                          <i class="material-icons">delete</i>
+                                                      </a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach;

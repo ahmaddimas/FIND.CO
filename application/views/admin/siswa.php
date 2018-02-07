@@ -54,7 +54,7 @@
                                 </tfoot>
                                 <tbody id="table-list">
                                     <?php foreach ($xsiswa as $xs):
-                                        $p1 = "-"; $p2 = "-"; $s1; $s2;
+                                        $p1 = "-"; $p2 = "-"; $s1 = ""; $s2 = "";
                                         foreach ($siswa as $s) {
                                             if ($s->id_siswa !== $xs->id_siswa) {
                                                 continue;
@@ -83,27 +83,31 @@
                                             <td><?= $p1; ?></td>
                                             <td><?= $p2; ?></td>
                                             <td class="p-1">
-                                                <?php if ($p1 !== "-" && $p2 !== "-" && !$status && !$reject): ?>
-                                                    <button type="button" class="btn btn-success waves-effect m-1" onclick="showConfirmDialog(this)">
-                                                        <i class="material-icons">done_all</i>
-                                                        <span>Konfirmasi</span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-warning waves-effect m-1" onclick="showRejectConfirmDialog(this)">
-                                                        <i class="material-icons">close</i>
-                                                        <span>Reject</span>
-                                                    </button>
-                                                <?php elseif ($p1 !== "-" && $p2 !== "-" && $status): ?>
-                                                    <button type="button" class="btn btn-warning waves-effect m-1" onclick="showCancelConfirmDialog(this)">
-                                                        <i class="material-icons">close</i>
-                                                        <span>Batalkan</span>
-                                                    </button>
-                                                <?php endif; ?>
+                                                <?php if ($this->session->userdata(md5('Logged_Role')) == 1):
+                                                  if ($p1 !== "-" && $p2 !== "-" && !$status && !$reject): ?>
+                                                      <button type="button" class="btn btn-success waves-effect m-1" onclick="showConfirmDialog(this)">
+                                                          <i class="material-icons">done_all</i>
+                                                          <span>Konfirmasi</span>
+                                                      </button>
+                                                      <button type="button" class="btn btn-warning waves-effect m-1" onclick="showRejectConfirmDialog(this)">
+                                                          <i class="material-icons">close</i>
+                                                          <span>Reject</span>
+                                                      </button>
+                                                  <?php elseif ($p1 !== "-" && $p2 !== "-" && $status): ?>
+                                                      <button type="button" class="btn btn-warning waves-effect m-1" onclick="showCancelConfirmDialog(this)">
+                                                          <i class="material-icons">close</i>
+                                                          <span>Batalkan</span>
+                                                      </button>
+                                                  <?php endif;
+                                                endif; ?>
                                                 <a href="<?= base_url('admin/users/siswa/edit/').$xs->id_siswa; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-1">
                                                     <i class="material-icons">mode_edit</i>
                                                 </a>
-                                                <a href="<?= base_url('admin/users/siswa/delete/').$xs->id_siswa; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-1" onclick="return confirm('Anda yakin ingin menghapus?')">
-                                                    <i class="material-icons">delete</i>
-                                                </a>
+                                                <?php if ($this->session->userdata(md5('Logged_Role')) == 2): ?>
+                                                  <a href="<?= base_url('admin/users/siswa/delete/').$xs->id_siswa; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-1" onclick="return confirm('Anda yakin ingin menghapus?')">
+                                                      <i class="material-icons">delete</i>
+                                                  </a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -191,6 +195,7 @@
     function showConfirmDialog(e) {
         var _parent = $(e).parents('tr');
         $('input[name="pilihan"]').prop('checked', false);
+        reset();
         $.ajax({
             url: base_url+'admin/users/siswa/get',
             type: 'GET',
