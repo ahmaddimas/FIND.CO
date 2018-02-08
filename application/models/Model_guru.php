@@ -124,6 +124,52 @@ class Model_guru extends CI_Model {
         $this->db->where('g.id_guru', $this->session->userdata(md5('UserData'))['id_user']);
         return $this->db->get()->result();
     }
+
+    public function getDataMonitoring() {
+        $this->db->select('*');
+        $this->db->from('tb_monitoring AS m');
+        $this->db->join('tb_guru_pembimbing AS g', 'g.id_guru = m.id_guru', 'left');
+        $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = m.id_perusahaan', 'left');
+        $this->db->where('m.id_guru', $this->session->userdata(md5('UserData'))['id_user']);
+        return $this->db->get()->result();
+    }
+
+    public function getDataMonitoringById($id) {
+        $this->db->select('*');
+        $this->db->from('tb_monitoring AS m');
+        $this->db->join('tb_guru_pembimbing AS g', 'g.id_guru = m.id_guru', 'left');
+        $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = m.id_perusahaan', 'left');
+        $this->db->where('m.id_monitoring', $id);
+        return $this->db->get()->row();
+    }
+
+    public function addMonitoring() {
+        $this->db->insert('tb_monitoring', array(
+            'id_guru'       => $this->session->userdata(md5('UserData'))['id_user'],
+            'tgl_monitoring'=> $this->input->post('tgl_monitoring'),
+            'id_perusahaan' => $this->input->post('nama_perusahaan'),
+            'keterangan'       => $this->input->post('keterangan')
+        ));
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateMonitoring($id) {
+        if ($this->input->post('telp') != "") $userData['telp_guru'] = $this->input->post('telp');
+        if (!empty($userData)) {
+            $this->db->where('id_monitoring', $id)->update('tb_monitoring', $userData);
+            if ($this->db->affected_rows() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lModel_guru.php/}} */
 /* Location: ./${TM_FILEPATH/.+((?:application).+)/Model_guru/:application/models/${1/(.+)/lModel_guru.php/}} */

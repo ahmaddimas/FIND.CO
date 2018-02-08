@@ -133,6 +133,12 @@
                             <span>Perusahaan</span>
                         </a>
                     </li>
+                    <li class="<?php if(strcasecmp($uri2, 'monitor') == 0) {echo 'active';} ?>">
+                        <a href="<?= base_url('guru/monitor'); ?>">
+                            <i class="material-icons">domain</i>
+                            <span>Monitoring</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- #Menu -->
