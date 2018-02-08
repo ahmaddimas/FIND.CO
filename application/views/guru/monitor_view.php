@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <label class="form-label">Perusahaan</label>
-                                    <select class="form-control" name="nama_perusahaan" id="id_perusahaan">
+                                    <select class="form-control selectpicker" name="nama_perusahaan" id="id_perusahaan">
                                         <option value="">-- Please Select Industry --</option>
                                         <?php foreach ($data_perusahaan as $p): ?>
                                             <option value="<?= $p->id_perusahaan; ?>"><?= $p->nama_perusahaan; ?></option>
@@ -93,8 +93,7 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <textarea rows="1" class="form-control no-resize focused auto-growth" name="keterangan" id="keterangan" required style="overflow: hidden; word-wrap: break-word; height: 46px;"></textarea>
-                                        <label class="form-label">Keterangan</label>
+                                        <textarea rows="1" class="form-control no-resize auto-growth" name="keterangan" id="keterangan" required style="overflow: hidden; word-wrap: break-word; height: 46px;" placeholder="Keterangan"></textarea>
                                     </div>
                                 </div>
                                 <div class="icon-and-text-button-demo">
@@ -140,8 +139,8 @@
                 var _form = $('#modalMonitor').find('form');
                 _form.attr('action', defaultAction + 'edit/' + _index);
                 _form.find("#tgl_monitoring").val(e.tgl_monitoring);
-                _form.find("#id_perusahaan").val(''+e.id_perusahaan);
-                _form.find("#keterangan").addClass('focused').val(e.keterangan);
+                _form.find("#id_perusahaan").selectpicker('val', e.id_perusahaan);
+                _form.find("#keterangan").val(e.keterangan);
                 $("#modalMonitor").modal('show');
                 console.log(_form.find("#id_perusahaan").val());
             }
@@ -154,7 +153,7 @@
     $("#modalMonitor").on('hide.bs.modal', function(event) {
         var _form = $('#modalMonitor').find('form');
         _form.find("#tgl_monitoring").val('');
-        _form.find("#id_perusahaan").val('');
+        _form.find("#id_perusahaan").selectpicker('val', '');
         _form.find("#keterangan").removeClass('focused').val('');
         resetAction();
     });
