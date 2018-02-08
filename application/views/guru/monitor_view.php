@@ -47,7 +47,7 @@
                                             <td><?= $m->tgl_monitoring; ?></td>
                                             <td><?= $m->keterangan; ?></td>
                                             <td class="p-1">
-                                                <a href="#" onclick="prepareEdit(this)" data-toggle="modal" aria-label="<?= $m->id_monitoring; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-1">
+                                                <a href="#" onclick="prepareEdit(this)" aria-label="<?= $m->id_monitoring; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-1">
                                                     <i class="material-icons">mode_edit</i>
                                                 </a>
                                                 <?php if ($this->session->userdata(md5('Logged_Role')) == 2): ?>
