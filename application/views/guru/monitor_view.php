@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            DATA MONITORING PERUSHAAN
+                            DATA MONITORING PERUSAHAAN
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -50,11 +50,9 @@
                                                 <a href="#" onclick="prepareEdit(this)" aria-label="<?= $m->id_monitoring; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-1">
                                                     <i class="material-icons">mode_edit</i>
                                                 </a>
-                                                <?php if ($this->session->userdata(md5('Logged_Role')) == 2): ?>
-                                                  <a href="<?= base_url('admin/users/monitor/delete/').$m->id_monitoring; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-1" onclick="return confirm('Anda yakin ingin menghapus?')">
-                                                      <i class="material-icons">delete</i>
-                                                  </a>
-                                                <?php endif; ?>
+                                                <a href="<?= base_url('guru/monitor/delete/').$m->id_monitoring; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float m-1" onclick="return confirm('Anda yakin ingin menghapus?')">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

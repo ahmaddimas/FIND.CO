@@ -148,7 +148,7 @@ class Model_guru extends CI_Model {
             'id_guru'       => $this->session->userdata(md5('UserData'))['id_user'],
             'tgl_monitoring'=> $this->input->post('tgl_monitoring'),
             'id_perusahaan' => $this->input->post('nama_perusahaan'),
-            'keterangan'       => $this->input->post('keterangan')
+            'keterangan'    => $this->input->post('keterangan')
         ));
         if ($this->db->affected_rows() > 0) {
             return true;
@@ -158,7 +158,9 @@ class Model_guru extends CI_Model {
     }
 
     public function updateMonitoring($id) {
-        if ($this->input->post('telp') != "") $userData['telp_guru'] = $this->input->post('telp');
+        if ($this->input->post('tgl_monitoring') != "") $userData['tgl_monitoring'] = $this->input->post('tgl_monitoring');
+        if ($this->input->post('nama_perusahaan') != "") $userData['id_perusahaan'] = $this->input->post('nama_perusahaan');
+        if ($this->input->post('keterangan') != "") $userData['keterangan'] = $this->input->post('keterangan');
         if (!empty($userData)) {
             $this->db->where('id_monitoring', $id)->update('tb_monitoring', $userData);
             if ($this->db->affected_rows() > 0) {
@@ -166,6 +168,15 @@ class Model_guru extends CI_Model {
             } else {
                 return false;
             }
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteMonitoring($id) {
+        $this->db->where('id_monitoring', $id)->delete('tb_monitoring');
+        if ($this->db->affected_rows() > 0) {
+            return true;
         } else {
             return false;
         }

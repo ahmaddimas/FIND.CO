@@ -92,6 +92,30 @@ class Guru extends CI_Controller {
 			}
 			return;
 		}
+		if (strcasecmp($this->uri->segment(3), 'edit') == 0 && $this->uri->segment(4) != "") {
+			if (isset($_POST['submitMonitor'])) {
+				if ($this->model_guru->updateMonitoring($this->uri->segment(4))) {
+					$this->session->set_flashdata('notif', 'Data berhasil diperbarui!');
+					$this->session->set_flashdata('classNotif', 'success');
+				} else {
+					$this->session->set_flashdata('notif', 'Data gagal diperbarui!');
+					$this->session->set_flashdata('classNotif', 'warning');
+				}
+				redirect('guru/monitor');
+			}
+			return;
+		}
+		if (strcasecmp($this->uri->segment(3), 'delete') == 0 && $this->uri->segment(4) != "") {
+			if ($this->model_guru->deleteMonitoring($this->uri->segment(4))) {
+				$this->session->set_flashdata('notif', 'Data berhasil dihapus!');
+				$this->session->set_flashdata('classNotif', 'success');
+			} else {
+				$this->session->set_flashdata('notif', 'Data gagal dihapus!');
+				$this->session->set_flashdata('classNotif', 'warning');
+			}
+			redirect('guru/monitor');
+			return;
+		}
 		$data = [
 			'main_view'			=> 'guru/monitor_view',
 			'userData'			=> $this->model_guru->getGuruByIdWithGroup($this->session->userdata(md5('UserData'))['id_guru']),
