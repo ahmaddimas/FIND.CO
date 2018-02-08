@@ -159,6 +159,46 @@
             </div>
             <!-- #END# Task Info -->
         </div>
+        <!-- DATA MONITORING -->
+        <div class="row clearfix">
+            <!-- Task Info -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>DATA MONITORING</h2>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Pembimbing</th>
+                                        <th>Perusahaan</th>
+                                        <th>Tanggal Monitoring</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($monitoring as $m): ?>
+                                    <tr id="i<?= $m->id_monitoring; ?>">
+                                        <td><?= $i++; ?></td>
+                                        <td><?= $m->nama_guru; ?></td>
+                                        <td><?= $m->nama_perusahaan; ?></td>
+                                        <td><?= $m->tgl_monitoring; ?></td>
+                                        <td><?= $m->keterangan; ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Task Info -->
+        </div>
     </div>
 </section>
 <script type="text/javascript">

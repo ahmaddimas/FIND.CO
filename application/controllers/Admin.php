@@ -24,7 +24,8 @@ class Admin extends CI_Controller {
             'siswa'         => $this->model_admin->getSiswa(),
             'perusahaan'    => $this->model_admin->getPerusahaan(),
             'rekap'         => $this->model_admin->getRekapPerusahaan(),
-            'guru'          => $this->model_admin->getGuru()
+            'guru'          => $this->model_admin->getGuru(),
+            'monitoring'    => $this->model_admin->getMonitoring()
 		];
 		$this->load->view('admin/layout', $data);
 	}

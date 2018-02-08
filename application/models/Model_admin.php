@@ -409,6 +409,14 @@ class Model_admin extends CI_Model {
             return false;
         }
     }
+
+    public function getMonitoring() {
+        $this->db->select('*');
+        $this->db->from('tb_monitoring AS m');
+        $this->db->join('tb_guru_pembimbing AS g', 'g.id_guru = m.id_guru', 'left');
+        $this->db->join('tb_perusahaan AS p', 'p.id_perusahaan = m.id_perusahaan', 'left');
+        return $this->db->get()->result();
+    }
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lModel_admin.php/}} */
 /* Location: ./${TM_FILEPATH/.+((?:application).+)/Model_admin/:application/models/${1/(.+)/lModel_admin.php/}} */

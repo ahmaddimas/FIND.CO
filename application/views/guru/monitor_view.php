@@ -125,7 +125,6 @@
 
     function prepareEdit(e) {
         var _index = $(e).attr('aria-label');
-        console.log(_index);
         $.ajax({
             url: base_url+'guru/monitor/get',
             type: 'POST',
@@ -142,7 +141,6 @@
                 _form.find("#id_perusahaan").selectpicker('val', e.id_perusahaan);
                 _form.find("#keterangan").val(e.keterangan);
                 $("#modalMonitor").modal('show');
-                console.log(_form.find("#id_perusahaan").val());
             }
             $('.page-loader-wrapper').fadeOut();
         });
@@ -152,7 +150,7 @@
 
     $("#modalMonitor").on('hide.bs.modal', function(event) {
         var _form = $('#modalMonitor').find('form');
-        _form.find("#tgl_monitoring").val('');
+        _form.find("#tgl_monitoring").val("<?= date('Y-m-d'); ?>");
         _form.find("#id_perusahaan").selectpicker('val', '');
         _form.find("#keterangan").removeClass('focused').val('');
         resetAction();

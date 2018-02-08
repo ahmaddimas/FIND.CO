@@ -71,10 +71,6 @@ class Guru extends CI_Controller {
 		if (strcasecmp($this->uri->segment(3), 'get') == 0) {
 			$response['statusCode'] = 0;
 			if (isset($_POST['mid'])) {
-				// if ($this->model_guru->getDataMonitoringById( $_POST['mid'] )) {
-				// 	$response['statusCode'] = 1;
-				// }
-				// $result = $this->model_guru->getDataMonitoringById( $_POST['mid'] );
 				if ($result = $this->model_guru->getDataMonitoringById( $_POST['mid'] )) {
 					$response['statusCode'] = 1;
 					$response = $result;

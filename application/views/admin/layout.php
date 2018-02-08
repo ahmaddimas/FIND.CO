@@ -279,6 +279,17 @@
         echo '<script src="'.base_url().'assets/plugins/morrisjs/morris.js"></script>';
         // Sparkline Chart Plugin Js
         echo '<script src="'.base_url().'assets/plugins/jquery-sparkline/jquery.sparkline.js"></script>';
+        // DataTable
+        echo '<script src="'.base_url().'assets/plugins/jquery-datatable/jquery.dataTables.js"></script>';
+        echo '<script src="'.base_url().'assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>';
+        echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>';
+        echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>';
+        echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>';
+        echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>';
+        echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>';
+        echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>';
+        echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>';
+        echo '<script src="'.base_url().'assets/js/pages/tables/jquery-datatable.js"></script>';
         // Custom Js
         echo '<script src="'.base_url().'assets/js/pages/index.js"></script>';
         echo '<script src="'.base_url().'assets/js/pages/charts/morris.js"></script>';
@@ -291,7 +302,7 @@
             // Sweet Alert Plugin Js
             echo '<script src="'.base_url().'assets/plugins/sweetalert/sweetalert.min.js"></script>';
         } else {
-            // Wait Me Plugin Js
+            // DataTable Plugin Js
             echo '<script src="'.base_url().'assets/plugins/jquery-datatable/jquery.dataTables.js"></script>';
             echo '<script src="'.base_url().'assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>';
             echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>';
