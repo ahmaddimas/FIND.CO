@@ -15,9 +15,17 @@
                                     <img src="<?= base_url(); ?>assets/images/about/ahmad.jpg" alt="" width="100%">
                                     <div class="body pt-1 demo-icon-container">
                                         <h4 class="title">Ahmad Dimas Abid Muttaqi</h4>
-                                        <div class="demo-google-material-icon">
-                                            <i class="material-icons">place</i>
-                                            <span class="icon-name city">Malang</span>
+                                        <div class="icons my-2">
+                                            <i class="fa fa-instagram mr-3"></i>
+                                            <span class="icon-name city">@ahmaddimas0</span>
+                                        </div>
+                                        <div class="icons my-2">
+                                            <i class="fa fa-map-marker mr-3"></i>
+                                            <span class="icon-name city">Bojonegoro</span>
+                                        </div>
+                                        <div class="icons my-2">
+                                            <i class="fa fa-hourglass-half mr-3"></i>
+                                            <span class="icon-name city">24Hours</span>
                                         </div>
                                     </div>
                                 </div>
@@ -27,9 +35,13 @@
                                     <img src="<?= base_url(); ?>assets/images/about/nabila.jpg" alt="" width="100%">
                                     <div class="body pt-1 demo-icon-container">
                                         <h4 class="title">Nabila Firstananda Saputri</h4>
-                                        <div class="demo-google-material-icon">
-                                            <i class="material-icons">place</i>
-                                            <span class="icon-name city">Malang</span>
+                                        <div class="icons my-2">
+                                            <i class="fa fa-instagram mr-3"></i>
+                                            <span class="icon-name city">@nbilafs</span>
+                                        </div>
+                                        <div class="icons my-2">
+                                            <i class="fa fa-map-marker mr-3"></i>
+                                            <span class="icon-name city">Tulungagung</span>
                                         </div>
                                     </div>
                                 </div>
@@ -39,8 +51,12 @@
                                     <img src="<?= base_url(); ?>assets/images/about/joice.jpg" alt="" width="100%">
                                     <div class="body pt-1 demo-icon-container">
                                         <h4 class="title">Joice Jessica</h4>
-                                        <div class="demo-google-material-icon">
-                                            <i class="material-icons">place</i>
+                                        <div class="icons my-2">
+                                            <i class="fa fa-instagram mr-3"></i>
+                                            <span class="icon-name city">@joicejssc</span>
+                                        </div>
+                                        <div class="icons my-2">
+                                            <i class="fa fa-map-marker mr-3"></i>
                                             <span class="icon-name city">Malang</span>
                                         </div>
                                     </div>
@@ -51,9 +67,13 @@
                                     <img src="<?= base_url(); ?>assets/images/about/zulfikri.jpg" alt="" width="100%">
                                     <div class="body pt-1 demo-icon-container">
                                         <h4 class="title">Zulfikri Rosyid</h4>
-                                        <div class="demo-google-material-icon">
-                                            <i class="material-icons">place</i>
-                                            <span class="icon-name city">Malang</span>
+                                        <div class="icons my-2">
+                                            <i class="fa fa-instagram mr-3"></i>
+                                            <span class="icon-name city">@zulf_zrd</span>
+                                        </div>
+                                        <div class="icons my-2">
+                                            <i class="fa fa-map-marker mr-3"></i>
+                                            <span class="icon-name city">DI Yogyakarta</span>
                                         </div>
                                     </div>
                                 </div>

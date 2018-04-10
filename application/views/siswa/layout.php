@@ -34,6 +34,9 @@
     <!-- Sweet Alert Css -->
     <link href="<?= base_url(); ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
+    <!-- Font-Awesome Css -->
+    <link href="<?= base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
 
