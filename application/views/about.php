@@ -17,7 +17,11 @@
                                         <h4 class="title">Ahmad Dimas Abid Muttaqi</h4>
                                         <div class="icons my-2">
                                             <i class="fa fa-instagram mr-3"></i>
+<<<<<<< HEAD
                                             <span class="icon-name city"><a href="https://www.instagram.com/ahmad.muttaqi/">@ahmad.muttaqi</a></span>
+=======
+                                            <span class="icon-name city">@ahmaddimas0</span>
+>>>>>>> 8f62ecb60eb694b180da16a113f7841cbc224d37
                                         </div>
                                         <div class="icons my-2">
                                             <i class="fa fa-map-marker mr-3"></i>
@@ -37,15 +41,22 @@
                                         <h4 class="title">Nabila Firstananda Saputri</h4>
                                         <div class="icons my-2">
                                             <i class="fa fa-instagram mr-3"></i>
+<<<<<<< HEAD
                                             <span class="icon-name city"><a href="https://www.instagram.com/nbilafs/">@nbilafs</a></span>
+=======
+                                            <span class="icon-name city">@nbilafs</span>
+>>>>>>> 8f62ecb60eb694b180da16a113f7841cbc224d37
                                         </div>
                                         <div class="icons my-2">
                                             <i class="fa fa-map-marker mr-3"></i>
                                             <span class="icon-name city">Tulungagung</span>
+<<<<<<< HEAD
                                         </div>
                                         <div class="icons my-2">
                                             <i class="fa fa-hourglass-half mr-3"></i>
                                             <span class="icon-name city">24Hours</span>
+=======
+>>>>>>> 8f62ecb60eb694b180da16a113f7841cbc224d37
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +68,11 @@
                                         <h4 class="title">Joice Jessica</h4>
                                         <div class="icons my-2">
                                             <i class="fa fa-instagram mr-3"></i>
+<<<<<<< HEAD
                                             <span class="icon-name city"><a href="https://www.instagram.com/joicejssc/">@joicejssc</a></span>
+=======
+                                            <span class="icon-name city">@joicejssc</span>
+>>>>>>> 8f62ecb60eb694b180da16a113f7841cbc224d37
                                         </div>
                                         <div class="icons my-2">
                                             <i class="fa fa-map-marker mr-3"></i>
@@ -77,15 +92,22 @@
                                         <h4 class="title">Zulfikri Rosyid</h4>
                                         <div class="icons my-2">
                                             <i class="fa fa-instagram mr-3"></i>
+<<<<<<< HEAD
                                             <span class="icon-name city"><a href="https://www.instagram.com/zulf_zrd/">@zulf_zrd</a></span>
+=======
+                                            <span class="icon-name city">@zulf_zrd</span>
+>>>>>>> 8f62ecb60eb694b180da16a113f7841cbc224d37
                                         </div>
                                         <div class="icons my-2">
                                             <i class="fa fa-map-marker mr-3"></i>
                                             <span class="icon-name city">DI Yogyakarta</span>
+<<<<<<< HEAD
                                         </div>
                                         <div class="icons my-2">
                                             <i class="fa fa-hourglass-half mr-3"></i>
                                             <span class="icon-name city">24Hours</span>
+=======
+>>>>>>> 8f62ecb60eb694b180da16a113f7841cbc224d37
                                         </div>
                                     </div>
                                 </div>
