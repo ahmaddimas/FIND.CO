@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line focused <?php if(empty($siswa->kelas)) echo "error"; ?>">
-                                          <select class="form-control" name="kelas">
+                                          <select class="form-control show-tick" name="kelas">
                                             <option value="">-- Please select class --</option>
                                             <?php
                                               $jurusan = ['RPL', 'TKJ'];

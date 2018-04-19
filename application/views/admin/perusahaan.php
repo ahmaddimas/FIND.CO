@@ -24,9 +24,10 @@
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                     <tr>
+                                        <th>P</th>
                                         <th>Perusahaan</th>
                                         <th>Alamat</th>
-                                        <th>No. Telpon</th>
+                                        <th>Telpon</th>
                                         <th>Kota</th>
                                         <th>Provinsi</th>
                                         <th>CP</th>
@@ -36,9 +37,10 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
+                                        <th>P</th>
                                         <th>Perusahaan</th>
                                         <th>Alamat</th>
-                                        <th>No. Telpon</th>
+                                        <th>Telpon</th>
                                         <th>Kota</th>
                                         <th>Provinsi</th>
                                         <th>CP</th>
@@ -51,13 +53,14 @@
                                         foreach ($perusahaan as $p):
                                             $out = strlen($p->alamat) > 50 ? substr($p->alamat, 0, 91).'...':$p->alamat; ?>
                                             <tr>
+                                                <td><?= $p->priority; ?></td>
                                                 <td><?= $p->nama_perusahaan; ?></td>
                                                 <td><?= $out; ?></td>
                                                 <td><?= $p->telp_perusahaan; ?></td>
                                                 <td><?= $p->kota; ?></td>
                                                 <td><?= $p->provinsi; ?></td>
                                                 <td><?= $p->cp; ?></td>
-                                                <td><?= $p->kuota - $p->diterima; ?></td>
+                                                <td><?= ($p->kuota - $p->diterima) . " (". $p->tahun_rekap .")"; ?></td>
                                                 <td class="p-0">
                                                     <a href="<?= base_url('admin/perusahaan/edit/').$p->id_perusahaan; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float m-2">
                                                         <i class="material-icons">mode_edit</i>

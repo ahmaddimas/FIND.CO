@@ -31,6 +31,9 @@
     <!-- Sweet Alert Css -->
     <link href="<?= base_url(); ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
+    <!-- Font-Awesome Css -->
+    <link href="<?= base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
 
@@ -38,7 +41,7 @@
     <link href="<?= base_url(); ?>assets/css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
-<body class="theme-red">
+<body class="theme-green">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -152,7 +155,7 @@
         </aside>
         <!-- #END# Left Sidebar -->
         <!-- Right Sidebar -->
-        <aside id="rightsidebar" class="right-sidebar">
+        <!-- <aside id="rightsidebar" class="right-sidebar">
             <ul class="nav nav-tabs tab-nav-right" role="tablist">
                 <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
             </ul>
@@ -242,7 +245,7 @@
                     </ul>
                 </div>
             </div>
-        </aside>
+        </aside> -->
         <!-- #END# Right Sidebar -->
     </section>
 
@@ -303,17 +306,17 @@
             echo '<script src="'.base_url().'assets/plugins/sweetalert/sweetalert.min.js"></script>';
         } else {
             // DataTable Plugin Js
-            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/jquery.dataTables.js"></script>';
-            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>';
-            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>';
-            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>';
-            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>';
-            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>';
-            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>';
-            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>';
-            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>';
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/jquery.dataTables.js"></script>'."\n\t";
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>'."\n\t";
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>'."\n\t";
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>'."\n\t";
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>'."\n\t";
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>'."\n\t";
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>'."\n\t";
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>'."\n\t";
+            echo '<script src="'.base_url().'assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>'."\n\t";
             // Custom Js
-            echo '<script src="'.base_url().'assets/js/pages/tables/jquery-datatable.js"></script>';
+            echo '<script src="'.base_url().'assets/js/pages/tables/jquery-datatable.js"></script>'."\n\t";
         }
     }
     if(strcasecmp($uri2, 'profile') == 0) {

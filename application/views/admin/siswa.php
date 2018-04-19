@@ -72,7 +72,7 @@
                                         }
                                         $status = $s1 === 'diterima' || $s2 === 'diterima' ? 1:0;
                                         $reject = $s1 === 'ditolak' || $s2 === 'ditolak' ? 1:0;
-                                        $kelas = !empty($xs->kelas) ? $xs->jurusan.' '.str_replace(' ','', substr($xs->kelas, strrpos($xs->kelas, $xs->jurusan) + $xs->jurusan - 1)) : '';
+                                        $kelas = !empty($xs->kelas) ? $xs->jurusan.' '.str_replace(' ','', substr($xs->kelas, strrpos($xs->kelas, ' ') + 1)) : '';
                                         ?>
                                         <tr id="i<?= $xs->id_siswa; ?>">
                                             <td><?= $xs->nama_siswa; ?></td>

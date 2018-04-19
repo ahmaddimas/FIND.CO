@@ -68,6 +68,7 @@
                                             <input type="number" class="form-control" name="kuota" value="<?= $data_perusahaan->kuota; ?>" required>
                                             <label class="form-label">Kuota</label>
                                         </div>
+                                        <div class="help-info">Untuk kuota tahun <?= $data_perusahaan->tahun_rekap; ?></div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">

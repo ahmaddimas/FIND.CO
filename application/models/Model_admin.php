@@ -69,6 +69,7 @@ class Model_admin extends CI_Model {
         $this->db->from('tb_perusahaan AS p');
         $this->db->join('tb_rekap_perusahaan AS rp', 'rp.id_perusahaan = p.id_perusahaan', 'left');
         $this->db->where('rp.tahun_rekap = (SELECT MAX(tahun_rekap) FROM tb_rekap_perusahaan WHERE id_perusahaan = p.id_perusahaan)');
+        $this->db->order_by('p.priority', 'desc');
         $this->db->group_by('p.id_perusahaan');
         return $this->db->get()->result();
     }

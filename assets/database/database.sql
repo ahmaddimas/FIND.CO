@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2018 at 07:08 AM
+-- Generation Time: Feb 09, 2018 at 06:37 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -41,7 +41,8 @@ CREATE TABLE `tb_admin` (
 --
 
 INSERT INTO `tb_admin` (`id_admin`, `username`, `password`, `role`, `last_loggin`) VALUES
-(1, 'hubin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, '0000-00-00 00:00:00');
+(1, 'hubin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, '0000-00-00 00:00:00'),
+(2, 'waka', 'd033e22ae348aeb5660fc2140aec35850c4da997', 2, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,7 @@ CREATE TABLE `tb_guru_pembimbing` (
 
 INSERT INTO `tb_guru_pembimbing` (`id_guru`, `oauth_uid`, `nama_guru`, `email_guru`, `telp_guru`, `jk_guru`, `picture_url`) VALUES
 (3, '113634289449530108260', 'Muhammad Haikal Atthoriq', 'muhammad_atthoriq_24rpl@student.smktelkom-mlg.sch.id', '', '', 'https://lh6.googleusercontent.com/-BKvHsJ3Tq7E/AAAAAAAAAAI/AAAAAAAAAVQ/ZfvXJibk9Ic/photo.jpg'),
-(4, '114624470082022841565', 'NABILA FIRSTANANDA SAPUTRI', 'nabila_saputri_24rpl@student.smktelkom-mlg.sch.id', '', 'female', 'https://lh6.googleusercontent.com/-wQJcZCe_tkI/AAAAAAAAAAI/AAAAAAAAAEA/-Gje0URzoR4/photo.jpg'),
+(4, '114624470082022841565', 'NABILA FIRSTANANDA SAPUTRI', 'nabila_saputri_24rpl@student.smktelkom-mlg.sch.id', '8', 'female', 'https://lh6.googleusercontent.com/-wQJcZCe_tkI/AAAAAAAAAAI/AAAAAAAAAEA/-Gje0URzoR4/photo.jpg'),
 (5, '113737970762948243576', 'Ahmad Dimas Abid Muttaqi', 'ahmad_muttaqi_24rpl@student.smktelkom-mlg.sch.id', '', 'male', 'https://lh3.googleusercontent.com/-HFMtJNXTtOE/AAAAAAAAAAI/AAAAAAAAAFc/HAOHOlJNBFU/photo.jpg');
 
 -- --------------------------------------------------------
@@ -86,7 +87,7 @@ CREATE TABLE `tb_guru_perusahaan` (
 --
 
 INSERT INTO `tb_guru_perusahaan` (`id_guru_perusahaan`, `id_guru`, `id_perusahaan`, `tahun`) VALUES
-(20, 4, 7, 2018);
+(1, 4, 11, 2018);
 
 -- --------------------------------------------------------
 
@@ -107,7 +108,7 @@ CREATE TABLE `tb_monitoring` (
 --
 
 INSERT INTO `tb_monitoring` (`id_monitoring`, `id_guru`, `id_perusahaan`, `tgl_monitoring`, `keterangan`) VALUES
-(1, 4, 7, '2018-02-08', 'asdsad');
+(3, 4, 11, '2018-02-08', 'Nabila tidak masuk 10 kali');
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,7 @@ INSERT INTO `tb_perusahaan` (`id_perusahaan`, `nama_perusahaan`, `telp_perusahaa
 (3, 'SMK Telkom Malang', '081232313123', 'Jl. Danau Ranau Sawojajar Malang', 'Malang', 'Jawa Timur', '312312314', 'Mrs. Joice', 'assets/images/telkom.jpg', 0),
 (4, 'PT. Telekomunikasi Indonesia, Tbk', '0', 'Jl. Gajah Mada No. 182-184 Lt.3 Jember 68131', 'KAB. Jember', 'Jawa Timur', '-', 'Mr. Zul', 'assets/images/TI.jpg', 0),
 (5, 'PT. Telkom Telkomsel Jakarta', '(021) 385081', 'Jl. Jenderal Gatot Subroto No. 42 City Plasa Lt. II Wisma Mulia-Jakarta', 'Jakarta', 'DKI Jakarta', '-', 'Mrs. Saputri', 'assets/images/TELKOMSEL.jpg', 0),
-(6, 'PT. INDOSAT MEGA MEDIA JAKARTA', '0', 'JL. KEBAGUSAN RAYA NO. 36 RAGUNAN-JAKARTA', 'Jakarta', 'DKI Jakarta', '-', '(021) 78546900', 'assets/images/INDOSAT.jpg', 0),
+(6, 'PT. INDOSAT MEGA MEDIA JAKARTA', '0', 'JL. KEBAGUSAN RAYA NO. 36 RAGUNAN-JAKARTA', 'Jakarta', 'DKI Jakarta', '-', '(021) 78546900', 'assets/images/INDOSAT.jpg', 1),
 (7, 'PT. Newmont Nusa Tenggara', '0', 'Jl Sriwijaya 258 Indonesia 80235', 'Makassar', 'Sulawesi Selatan', '-', '(0372)635318', 'assets/images/NEWMONT.jpg', 0),
 (8, 'PT. Telkom Witel Solo', '081362080312', 'Jl. Mayor Kusmanto No. 1', 'Solo', 'Jawa Tengah', '-', '-', 'assets/images/WITEL_SOLO.jpg', 0),
 (9, 'PT. FINNET INDONESIA', '0218299999', 'MENARA BIDAKARA 1 LT. 12 JL. JENDERAL GATOT SUBROTO KAV 71-73 JAKARTA 13350', 'Jakarta', 'DKI Jakarta', '-', '(021) 8299999', 'assets/images/FINNET.jpg', 0),
@@ -169,8 +170,8 @@ INSERT INTO `tb_perusahaan_siswa` (`id_perusahaan_siswa`, `id_siswa`, `id_perusa
 (9, 5, 5, 2, 'menunggu'),
 (12, 7, 9, 1, '-'),
 (13, 7, 7, 2, 'diterima'),
-(14, 8, 7, 1, 'diterima'),
-(15, 8, 1, 2, '-');
+(14, 8, 9, 1, 'ditolak'),
+(15, 8, 11, 2, 'ditolak');
 
 -- --------------------------------------------------------
 
@@ -197,11 +198,13 @@ INSERT INTO `tb_rekap_perusahaan` (`id_rekap`, `id_perusahaan`, `kuota`, `diteri
 (10, 4, 6, 1, 2017),
 (11, 5, 4, 0, 2017),
 (12, 6, 3, 0, 2017),
-(13, 7, 0, 0, 2017),
+(13, 7, 0, -1, 2017),
 (14, 8, 3, 0, 2017),
 (15, 9, 8, 0, 2017),
 (16, 10, 9, 0, 2017),
-(22, 11, 10, 0, 2018);
+(22, 11, 10, 0, 2018),
+(23, 9, 5, 0, 2018),
+(24, 6, 5, 0, 2018);
 
 -- --------------------------------------------------------
 
@@ -296,7 +299,7 @@ ALTER TABLE `tb_siswa`
 -- AUTO_INCREMENT for table `tb_admin`
 --
 ALTER TABLE `tb_admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_guru_pembimbing`
 --
@@ -306,12 +309,12 @@ ALTER TABLE `tb_guru_pembimbing`
 -- AUTO_INCREMENT for table `tb_guru_perusahaan`
 --
 ALTER TABLE `tb_guru_perusahaan`
-  MODIFY `id_guru_perusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_guru_perusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_monitoring`
 --
 ALTER TABLE `tb_monitoring`
-  MODIFY `id_monitoring` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_monitoring` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_perusahaan`
 --
@@ -326,7 +329,7 @@ ALTER TABLE `tb_perusahaan_siswa`
 -- AUTO_INCREMENT for table `tb_rekap_perusahaan`
 --
 ALTER TABLE `tb_rekap_perusahaan`
-  MODIFY `id_rekap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_rekap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `tb_siswa`
 --

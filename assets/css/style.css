@@ -7541,7 +7541,8 @@ fieldset[disabled] .form-control {
         overflow: hidden;
         font-size: 14px;
         max-width: 200px;
-        color: #fff; }
+        /* color: #fff;  */
+    }
       .sidebar .user-info .info-container .email {
         white-space: nowrap;
         -ms-text-overflow: ellipsis;
@@ -7550,7 +7551,8 @@ fieldset[disabled] .form-control {
         overflow: hidden;
         font-size: 12px;
         max-width: 200px;
-        color: #fff; }
+        /* color: #fff;  */
+    }
       .sidebar .user-info .info-container .user-helper-dropdown {
         position: absolute;
         right: -3px;
@@ -7560,7 +7562,8 @@ fieldset[disabled] .form-control {
         -ms-box-shadow: none;
         box-shadow: none;
         cursor: pointer;
-        color: #fff; }
+        /* color: #fff;  */
+    }
   .sidebar .menu {
     position: relative;
     overflow-y: auto;
@@ -8418,4 +8421,9 @@ html.ie11 .bs-searchbox .form-control {
 }
 .text-warning {
     color: orange;
+}
+.icons .fa {
+    font-size: 18px;
+    font-weight: bold;
+    /* margin-right: 10px; */
 }

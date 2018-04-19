@@ -34,6 +34,9 @@
     <!-- Sweet Alert Css -->
     <link href="<?= base_url(); ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
+    <!-- Font-Awesome Css -->
+    <link href="<?= base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
 
@@ -41,7 +44,7 @@
     <link href="<?= base_url(); ?>assets/css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
-<body class="theme-red">
+<body class="theme-green">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -135,7 +138,7 @@
                     </li>
                     <li class="<?php if(strcasecmp($uri2, 'monitor') == 0) {echo 'active';} ?>">
                         <a href="<?= base_url('guru/monitor'); ?>">
-                            <i class="material-icons">domain</i>
+                            <i class="material-icons">timeline</i>
                             <span>Monitoring</span>
                         </a>
                     </li>
@@ -152,7 +155,7 @@
         </aside>
         <!-- #END# Left Sidebar -->
         <!-- Right Sidebar -->
-        <aside id="rightsidebar" class="right-sidebar">
+        <!-- <aside id="rightsidebar" class="right-sidebar">
             <ul class="nav nav-tabs tab-nav-right" role="tablist">
                 <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
             </ul>
@@ -242,7 +245,7 @@
                     </ul>
                 </div>
             </div>
-        </aside>
+        </aside> -->
         <!-- #END# Right Sidebar -->
     </section>
 
